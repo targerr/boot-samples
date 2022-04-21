@@ -17,6 +17,7 @@
         <module>spring-boot-async</module>
         <module>spring-boot-exception-handler</module>
         <module>spring-boot-log-aop</module>
+        <module>spring-boot-mybatis</module>
     </modules>
     <packaging>pom</packaging>
 
