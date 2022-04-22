@@ -19,6 +19,7 @@
         <module>spring-boot-log-aop</module>
         <module>spring-boot-mybatis</module>
         <module>spring-boot-mybatis-generator</module>
+        <module>spring-boot-mybatis-plus</module>
     </modules>
     <packaging>pom</packaging>
 
