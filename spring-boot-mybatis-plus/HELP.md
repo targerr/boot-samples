@@ -131,6 +131,48 @@ spring:
 ```
 #### 在resources下面创建spy.properties配置文件
 
+### 配置
+##### 分页、锁
+```java
+@Configuration
+public class MybatisPlusConfig {
+
+    /**
+     * 控制器
+     * @return
+     */
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        //分页
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        //乐观锁
+        interceptor.addInnerInterceptor(new OptimisticLockerInnerInterceptor());
+        return interceptor;
+    }
+}
+
+```
+##### 填充
+```java
+@Component
+public class MyMetaObjectHandler implements MetaObjectHandler {
+    @Override
+    public void insertFill(MetaObject metaObject) {
+        //第一个对应实体属性名, 第二个参数需要填充的值
+        setFieldValByName("createDateTime", LocalDateTime.now(), metaObject);
+        //第一个对应实体属性名, 第二个参数需要填充的值
+        setFieldValByName("modifyDateTime", LocalDateTime.now(), metaObject);
+    }
+
+    @Override
+    public void updateFill(MetaObject metaObject) {
+        //第一个对应实体属性名, 第二个参数需要填充的值
+        setFieldValByName("modifyDateTime", LocalDateTime.now(), metaObject);
+    }
+}
+
+```
 ### db
 
 ```java
