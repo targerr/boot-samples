@@ -21,6 +21,7 @@
         <module>spring-boot-mybatis-generator</module>
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-mybatis-plus-generator</module>
+        <module>spring-boot-jpa</module>
     </modules>
     <packaging>pom</packaging>
 
