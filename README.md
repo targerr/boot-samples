@@ -8,3 +8,4 @@
 | [spring-boot-mybatis-generator](./spring-boot-mybatis-generator/HELP.md) | spring-boot 整合mybatis 代码生成器                   |
 | [spring-boot-mybatis-plus](./spring-boot-mybatis-plus/HELP.md) | spring-boot 整合mybatis-plus                  |
 | [spring-boot-mybatis-plus-generator](./spring-boot-mybatis-plus-generator/HELP.md) | spring-boot 整合mybatis-plus 代码生成器                 |
+| [spring-boot-mybatis-jpa](./spring-boot-jpa/HELP.md) | spring-boot 整合jpa                 |
