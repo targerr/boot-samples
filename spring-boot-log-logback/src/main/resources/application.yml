@@ -1,0 +1,8 @@
+logging:
+  #?Spring Boot????????????logback-spring.xml??
+  config: classpath:logback-spring.xml
+  level:
+    com.example: info
+spring:
+  profiles:
+    active: dev

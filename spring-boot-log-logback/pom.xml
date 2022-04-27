@@ -16,7 +16,10 @@
         <java.version>11</java.version>
     </properties>
     <dependencies>
-
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
