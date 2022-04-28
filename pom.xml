@@ -23,6 +23,7 @@
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-mybatis-plus-generator</module>
         <module>spring-boot-jpa</module>
+        <module>spring-boot-ui-swagger</module>
     </modules>
     <packaging>pom</packaging>
 
