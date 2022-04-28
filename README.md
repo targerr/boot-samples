@@ -10,3 +10,4 @@
 | [spring-boot-mybatis-plus](./spring-boot-mybatis-plus/HELP.md) | spring-boot 整合mybatis-plus                  |
 | [spring-boot-mybatis-plus-generator](./spring-boot-mybatis-plus-generator/HELP.md) | spring-boot 整合mybatis-plus 代码生成器                 |
 | [spring-boot-mybatis-jpa](./spring-boot-jpa/HELP.md) | spring-boot 整合jpa                 |
+| [spring-boot-ui-swagger](./spring-boot-ui-swagger/HELP.md) | spring-boot 整合swagger              |
