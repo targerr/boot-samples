@@ -12,3 +12,4 @@
 | [spring-boot-mybatis-jpa](./spring-boot-jpa/HELP.md) | spring-boot 整合jpa                 |
 | [spring-boot-ui-swagger](./spring-boot-ui-swagger/HELP.md) | spring-boot 整合swagger              |
 | [spring-boot-ui-swagger-bootstrap](./spring-boot-ui-swagger-bootstrap/HELP.md) | spring-boot 整合swagger-bootstrap             |
+| [spring-boot-ui-knife4j](./spring-boot-ui-knife4j/HELP.md) | spring-boot 整合knife4j             |
