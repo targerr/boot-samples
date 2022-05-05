@@ -26,6 +26,7 @@
         <module>spring-boot-ui-swagger</module>
         <module>spring-boot-ui-swagger-bootstrap</module>
         <module>spring-boot-ui-knife4j</module>
+        <module>spring-boot-event</module>
     </modules>
     <packaging>pom</packaging>
 
