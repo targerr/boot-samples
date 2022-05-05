@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.lang.Dict;
 import cn.hutool.core.thread.ThreadUtil;
 import com.example.dto.OptLogDTO;
 import com.example.evnet.SysLogEvent;
@@ -24,7 +25,7 @@ public class TestController {
     private ApplicationContext applicationContext;
 
     @GetMapping("/index")
-    public String index() {
+    public Dict index() {
         long threadId = Thread.currentThread().getId();
         //构造操作日志信息
         OptLogDTO logInfo = new OptLogDTO();
@@ -40,6 +41,6 @@ public class TestController {
         applicationContext.publishEvent(event);
 
         System.out.println("发布事件,线程id：" + threadId);
-        return "OK";
+        return Dict.create().set("result", logInfo);
     }
 }
