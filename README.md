@@ -14,3 +14,4 @@
 | [spring-boot-ui-swagger-bootstrap](./spring-boot-ui-swagger-bootstrap/HELP.md) | spring-boot 整合swagger-bootstrap             |
 | [spring-boot-ui-knife4j](./spring-boot-ui-knife4j/HELP.md) | spring-boot 整合knife4j             |
 | [spring-boot-event](./spring-boot-event/HELP.md) | spring-boot 整合事件通知            |
+| [spring-boot-starter-hello](./spring-boot-starter-hello/HELP.md) | spring-boot 自定义starter           |
