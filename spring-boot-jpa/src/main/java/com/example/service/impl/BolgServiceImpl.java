@@ -20,6 +20,6 @@ public class BolgServiceImpl implements BolgService {
     private BlogRepository blogRepository;
     @Override
     public Blog findOneBlog(String id) {
-        return blogRepository.getById(id);
+        return blogRepository.getOne(id);
     }
 }
