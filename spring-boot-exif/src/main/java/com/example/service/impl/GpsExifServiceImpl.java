@@ -9,6 +9,7 @@ import com.drew.metadata.Directory;
 import com.drew.metadata.Metadata;
 import com.drew.metadata.Tag;
 import com.example.service.GpsExifService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -25,6 +26,10 @@ import java.util.Map;
  */
 @Service
 public class GpsExifServiceImpl implements GpsExifService {
+
+    @Value("${apiKey}")
+    private String apiKey;
+
     @Override
     public void printPicExifInfo(String imgPath) {
         try {
@@ -90,7 +95,7 @@ public class GpsExifServiceImpl implements GpsExifService {
      *
      * @param map
      */
-    private static void printPicExifInfo(Map<String, String> map) throws IOException {
+    private void printPicExifInfo(Map<String, String> map) throws IOException {
         String[] strings = new String[]{"Compression", "Image Width", "Image Height", "Make", "Model", "Software",
                 "GPS Version ID", "GPS Latitude", "GPS Longitude", "GPS Altitude", "GPS Time-Stamp", "GPS Date Stamp",
                 "ISO Speed Ratings", "Exposure Time", "Exposure Mode", "F-Number", "Focal Length 35", "Color Space", "File Source", "Scene Type"};
@@ -127,8 +132,8 @@ public class GpsExifServiceImpl implements GpsExifService {
      * @param gps_latitude
      * @param gps_longitude
      */
-    private static void convertLatLng2Loaction(double gps_latitude, double gps_longitude) throws IOException {
-        String apiKey = "ddb7f7e37be7ae1e0a50e0aebf1a7e63";
+    private void convertLatLng2Loaction(double gps_latitude, double gps_longitude) throws IOException {
+
 
         String res = "";
         String url = "https://restapi.amap.com/v3/geocode/regeo?output=json&location=" + (gps_longitude + "," + gps_latitude) + "&key=" + apiKey + "&radius=100&extensions=all";
