@@ -29,6 +29,7 @@
         <module>spring-boot-event</module>
         <module>spring-boot-starter-myhello</module>
         <module>spring-boot-exif</module>
+        <module>spring-boot-id-leaf</module>
     </modules>
     <packaging>pom</packaging>
 
