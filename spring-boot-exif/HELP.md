@@ -28,9 +28,9 @@
 ~~~yaml
 server:
   port: 8080
-hello:
-  name: xiaoming
-  address: beijing
+# 高德地图key
+apiKey: ddb7f7e37be7ae1e0a50e0aebf1a7e63
+
 ~~~
 
 第三步：创建服务类 GpsExifServiceImpl
@@ -137,4 +137,4 @@ iso速率  ISO Speed Ratings : 76
 
 ~~~
 
-### [参考](https://blog.csdn.net/qq_40985985/article/details/118605888)
+### [参考链接](https://blog.csdn.net/qq_40985985/article/details/118605888)
