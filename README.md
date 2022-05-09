@@ -16,3 +16,4 @@
 | [spring-boot-event](./spring-boot-event/HELP.md) | spring-boot 整合事件通知            |
 | [spring-boot-starter-hello](./spring-boot-starter-hello/HELP.md) | spring-boot 自定义starter           |
 | [spring-boot-exif](./spring-boot-exif/HELP.md) | spring-boot 获取图片信息        |
+| [spring-boot-id-leaf](./spring-boot-id-leaf/HELP.md) | spring-boot 获取分布式Id   |
