@@ -17,7 +17,16 @@
         <java.version>11</java.version>
     </properties>
     <dependencies>
+        <!--切面-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+        </dependency>
 
     </dependencies>
-    
+
 </project>
