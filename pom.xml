@@ -31,6 +31,7 @@
         <module>spring-boot-exif</module>
         <module>spring-boot-id-leaf</module>
         <module>spring-boot-retryable</module>
+        <module>spring-boot-cache-redis</module>
     </modules>
     <packaging>pom</packaging>
 
