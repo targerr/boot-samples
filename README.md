@@ -18,3 +18,4 @@
 | [spring-boot-exif](./spring-boot-exif/HELP.md) | spring-boot 获取图片信息        |
 | [spring-boot-id-leaf](./spring-boot-id-leaf/HELP.md) | spring-boot 获取分布式Id   |
 | [spring-boot-retryable](./spring-boot-retryable/HELP.md) | spring-boot 优雅重试 |
+| [spring-boot-cache-redis](./spring-boot-cache-redis/HELP.md) | spring-boot 整合redis |
