@@ -32,6 +32,7 @@
         <module>spring-boot-id-leaf</module>
         <module>spring-boot-retryable</module>
         <module>spring-boot-cache-redis</module>
+        <module>spring-boot-token-jwt</module>
     </modules>
     <packaging>pom</packaging>
 
