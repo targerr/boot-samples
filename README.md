@@ -20,3 +20,4 @@
 | [spring-boot-retryable](./spring-boot-retryable/HELP.md) | spring-boot 优雅重试 |
 | [spring-boot-cache-redis](./spring-boot-cache-redis/HELP.md) | spring-boot 整合redis |
 | [spring-boot-token-jwt](./spring-boot-token-jwt/HELP.md) | spring-boot 整合JWT |
+| [spring-boot-token-session](./spring-boot-token-session/HELP.md) | spring-boot 整合session |
