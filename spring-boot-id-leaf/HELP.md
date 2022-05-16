@@ -106,3 +106,9 @@ public class SpringBootIdLeafApplication {
 执行启动类main方法， 雪花:访问地址127.0.0.1:8080/segment
 
 ### [文档链接](https://github.com/Meituan-Dianping/Leaf/blob/master/README_CN.md)
+```
+git clone git@github.com:Meituan-Dianping/Leaf.git
+cd Leaf
+git checkout feature/spring-boot-starter
+mvn clean install -Dmaven.test.skip=true 
+```
