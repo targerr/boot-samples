@@ -35,6 +35,7 @@
         <module>spring-boot-token-jwt</module>
         <module>spring-boot-token-session</module>
         <module>spring-boot-token-spring-session</module>
+        <module>spring-boot-websocket</module>
     </modules>
     <packaging>pom</packaging>
 

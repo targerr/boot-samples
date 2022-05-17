@@ -1,0 +1,9 @@
+spring:
+  freemarker:
+
+    #后缀名freemarker默认后缀为.ftl，当然你也可以改成自己习惯的.html
+    suffix: .ftl
+
+    #设定模板的加载路径，多个以逗号分隔，默认: [“classpath:/templates/”]
+    template-loader-path: classpath:/templates/
+    #设定Template的编码
