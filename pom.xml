@@ -37,6 +37,7 @@
         <module>spring-boot-token-spring-session</module>
         <module>spring-boot-websocket</module>
         <module>spring-boot-log-record</module>
+        <module>spring-boot-file-pdf</module>
     </modules>
     <packaging>pom</packaging>
 
