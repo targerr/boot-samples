@@ -16,7 +16,8 @@
 | [spring-boot-ui-knife4j](./spring-boot-ui-knife4j/HELP.md) | spring-boot 整合knife4j             |
 | [spring-boot-event](./spring-boot-event/HELP.md) | spring-boot 整合事件通知            |
 | [spring-boot-starter-hello](./spring-boot-starter-hello/HELP.md) | spring-boot 自定义starter           |
-| [spring-boot-exif](./spring-boot-exif/HELP.md) | spring-boot 获取图片信息        |
+| [spring-boot-exif](./spring-boot-exif/HELP.md) | spring-boot 整合pdf       |
+| [spring-boot-file-pdf](./spring-boot-file-pdf/HELP.md) | spring-boot 获取图片信息        |
 | [spring-boot-id-leaf](./spring-boot-id-leaf/HELP.md) | spring-boot 获取分布式Id   |
 | [spring-boot-retryable](./spring-boot-retryable/HELP.md) | spring-boot 优雅重试 |
 | [spring-boot-cache-redis](./spring-boot-cache-redis/HELP.md) | spring-boot 整合redis |
