@@ -1,6 +1,5 @@
 package com.example.utils;
 
-import cn.hutool.core.io.FileUtil;
 import com.itextpdf.io.codec.Base64;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Rectangle;
@@ -13,7 +12,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -28,9 +26,6 @@ public class PdfUtils {
      * @param address  输出的文件地址
      * @param data     数据集合
      * @param picture  图片集合
-     * @auther: 孙凯伦
-     * @mobile: 13777579028
-     * @email: 376253703@qq.com
      * @name: generate
      * @description: TODO       pdf模版生成
      * @return: void
@@ -75,18 +70,6 @@ public class PdfUtils {
         //设置不可编辑
         pdfStamper.setFormFlattening(true);
         pdfStamper.close();
-    }
-
-    public static void main(String[] args) throws Exception {
-        byte[] bytes = FileUtil.readBytes("/Users/Downloads/1.pdf");
-        Map<String, String> map = new HashMap<>();
-        map.put("Name", "tom");
-        map.put("Age", "23");
-        String address = "/Users/Downloads/2.pdf";
-        generate(bytes, address, map, null);
-        System.out.println("-------");
-//        png("/Users/Downloads/", "/Users//Downloads/2.pdf", "192847040_0brokerQR");
-//        pdf2Pic("/Users/Downloads/", "/Users/Downloads/22f3bB1E6af.pdf", "22f3bBE6af");
     }
 
 
