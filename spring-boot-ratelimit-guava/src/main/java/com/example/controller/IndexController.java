@@ -17,15 +17,13 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/limit")
 public class IndexController {
-    /**
-     * 创建一个限速器，每1秒，生产2.5个令牌
-     */
-    private RateLimiter rl = RateLimiter.create(2, 1, TimeUnit.SECONDS);
+    // 创建令牌桶每秒一个
+    private RateLimiter rl = RateLimiter.create(1);
 
     @GetMapping("/rate")
     public Dict rate() {
-        //获取令牌，如果没有则等待至超时
-        boolean flag = rl.tryAcquire();
+      //获取令牌，如果没有则等待至超时，本代码超时时间为0，立刻返回错误信息
+        boolean flag = rl.tryAcquire(0, TimeUnit.SECONDS);
         Dict dict = new Dict();
         if (!flag) {
             dict.put("code", 777);
