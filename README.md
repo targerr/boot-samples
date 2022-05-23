@@ -25,3 +25,4 @@
 | [spring-boot-token-session](./spring-boot-token-session/HELP.md) | spring-boot 整合session |
 | [spring-boot-token-redis](./spring-boot-token-redis/HELP.md) | spring-boot 整合 token redis |
 | [spring-boot-webSocket](./spring-boot-websocket/HELP.md) | spring-boot 整合webSocket|
+| [spring-boot-ratelimit-guava](./spring-boot-ratelimit-guava/HELP.md) | spring-boot 整合guava限流
