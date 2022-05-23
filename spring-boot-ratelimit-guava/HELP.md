@@ -2,10 +2,21 @@
 
 #### 案例
 
+```java
+//create方法传入的是每秒生成令牌的个数
+RateLimiter rateLimiter=RateLimiter.create(1);
+        for(int i=0;i< 5;i++){
+        //acquire方法传入的是需要的令牌个数，当令牌不足时会进行等待，该方法返回的是等待的时间
+        double waitTime=rateLimiter.acquire(1);
+        System.out.println(System.currentTimeMillis()/1000+" , "+waitTime);
+        }
+```
+
 第一步：spring-boot-ratelimit-guava
 
 ~~~xml
-    <dependencies>
+
+<dependencies>
     <!-- 工具类大全 -->
     <dependency>
         <groupId>cn.hutool</groupId>
@@ -76,7 +87,6 @@ public @interface CustomRateLimiter {
 
 ~~~
 
-
 第四步：创建RateLimiterAspect
 
 ~~~java
@@ -144,6 +154,7 @@ public class RateLimiterAspect {
 ~~~
 
 第五步：创建枚举
+
 ```java
 package com.example.enums;
 
@@ -197,7 +208,9 @@ public interface CommonEnum {
 }
 
 ```
+
 第六步：创建异常
+
 ```java
 package com.example.exception;
 
@@ -227,7 +240,9 @@ public class RateException extends RuntimeException {
 
 
 ```
+
 第七步：创建异常拦截
+
 ```java
 package com.example.handle;
 
@@ -255,7 +270,9 @@ public class RateExceptionHandler {
 }
 
 ```
+
 第八步：创建测试
+
 ```java
 package com.example.controller;
 
@@ -313,9 +330,11 @@ public class IndexController {
 }
 
 ```
+
 第九步：创建启动类SpringBootUiKnife4jApplication
 
 ~~~java
+
 @SpringBootApplication
 public class SpringBootRatelimitGuavaApplication {
 
@@ -328,3 +347,12 @@ public class SpringBootRatelimitGuavaApplication {
 ~~~
 
 执行启动类main方法启动项目，访问地址：http://localhost:8008/limit/test1
+
+图示
+![image.png](https://upload-images.jianshu.io/upload_images/4994935-c9da67f1d556bc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+> 通俗的理解就是，有一个固定大小的水桶，水龙头一直按照一定的频率往里面滴水。水满了，就不滴了。客户端每次进行请求之前，都要先尝试从水桶里面起码取出“一滴水”，才能处理业务。因为桶的大小固定，水龙头滴水频率固定。从而也就保证了数据接口的访问流量。
+
+- [参考](https://blog.51cto.com/u_15067227/2603666)
+- [参考](https://www.imooc.com/article/290964)
