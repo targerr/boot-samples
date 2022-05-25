@@ -1,0 +1,16 @@
+nacos:
+  config:
+    server-addr: 172.16.200.249:8848
+    type: yaml
+    data-ids: dynamic-tp-nacos.yml
+    auto-refresh: true
+    group: DEFAULT_GROUP
+    bootstrap:
+      enable: true
+      log-enable: true
+
+
+logging:
+  level:
+    #root: DEBUG
+    com.alibaba.nacos.client.config.impl: WARN
