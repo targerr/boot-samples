@@ -30,6 +30,7 @@
         <module>spring-boot-ui-knife4j</module>
         <module>spring-boot-event</module>
         <module>spring-boot-starter-myhello</module>
+        <module>spring-boot-starter-oss</module>
         <module>spring-boot-exif</module>
         <module>spring-boot-id-leaf</module>
         <module>spring-boot-retryable</module>
