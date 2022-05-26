@@ -3,6 +3,7 @@
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [spring-boot-async](./spring-boot-async/HELP.md)                         | spring-boot 串行改并行操作                             |
 | [spring-boot-async-task](./spring-boot-async-task/HELP.md)                         | spring-boot 异步任务支持，实现异步执行任务                               |
+| [spring-boot-async-dynamic](./spring-boot-async-task-dynamic/HELP.md)                         | spring-boot 整合动态线程池                               |
 | [spring-boot-exception-handler](./spring-boot-exception-handler/HELP.md) | spring-boot 统一的异常处理文档                      |
 | [spring-boot-log-aop](./spring-boot-log-aop/HELP.md) | spring-boot 注解+aop形式 收集用户操作日志                    |
 | [spring-boot-log-record](./spring-boot-log-record/HELP.md) | spring-boot 整合第三方record|
