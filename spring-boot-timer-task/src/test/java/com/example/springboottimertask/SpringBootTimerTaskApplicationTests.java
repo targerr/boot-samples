@@ -1,0 +1,13 @@
+package com.example.springboottimertask;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SpringBootTimerTaskApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
