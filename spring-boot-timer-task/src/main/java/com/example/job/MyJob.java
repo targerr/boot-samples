@@ -35,6 +35,6 @@ public class MyJob {
     public void process3() {
         log.info("【process3】开始执行:{}", DateUtil.now());
         ThreadUtil.sleep(2000);
-        log.info("【process3】结束执行:{}", DateUtil.now() + Thread.currentThread().getName());
+        log.info("【process3】结束执行:{}", DateUtil.now());
     }
 }
