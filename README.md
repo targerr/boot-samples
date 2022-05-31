@@ -30,3 +30,4 @@
 | [spring-boot-webSocket](./spring-boot-websocket/HELP.md) | spring-boot 整合webSocket|
 | [spring-boot-ratelimit-guava](./spring-boot-ratelimit-guava/HELP.md) | spring-boot 整合guava限流
 | [spring-boot-timer-task](./spring-boot-timer-task/HELP.md) | spring-boot 整合定时任务
+| [spring-boot-timer-quartz](./spring-boot-timer-quartz/HELP.md) | spring-boot 整合quartz定时任务
