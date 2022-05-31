@@ -44,6 +44,7 @@
         <module>spring-boot-file-pdf</module>
         <module>spring-boot-ratelimit-guava</module>
         <module>spring-boot-timer-task</module>
+        <module>spring-boot-timer-quartz</module>
     </modules>
     <packaging>pom</packaging>
 
