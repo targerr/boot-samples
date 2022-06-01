@@ -1,0 +1,9 @@
+server:
+  port: 8082
+xxl:
+  job:
+    admin:
+      addresses: http://localhost:8080/xxl-job-admin/
+    executor:
+      appname: xxl-job-executor-sample
+      logpath: /tmp/
