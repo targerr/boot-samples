@@ -20,7 +20,8 @@ public class WebAppConfigurer extends WebMvcConfigurationSupport {
     public void addInterceptors(InterceptorRegistry registry) {
         String[] patterns = new String[] { "/login","/error","/*.html","/swagger-resources/**"};
         registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/**")
+                //.addPathPatterns("/**")
+                .addPathPatterns("/user/**","/order/**")
                 .excludePathPatterns(patterns);
         super.addInterceptors(registry);
     }
