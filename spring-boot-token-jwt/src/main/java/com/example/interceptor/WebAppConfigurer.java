@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @Classname WebAppConfigurer
  * @Description
  */
-//@Configuration
+@Configuration
 public class WebAppConfigurer extends WebMvcConfigurationSupport {
 
 
@@ -20,8 +20,8 @@ public class WebAppConfigurer extends WebMvcConfigurationSupport {
     public void addInterceptors(InterceptorRegistry registry) {
         String[] patterns = new String[] { "/login","/error","/*.html","/swagger-resources/**"};
         registry.addInterceptor(new LoginInterceptor())
-                //.addPathPatterns("/**")
-                .addPathPatterns("/user/**","/order/**")
+                .addPathPatterns("/**")
+                //.addPathPatterns("/user/**","/order/**")
                 .excludePathPatterns(patterns);
         super.addInterceptors(registry);
     }
