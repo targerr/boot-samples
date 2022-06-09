@@ -1,5 +1,6 @@
 package com.example.interceptor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -12,14 +13,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  */
 @Configuration
 public class WebAppConfigurer extends WebMvcConfigurationSupport {
-
+    @Autowired
+    LoginInterceptor loginInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String[] patterns = new String[] { "/login","/error","/*.html","/swagger-resources/**"};
-        registry.addInterceptor(new LoginInterceptor())
+        String[] patterns = new String[]{"/login", "/error", "/*.html", "/swagger-resources/**"};
+        registry.addInterceptor(loginInterceptor)
                 .addPathPatterns("/**")
-                //.addPathPatterns("/user/**","/order/**")
                 .excludePathPatterns(patterns);
         super.addInterceptors(registry);
     }
