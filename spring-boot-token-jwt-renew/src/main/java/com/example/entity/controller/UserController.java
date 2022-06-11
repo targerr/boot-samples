@@ -43,7 +43,7 @@ public class UserController {
         String token = JWTUtil.generateToken(userTokenDTO);
 
         //3.存入token至redis
-        redisTemplate.opsForValue().set(userId, JSONObject.toJSONString(userTokenDTO), DURATION, TimeUnit.MILLISECONDS);
+        redisTemplate.opsForValue().set(userId, token, DURATION, TimeUnit.MILLISECONDS);
         return token;
     }
 
