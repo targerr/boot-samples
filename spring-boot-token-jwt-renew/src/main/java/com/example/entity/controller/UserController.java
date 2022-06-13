@@ -32,8 +32,7 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(LoginUserVO loginUserVO) {
-        //1.判断用户名密码是否正确 db操作
-            // 查询用户信息，比对密码
+        //1.判断用户名密码是否正确 db操作 查询用户信息，比对密码
 
         //2.用户名密码正确生成token
         String userId = "1234";
