@@ -253,7 +253,6 @@ public class OssUtil {
             response(request, response, ja1);
 
         } catch (Exception e) {
-            // Assert.fail(e.getMessage());
             System.out.println(e.getMessage());
         } finally {
             ossClient.shutdown();
