@@ -9,25 +9,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-upload-oss</artifactId>
+    <artifactId>spring-boot-upload-qiniu</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-upload-oss</name>
-    <description>spring-boot-upload-oss</description>
+    <name>spring-boot-upload-qiniu</name>
+    <description>spring-boot-upload-qiniu</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <!-- 阿里云 oss存储包-->
-        <dependency>
-            <groupId>com.aliyun.oss</groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-            <version>3.10.2</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
+
     </dependencies>
 
     <build>
