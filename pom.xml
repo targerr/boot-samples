@@ -47,6 +47,7 @@
         <module>spring-boot-timer-task</module>
         <module>spring-boot-timer-quartz</module>
         <module>spring-boot-refurbish-anti</module>
+        <module>spring-boot-upload-oss</module>
     </modules>
     <packaging>pom</packaging>
 
