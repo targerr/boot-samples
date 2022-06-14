@@ -54,6 +54,16 @@ public class OssUtil {
         client.shutdown();
     }
 
+
+    /**
+     * 获取上传文件名称
+     * @param objectName
+     * @return
+     */
+    public String getObjectUrl(String objectName) {
+        return "https://" + ossProperties.getBucket() + "." + this.ossProperties.getEndpoint() + "/" + objectName;
+    }
+
     private OSS getClient() {
         return new OSSClientBuilder().build(ossProperties.getEndpoint(), ossProperties.getAccessKeyId(), ossProperties.getAccessKeySecret());
     }
