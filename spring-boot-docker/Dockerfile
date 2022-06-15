@@ -1,4 +1,4 @@
-FROM hub.c.163.com/library/java:8-alpine
+FROM openjdk:8-jre-slim
 
 MAINTAINER XXX XXX@imooc.com
 
