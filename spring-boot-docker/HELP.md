@@ -60,8 +60,26 @@ mvn clean package -Dmaven.test.skip=true
 docker build -t demo .
 # 1.3 运行
 docker run -d -p 8080:8080 demo   
+# 启动服务
+docker run -d -p 8080:8080  --name demo -v ~/temp:/temp example/spring-boot-docker 
+
+# 查看日志
+docker logs -f demo
+
+# 进入容器
+docker exec -it demo sh
+# or
+docker attach demo
  
 ```
+
+挂在目录说明：
+
+> ~/temp:/temp
+
+冒号前面为挂在的目录，你这个自定义，比如：e:/temp。
+
+冒号后面为docker容器目录。
 
 ##### 2. Maven插件docker-maven-plugin
 
