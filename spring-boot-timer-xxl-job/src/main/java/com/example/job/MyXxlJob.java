@@ -1,5 +1,6 @@
 package com.example.job;
 
+import cn.hutool.core.date.DateUtil;
 import com.xxl.job.core.biz.model.ReturnT;
 import com.xxl.job.core.handler.annotation.XxlJob;
 import com.xxl.job.core.log.XxlJobLogger;
@@ -40,6 +41,14 @@ public class MyXxlJob {
 //                        i, new Gson().toJson(shardingVo));
 //            }
 //        }
+
+        XxlJobLogger.log("myXxlJobHandler execute...");
+        return ReturnT.SUCCESS;
+    }
+
+    @XxlJob("demoTask")
+    public ReturnT<String> demoTask(String param) {
+        log.info("myXxlJobHandler execute..." + DateUtil.now());
 
         XxlJobLogger.log("myXxlJobHandler execute...");
         return ReturnT.SUCCESS;
