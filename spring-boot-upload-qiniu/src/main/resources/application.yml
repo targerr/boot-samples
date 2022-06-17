@@ -1,0 +1,5 @@
+qiniu:
+  config:
+    ak: k78TmLqWbytGbOY1xpyEbguXOkAgjaeOVLoJ4xxx
+    sk: sXrxQItLMGZZ9qOpii2YmrEw5hRQucHW-p7k-xxx
+    bucket: xxx

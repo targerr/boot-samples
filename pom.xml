@@ -49,6 +49,7 @@
         <module>spring-boot-timer-xxl-job</module>
         <module>spring-boot-refurbish-anti</module>
         <module>spring-boot-upload-oss</module>
+        <module>spring-boot-upload-qiniu</module>
         <module>spring-boot-docker</module>
     </modules>
     <packaging>pom</packaging>
