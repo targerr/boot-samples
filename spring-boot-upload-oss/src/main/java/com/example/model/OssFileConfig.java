@@ -36,7 +36,7 @@ public class OssFileConfig {
     /**
      * 图片类型后缀格式
      */
-    public static final Set IMG_SUFFIX = new HashSet(Arrays.asList("jpg", "png", "jpeg", "gif"));
+    public static final Set<String> IMG_SUFFIX = new HashSet<>(Arrays.asList("jpg", "png", "jpeg", "gif"));
 
     /**
      * 全部后缀格式的文件标识符
@@ -69,7 +69,7 @@ public class OssFileConfig {
     /**
      * 允许的文件后缀, 默认全部类型
      */
-    private Set<String> allowFileSuffix = new HashSet<>(Arrays.asList(ALL_SUFFIX_FLAG));
+    private Set<String> allowFileSuffix;
 
     /**
      * 允许的文件大小, 单位： Byte
