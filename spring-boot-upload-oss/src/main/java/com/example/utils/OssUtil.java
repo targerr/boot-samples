@@ -1,3 +1,4 @@
+/*
 package com.example.utils;
 
 import cn.hutool.core.io.IoUtil;
@@ -28,23 +29,27 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+*/
 /**
  * @Author: wgs
  * @Date 2022/6/14 10:12
  * @Classname OssUtil
  * @Description
- */
+ *//*
+
 @WebServlet(asyncSupported = true)
 @Component
 public class OssUtil {
     @Autowired
     private OssProperties ossProperties;
 
-    /**
+    */
+/**
      * 删除
      *
      * @param name oss地址
-     */
+     *//*
+
     public void delete(String name) {
         // 创建OSSClient实例。
         OSS client = getClient();
@@ -55,11 +60,13 @@ public class OssUtil {
     }
 
 
-    /**
+    */
+/**
      * 获取上传文件名称
      * @param objectName
      * @return
-     */
+     *//*
+
     public String getObjectUrl(String objectName) {
         return "https://" + ossProperties.getBucket() + "." + this.ossProperties.getEndpoint() + "/" + objectName;
     }
@@ -69,14 +76,16 @@ public class OssUtil {
     }
 
 
-    /**
+    */
+/**
      * 上传
      *
      * @param file 文件地址
      * @param name 上传地址
      * @param tags 标签
      * @throws Exception
-     */
+     *//*
+
     public void upload(String file, String name, Map<String, String> tags) throws Exception {
         OSS client = getClient();
         // 在HTTP header中设置标签信息。
@@ -90,13 +99,15 @@ public class OssUtil {
     }
 
 
-    /**
+    */
+/**
      * 上传
      *
      * @param file 文件地址
      * @param name 上传地址
      * @throws Exception
-     */
+     *//*
+
     public void upload(String file, String name) throws Exception {
         OSS client = getClient();
         // 上传文件流。
@@ -106,36 +117,42 @@ public class OssUtil {
         client.shutdown();
     }
 
-    /**
+    */
+/**
      * 上传
      *
      * @param file 文件地址 D:/app/xx.pdf
      * @param name 上传地址 template/aa.pdf
      * @throws Exception
-     */
+     *//*
+
     public String uploadFileReturnUrl(String file, String name) throws Exception {
         return uploadFileReturnUrl(new FileInputStream(file), name);
     }
 
 
-    /**
+    */
+/**
      * 上传
      *
      * @param bytes 上传文件的字节数组
      * @param name  上传地址 signedContract/xx.pdf
      * @throws Exception
-     */
+     *//*
+
     public String uploadFileReturnUrl(byte[] bytes, String name) throws Exception {
         return uploadFileReturnUrl(IoUtil.toStream(bytes), name);
     }
 
-    /**
+    */
+/**
      * 上传
      *
      * @param inputStream 文件字节输入流
      * @param name        上传地址 signedContract/xx.pdf
      * @throws Exception
-     */
+     *//*
+
     public String uploadFileReturnUrl(InputStream inputStream, String name) throws Exception {
         //创建客户端
         OSS client = getClient();
@@ -158,12 +175,14 @@ public class OssUtil {
         return url;
     }
 
-    /**
+    */
+/**
      * 从阿里云地址读取模板的字节数组
      *
      * @param filePath template/xx.pdf
      * @return
-     */
+     *//*
+
     public byte[] getBytesFromOssFile(String filePath) {
         //创建客户端
         OSS client = getClient();
@@ -174,13 +193,15 @@ public class OssUtil {
     }
 
 
-    /**
+    */
+/**
      * 上传excel
      *
      * @param outputStream 字节数组输出流
      * @param fileName     文件名称
      * @throws Exception
-     */
+     *//*
+
     public void upload(ByteArrayOutputStream outputStream, String fileName, Map<String, String> tags) {
         OSS client = getClient();
         // 在HTTP header中设置标签信息。
@@ -193,13 +214,15 @@ public class OssUtil {
         client.shutdown();
     }
 
-    /**
+    */
+/**
      * 上传excel
      *
      * @param outputStream 字节数组输出流
      * @param fileName     文件名称
      * @throws Exception
-     */
+     *//*
+
     public void upload(ByteArrayOutputStream outputStream, String fileName) {
         OSS client = getClient();
         // 上传文件流。
@@ -209,9 +232,11 @@ public class OssUtil {
         client.shutdown();
     }
 
-    /**
+    */
+/**
      * 签名直传服务响应客户端发送给应用服务器的GET消息
-     */
+     *//*
+
     public void doGet(HttpServletRequest request, HttpServletResponse response, String url, String directory) {
         // 请填写您的AccessKeyId。
         String accessId = ossProperties.getAccessKeyId();
@@ -270,9 +295,11 @@ public class OssUtil {
     }
 
 
-    /**
+    */
+/**
      * 上传回调服务响应OSS发送给应用服务器的POST消息
-     */
+     *//*
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String ossCallbackBody = getPostBody(request.getInputStream(), Integer.parseInt(request.getHeader("content-length")));
         boolean ret = verifyOssCallbackRequest(request, ossCallbackBody);
@@ -286,12 +313,14 @@ public class OssUtil {
     }
 
 
-    /**
+    */
+/**
      * 获取public key
      *
      * @param url
      * @return
-     */
+     *//*
+
     public static String executeGet(String url) {
         BufferedReader in = null;
 
@@ -327,13 +356,15 @@ public class OssUtil {
         return content;
     }
 
-    /**
+    */
+/**
      * 获取Post消息体
      *
      * @param is
      * @param contentLen
      * @return
-     */
+     *//*
+
     public static String getPostBody(InputStream is, int contentLen) {
         if (contentLen > 0) {
             int readLen = 0;
@@ -355,7 +386,8 @@ public class OssUtil {
         return "";
     }
 
-    /**
+    */
+/**
      * 验证上传回调的Request
      *
      * @param request
@@ -363,7 +395,8 @@ public class OssUtil {
      * @return
      * @throws NumberFormatException
      * @throws IOException
-     */
+     *//*
+
     public boolean verifyOssCallbackRequest(HttpServletRequest request, String ossCallbackBody) throws NumberFormatException, IOException {
         boolean ret = false;
         String autorizationInput = new String(request.getHeader("Authorization"));
@@ -391,14 +424,16 @@ public class OssUtil {
         return ret;
     }
 
-    /**
+    */
+/**
      * 验证RSA
      *
      * @param content
      * @param sign
      * @param publicKey
      * @return
-     */
+     *//*
+
     public boolean doCheck(String content, byte[] sign, String publicKey) {
         try {
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
@@ -417,7 +452,8 @@ public class OssUtil {
         return false;
     }
 
-    /**
+    */
+/**
      * 服务器响应结果
      *
      * @param request
@@ -425,7 +461,8 @@ public class OssUtil {
      * @param results
      * @param status
      * @throws IOException
-     */
+     *//*
+
     public void response(HttpServletRequest request, HttpServletResponse response, String results, int status) throws IOException {
         String callbackFunName = request.getParameter("callback");
         response.addHeader("Content-Length", String.valueOf(results.length()));
@@ -438,9 +475,11 @@ public class OssUtil {
         response.flushBuffer();
     }
 
-    /**
+    */
+/**
      * 服务器响应结果
-     */
+     *//*
+
     public void response(HttpServletRequest request, HttpServletResponse response, String results) throws IOException {
         String callbackFunName = request.getParameter("callback");
         if (callbackFunName == null || "".equalsIgnoreCase(callbackFunName)) {
@@ -452,3 +491,4 @@ public class OssUtil {
         response.flushBuffer();
     }
 }
+*/

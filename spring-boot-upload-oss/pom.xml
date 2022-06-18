@@ -24,6 +24,13 @@
             <version>3.10.2</version>
             <scope>compile</scope>
         </dependency>
+        <!--七牛云依赖-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>[7.7.0, 7.10.99]</version>
+        </dependency>
+        <!--工具类-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
