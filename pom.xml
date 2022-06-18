@@ -49,7 +49,6 @@
         <module>spring-boot-timer-xxl-job</module>
         <module>spring-boot-refurbish-anti</module>
         <module>spring-boot-upload-oss</module>
-        <module>spring-boot-upload-qiniu</module>
         <module>spring-boot-docker</module>
     </modules>
     <packaging>pom</packaging>
@@ -58,7 +57,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
         <java.version>1.8</java.version>
-        <hutool.version>5.8.0.M3</hutool.version>
+        <hutool.version>5.8.3</hutool.version>
         <guava.version>29.0-jre</guava.version>
         <json.version>1.2.58</json.version>
     </properties>
