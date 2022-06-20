@@ -18,7 +18,16 @@ isys:
       private-bucket-name: bucket  #私有 桶名称
       access-key-id: LTAI5tApjwUBpNV3Ug26AT   #AccessKeyId
       access-key-secret: S9n9q7bNI2bt01dk0Epcy2wvEFBxxx  #AccessKeySecret
+    # 七牛云
     qiniu-oss:
       ak: k78TmLqWbytGbOY1xpyEbguXOkAgjaeOVLoJ4FlD # ak
       sk: sXrxQItLMGZZ9qOpii2YmrEw5hRQucHW-p7k-xxx # sk
       bucket: xxx # 桶名称
+     # 腾讯云
+    qc-oss:
+      endpoint: cos.ap-guangzhou.myqcloud.com  #endpoint  如： oss-cn-beijing.aliyuncs.com
+      public-bucket-name: bucket #公共读 桶名称
+      private-bucket-name: bucket  #私有 桶名称
+      secret-id: LTAI5tApjwUBpNV3Ug26AT   #AccessKeyId
+      secret-key: S9n9q7bNI2bt01dk0Epcy2wvEFBxxx  #AccessKeySecret
+
