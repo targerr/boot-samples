@@ -50,6 +50,7 @@
         <module>spring-boot-refurbish-anti</module>
         <module>spring-boot-upload-oss</module>
         <module>spring-boot-docker</module>
+        <module>spring-boot-flyway</module>
     </modules>
     <packaging>pom</packaging>
 
