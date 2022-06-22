@@ -1,0 +1,15 @@
+# ?????(??)
+wx:
+  mp:
+    app-id: wx3eea24241a64xxxx
+    secret: 875e35467082ed9e25da5f28004xxxx
+    token:
+    aesKey:
+    config-storage:
+      type: redistemplate
+      key-prefix:
+      redis:
+        host: 127.0.0.1
+        port: 6379
+server:
+  port: 80
