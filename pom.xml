@@ -51,6 +51,7 @@
         <module>spring-boot-upload-oss</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-flyway</module>
+        <module>spring-boot-weixin-mp</module>
     </modules>
     <packaging>pom</packaging>
 
