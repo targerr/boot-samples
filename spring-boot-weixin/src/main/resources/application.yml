@@ -1,0 +1,18 @@
+
+wxpay:
+  appId: 应用编号
+  appsecret: 875e354670xxx
+
+server:
+  port: 80
+
+dream:
+  weixin:
+    dev-mode: true
+    url-patterns: /weixin/**
+    app-id-key: appId
+    wx-configs:
+      - appId: wx3eea24241xx
+        appSecret: 875e35467082ed9e25dxxx
+        token: 123456
+    json-type: jackson
