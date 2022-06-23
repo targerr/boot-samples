@@ -17,13 +17,13 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-
+        <!--微信公众号开发工具包-->
         <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>wx-java-mp-spring-boot-starter</artifactId>
             <version>4.3.5.B</version>
         </dependency>
-
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
