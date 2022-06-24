@@ -2,6 +2,7 @@
 wxpay:
   appId: 应用编号
   appsecret: 875e354670xxx
+  token: 123
 
 server:
   port: 80

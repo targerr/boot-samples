@@ -18,6 +18,7 @@ public class WxConfig {
     private String appSecret;
     private String mchId;
     private String partnerKey;
+    private String toke;
     private String certPath;
     private String domain;
     private String notifyUrl;
