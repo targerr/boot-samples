@@ -184,4 +184,62 @@ docker run -d -p 8080:8080 demo
  
 ```
 
+3.3 另外一种
+
+```xml
+<plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <from>
+                        <!--base image-->
+                        <image>openjdk:alpine</image>
+                    </from>
+                    <!-- 最后生成的镜像配置 -->
+                    <to>
+                        <!-- push docer-hub官方仓库。用户名/镜像名：版本号， -->
+                        <image>registry.cn-hangzhou.aliyuncs.com/syrobin/short-service</image>
+                        <!-- 如果是阿里云的容器镜像仓库，则使用容器的配置 前缀/命名空间/仓库名 -->
+                        <!--<image>registry.cn-chengdu.aliyuncs.com/renbaojia/ctfo</image>-->
+                        <tags>
+                            <!--版本号-->
+                            <tag>latest</tag>
+                        </tags>
+                        <auth>
+                            <!--在docker-hub或者阿里云上的账号和密码-->
+                            <username>xx</username>
+                            <password>xx</password>
+                        </auth>
+                    </to>
+                    <container>
+                        <!--springboot项目的入口类-->
+                        <mainClass>com.syraven.cloud.ShortCutApplication</mainClass>
+                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                        <ports>
+                            <!--指定镜像端口 , 这里没用 dockfile的操作-->
+                            <port>8202</port>
+                        </ports>
+                    </container>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+```
+
+```shell
+mvn compile jib:dockerBuild
+# 远程
+mvn compile jib:build
+#  运行
+docker run -d -p 8080:8080 demo   
+ 
+```
+
 [参考 mac-m1](https://stackoverflow.com/questions/71300031/docker-image-build-failed-on-mac-m1-chip)
