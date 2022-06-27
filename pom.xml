@@ -53,6 +53,7 @@
         <module>spring-boot-flyway</module>
         <module>spring-boot-weixin</module>
         <module>spring-boot-weixin-mp</module>
+        <module>spring-boot-pay-ijpay</module>
     </modules>
     <packaging>pom</packaging>
 

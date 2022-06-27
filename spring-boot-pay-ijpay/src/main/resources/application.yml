@@ -1,0 +1,16 @@
+# 微信支付配置
+wxpay:
+  # 应用编号
+  appId: wx3eea2424xxx
+  # 是appId对应的接口密码，微信公众号授权获取openID用
+  appSecret: 875e35467082ed9e25daxxx
+  # 微信支付商户号
+  mchId: 1603227xxx
+  # API 密钥
+  partnerKey: a58dh75as34xxx
+  # 证书路径，微信商户后台下载
+  certPath: classpath:apiclient_cert.p1
+  # 支付通知使用
+  domain: https://wanggs.natapp4.cc/
+
+
