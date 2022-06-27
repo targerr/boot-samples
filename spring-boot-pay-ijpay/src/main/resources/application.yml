@@ -14,3 +14,13 @@ wxpay:
   domain: https://wanggs.natapp4.cc/
 
 
+v3:
+  appId: 应用编号
+  keyPath: key.pem
+  certPath: cert.pem
+  certP12Path: cert.p12
+  platformCertPath: wx_cert.pem
+  mchId: 微信支付商户号
+  apiKey3: Api-v3
+  apiKey: Api
+  domain: https://wanggs.natapp4.cc/
