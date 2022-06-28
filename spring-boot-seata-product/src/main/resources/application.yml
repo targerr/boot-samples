@@ -1,0 +1,23 @@
+server:
+  port: 8086
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/db_product
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root123456
+
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: seata-product
+  application:
+    name: seata-product
+
+seata:
+  service:
+    vgroup-mapping:
+      seata-product: default
+    grouplist:
+      default: 127.0.0.1:8091

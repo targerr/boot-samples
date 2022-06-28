@@ -54,6 +54,8 @@
         <module>spring-boot-weixin</module>
         <module>spring-boot-weixin-mp</module>
         <module>spring-boot-pay-ijpay</module>
+        <module>spring-boot-seata-product</module>
+        <module>spring-boot-seata-order</module>
     </modules>
     <packaging>pom</packaging>
 
