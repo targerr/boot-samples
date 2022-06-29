@@ -39,7 +39,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
+            <!--feign-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
