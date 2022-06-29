@@ -22,8 +22,26 @@ public class OrderController {
     @Resource(name="orderRestServiceImpl")
     private OrderService orderRestServiceImpl;
 
-    @GetMapping("/create")
+    @Resource(name = "orderFeignServiceImpl")
+    private OrderService orderFeignServiceImpl;
+
+    /**
+     * restTemplate方式调用
+     * @param count
+     * @return
+     */
+    @GetMapping("/v1create")
     public Boolean create(@RequestParam Integer count) {
         return orderRestServiceImpl.create(count);
+    }
+
+    /**
+     * feign调用
+     * @param count
+     * @return
+     */
+    @GetMapping("/v2create")
+    public Boolean createV2(@RequestParam Integer count) {
+        return orderFeignServiceImpl.create(count);
     }
 }
