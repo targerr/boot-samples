@@ -39,3 +39,6 @@
 | [spring-boot-weixin-mica-weixin](./spring-boot-weixin/HELP.md) | spring-boot 整合mica-weixin微信公众号授权
 | [spring-boot-weixin-mp](./spring-boot-weixin-mp/HELP.md) | spring-boot 整合微信公众号授权
 | [spring-boot-pay-ijpay](./spring-boot-pay-ijpay/HELP.md) | spring-boot 整合Ijpay支付
+| [spring-boot-seata](./spring-boot-seata-product/README.md) | spring-boot 整合seata介绍
+| [spring-boot-seata-product](./spring-boot-seata-product/HELP.md) | spring-boot 整合seata-product
+| [spring-boot-seata-product](./spring-boot-seata-order/HELP.md) | spring-boot 整合seata-order
