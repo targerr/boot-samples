@@ -25,7 +25,6 @@
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-mybatis-plus-generator</module>
         <module>spring-boot-jpa</module>
-        <module>spring-boot-ui-swagger-bootstrap</module>
         <module>spring-boot-ui-knife4j</module>
         <module>spring-boot-event</module>
         <module>spring-boot-starter-myhello</module>
