@@ -35,6 +35,7 @@
         <module>spring-boot-id-leaf</module>
         <module>spring-boot-retryable</module>
         <module>spring-boot-cache-redis</module>
+        <module>spring-boot-cache-redisson</module>
         <module>spring-boot-token-jwt</module>
         <module>spring-boot-token-jwt-renew</module>
         <module>spring-boot-token-session</module>
