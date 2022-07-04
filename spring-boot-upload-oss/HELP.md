@@ -2,7 +2,7 @@
 
 ### 示例
 
-#### 第一步：创建starter工程spring-boot-token-uplod_oss并配置pom.xml文件
+#### 第一步：创建starter工程spring-boot-upload-oss并配置pom.xml文件
 
 ~~~xml
 
