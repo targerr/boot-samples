@@ -43,6 +43,7 @@
         <module>spring-boot-log-record</module>
         <module>spring-boot-file-pdf</module>
         <module>spring-boot-ratelimit-guava</module>
+        <module>spring-boot-ratelimit-redisson</module>
         <module>spring-boot-timer-task</module>
         <module>spring-boot-timer-quartz</module>
         <module>spring-boot-timer-xxl-job</module>
