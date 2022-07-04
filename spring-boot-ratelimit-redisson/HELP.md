@@ -1,6 +1,6 @@
-# springboot整合 redisson 限流
+## springboot整合 redisson 限流
 
-## 第一步：spring-boot-ratelimit-redisson
+### 第一步：spring-boot-ratelimit-redisson
 
 ~~~xml
 
@@ -33,7 +33,7 @@
 </dependencies>
 ~~~
 
-## 第二步：创建application.yml文件
+### 第二步：创建application.yml文件
 
 ~~~yaml
 spring:
@@ -72,7 +72,7 @@ redisson:
     subscriptionConnectionPoolSize: 50
 ~~~
 
-## 第三步： 配置类
+### 第三步： 配置类
 
 ```java
 
@@ -134,7 +134,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 ```
 
-## 第四步： 注解
+### 第四步： 注解
 
 ~~~java
 
@@ -166,7 +166,7 @@ public @interface RateLimiter {
 
 ~~~
 
-## 第五步：创建RateLimiterAspect
+### 第五步：创建RateLimiterAspect
 
 ~~~java
 
@@ -241,7 +241,7 @@ public class RateLimiterAspect {
 
 ~~~
 
-## 第六步：创建枚举
+### 第六步：创建枚举
 
 ```java
 public enum LimitType {
@@ -264,7 +264,7 @@ public enum LimitType {
 
 ```
 
-## 第七步：创建异常
+### 第七步：创建异常
 
 ```java
 
@@ -281,7 +281,7 @@ public class RateException extends RuntimeException {
 
 ```
 
-## 第八步：创建异常拦截
+### 第八步：创建异常拦截
 
 ```java
 
@@ -300,7 +300,7 @@ public class RateExceptionHandler {
 
 ```
 
-## 第九步：创建测试
+### 第九步：创建测试
 
 ```java
 
