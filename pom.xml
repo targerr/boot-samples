@@ -110,6 +110,13 @@
             <version>${json.version}</version>
         </dependency>
 
+        <!-- 工具类大全 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
+
         <!--测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -126,12 +133,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- 工具类大全 -->
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
             <!-- google公司java工具包 -->
             <dependency>
                 <groupId>com.google.guava</groupId>
