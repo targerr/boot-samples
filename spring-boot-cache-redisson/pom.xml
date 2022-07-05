@@ -22,10 +22,6 @@
             <artifactId>redisson</artifactId>
             <version>3.17.4</version>
         </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

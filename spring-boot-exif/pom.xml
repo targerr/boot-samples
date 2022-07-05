@@ -23,12 +23,6 @@
             <artifactId>metadata-extractor</artifactId>
             <version>2.18.0</version>
         </dependency>
-        <!--工具类-->
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-
     </dependencies>
 
 
