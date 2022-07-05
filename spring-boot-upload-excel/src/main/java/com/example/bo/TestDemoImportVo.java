@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 测试单表业务对象 test_demo
- *
  */
 @Data
 public class TestDemoImportVo {
