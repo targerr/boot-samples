@@ -36,6 +36,8 @@
 | [spring-boot-refurbish-anti](./spring-boot-refurbish-anti/HELP.md) | spring-boot 整合redis接口防刷
 | [spring-boot-docker](./spring-boot-docker/HELP.md) | spring-boot 整合docker
 | [spring-boot-flyway](./spring-boot-flyway/HELP.md) | spring-boot 整合flyway
+| [spring-boot-upload-excel](./spring-boot-upload-excel/HELP.md) | spring-boot 整合excel
+| [spring-boot-upload-oss](./spring-boot-upload-oss/HELP.md) | spring-boot 整合OSS
 | [spring-boot-weixin-mica-weixin](./spring-boot-weixin/HELP.md) | spring-boot 整合mica-weixin微信公众号授权
 | [spring-boot-weixin-mp](./spring-boot-weixin-mp/HELP.md) | spring-boot 整合微信公众号授权
 | [spring-boot-pay-ijpay](./spring-boot-pay-ijpay/HELP.md) | spring-boot 整合Ijpay支付
