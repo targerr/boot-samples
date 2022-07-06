@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootUiSwaggerApplication {
+public class SpringBootValidateApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootUiSwaggerApplication.class, args);
+        SpringApplication.run(SpringBootValidateApplication.class, args);
     }
 
 }
