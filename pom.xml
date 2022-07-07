@@ -42,6 +42,7 @@
         <module>spring-boot-websocket</module>
         <module>spring-boot-log-record</module>
         <module>spring-boot-file-pdf</module>
+        <module>spring-boot-mail</module>
         <module>spring-boot-ratelimit-guava</module>
         <module>spring-boot-ratelimit-redisson</module>
         <module>spring-boot-timer-task</module>
