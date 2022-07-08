@@ -16,7 +16,6 @@
 | [spring-boot-mybatis-jpa](./spring-boot-jpa/HELP.md) | spring-boot 整合jpa                 |
 | [spring-boot-ui-knife4j](./spring-boot-ui-knife4j/HELP.md) | spring-boot 整合knife4j             |
 | [spring-boot-event](./spring-boot-event/HELP.md) | spring-boot 整合事件通知            |
-| [spring-boot-starter-hello](./spring-boot-starter-hello/HELP.md) | spring-boot 自定义starter           |
 | [spring-boot-starter-oss](./spring-boot-starter-oss/HELP.md) | spring-boot     阿里云 OSS 对象存储 Java SDK 封装    |
 | [spring-boot-exif](./spring-boot-exif/HELP.md) | spring-boot 整合pdf       |
 | [spring-boot-file-pdf](./spring-boot-file-pdf/HELP.md) | spring-boot 获取图片信息        |
