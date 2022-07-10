@@ -9,19 +9,32 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-starter-myhello</artifactId>
+    <artifactId>spring-boot-repeatsubmit</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-starter-myhello</name>
-    <description>spring-boot-starter-myhello</description>
+    <name>spring-boot-repeatsubmit</name>
+    <description>spring-boot-repeatsubmit</description>
     <properties>
         <java.version>11</java.version>
+        <redisson.version>3.17.4</redisson.version>
     </properties>
     <dependencies>
-        <!--导入自定义starter-->
+        <!--redisson-->
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>spring-boot-starter-hello</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <groupId>org.redisson</groupId>
+            <artifactId>redisson-spring-boot-starter</artifactId>
+            <version>${redisson.version}</version>
+        </dependency>
+
+        <!--切面-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!--常用工具类 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
     </dependencies>
 
