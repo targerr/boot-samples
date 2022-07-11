@@ -50,12 +50,10 @@ public class RepeatSubmitAspect {
 
     @Before("@annotation(repeatSubmit)")
     public void doBefore(JoinPoint point, RepeatSubmit repeatSubmit){
-        System.err.println("---------");
         // 如果注解不为0 则使用注解数值
         long interval = repeatSubmit.timeUnit().toMillis(repeatSubmit.interval());
         System.out.println(interval);
         if (interval < 1000) {
-            System.out.println("=================");
             throw new ServiceException(300, "重复提交间隔时间不能小于'1'秒");
         }
 
