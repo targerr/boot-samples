@@ -20,8 +20,6 @@ redisson:
   nettyThreads: 8
   # \u5355\u8282\u70B9\u914D\u7F6E
   singleServerConfig:
-    # \u5BA2\u6237\u7AEF\u540D\u79F0
-    clientName: ${ruoyi.name}
     # \u6700\u5C0F\u7A7A\u95F2\u8FDE\u63A5\u6570
     connectionMinimumIdleSize: 8
     # \u8FDE\u63A5\u6C60\u5927\u5C0F

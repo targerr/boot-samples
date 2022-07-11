@@ -37,7 +37,7 @@ import java.util.Map;
 @Aspect
 @Component
 @Slf4j
-public class RepeatSubmitAspect {
+    public class RepeatSubmitAspect {
     @Autowired
     private RedissonClient redissonClient;
 

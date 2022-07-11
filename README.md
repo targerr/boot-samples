@@ -22,7 +22,8 @@
 | [spring-boot-id-leaf](./spring-boot-id-leaf/HELP.md) | spring-boot 获取分布式Id   |
 | [spring-boot-retryable](./spring-boot-retryable/HELP.md) | spring-boot 优雅重试 |
 | [spring-boot-cache-redis](./spring-boot-cache-redis/HELP.md) | spring-boot 整合redis |
-| [spring-boot-cache-redission](./spring-boot-cache-redisson/HELP.md) | spring-boot 整合redission
+| [spring-boot-cache-redission](./spring-boot-repeatsubmit/HELP.md) | spring-boot 整合repeatSubmit表单重复提交
+| [spring-boot-repeatSubmit](./spring-boot-cache-redisson/HELP.md) | spring-boot 整合redission
 | [spring-boot-validate](./spring-boot-validate/HELP.md) | spring-boot 整合validate
 | [spring-boot-token-jwt](./spring-boot-token-jwt/HELP.md) | spring-boot 整合JWT |
 | [spring-boot-token-jwt-renew](./spring-boot-token-jwt-renew/HELP.md) | spring-boot 整合JWT 结合redis 自动续期 |
