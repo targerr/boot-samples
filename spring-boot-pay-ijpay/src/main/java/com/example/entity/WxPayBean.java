@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix="wxpay")
+@ConfigurationProperties(prefix = "wxpay")
 public class WxPayBean {
     private String appId;
     private String appSecret;
@@ -20,4 +20,5 @@ public class WxPayBean {
     private String partnerKey;
     private String certPath;
     private String domain;
+    private String notifyUrl;
 }

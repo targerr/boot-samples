@@ -1,10 +1,16 @@
 package com.example.controller.wxpay;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.extra.spring.SpringUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.H5SceneInfo;
+import com.example.entity.PayParam;
 import com.example.entity.WxPayBean;
+import com.example.enums.PayTypeEnum;
+import com.example.form.PaymentForm;
+import com.example.service.PaymentService;
 import com.ijpay.core.enums.SignType;
 import com.ijpay.core.enums.TradeType;
 import com.ijpay.core.kit.HttpKit;
@@ -17,12 +23,11 @@ import com.ijpay.wxpay.model.UnifiedOrderModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,6 +45,30 @@ import java.util.Map;
 public class WxPayController {
     @Autowired
     private WxPayBean wxPayBean;
+
+
+    @PostMapping("/payTest")
+    public JSONObject payTest(@Valid @RequestBody PaymentForm paymentForm, HttpServletRequest request) {
+        String payType = paymentForm.getPayType();
+        JSONObject json = new JSONObject();
+        if (!PayTypeEnum.checkPayType(payType)) {
+            // 支付方式不支持
+            json.put("msg", "该支付类型不存在");
+            return json;
+        }
+
+        PaymentService service = SpringUtil.getBean(StrUtil.lowerFirst(payType));
+
+        PayParam payParam = PayParam.buildParam(paymentForm, request, "支付测试");
+        payParam.setOrderNo(paymentForm.getOrderNo());
+        payParam.setFee(Convert.toStr("1"));
+        payParam.setUserId("用户Id");
+        // 调用支付
+        JSONObject result = service.pay(payParam);
+
+        return result;
+    }
+
 
     /**
      * 公众号支付
