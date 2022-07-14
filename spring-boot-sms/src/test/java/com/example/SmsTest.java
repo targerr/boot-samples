@@ -22,18 +22,16 @@ public class SmsTest {
     @Autowired
     private AliYunProperties aliYunProperties;
     @Autowired
-    private SmsScript smsService;
-    @Autowired
     private SmsScriptHolder smsScriptHolder;
 
     @Test
     public void send() {
-        smsService.send("18806513872", "1212", SmsEnum.用户登录);
+        //smsService.send("18806513872", "1212", SmsEnum.用户登录);
     }
 
     @Test
     public void scriptSend(){
-         smsScriptHolder.route("AliSmsScript").send("18806513872", "1212", SmsEnum.用户登录);
+         smsScriptHolder.route("TencentSmsScript").send("18806513872", "1212", SmsEnum.用户登录);
 
     }
 }

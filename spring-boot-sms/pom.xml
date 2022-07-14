@@ -23,8 +23,18 @@
             <artifactId>aliyun-java-sdk-core</artifactId>
             <version>4.1.0</version>
         </dependency>
-
-        <!--guava-->
+        <!--腾讯短信-->
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java</artifactId>
+            <version>3.1.390</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.squareup.okio</groupId>
+                    <artifactId>okio</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <!-- google公司java工具包 -->
         <dependency>
             <groupId>com.google.guava</groupId>

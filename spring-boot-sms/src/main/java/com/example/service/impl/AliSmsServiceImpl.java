@@ -35,7 +35,7 @@ import java.util.Date;
 //@Service
 @Slf4j
 @SmsScriptHandler("AliSmsScript")
-public class SmsServiceImpl extends BaseSmsScript implements SmsScript {
+public class AliSmsServiceImpl extends BaseSmsScript  {
 
     @Resource
     private AliYunProperties aliYunProperties;
