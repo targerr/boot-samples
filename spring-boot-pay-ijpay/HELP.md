@@ -1,6 +1,6 @@
-# 整合IJpay支付
+## 整合IJpay支付
 
-## 第一步：创建starter工程spring-boot-pay-ijpay并配置pom.xml文件
+### 第一步：创建starter工程spring-boot-pay-ijpay并配置pom.xml文件
 
 ```xml
 
@@ -16,7 +16,7 @@
 
 ```
 
-## 第二步： 配置文件
+### 第二步： 配置文件
 
 ```yaml
 # 微信支付配置
@@ -47,7 +47,7 @@ v3:
   domain: https://wanggs.natapp4.cc/
 ```
 
-## 第三步： 配置类
+### 第三步： 配置类
 
 #### 1. v2(xml格式)版本
 
@@ -122,7 +122,7 @@ public class WxPayConfig {
 
 ```
 
-## 第四步：控制层
+### 第四步：控制层
 #### 1. v2 版本
 ```java
 package com.example.controller.wxpay;
