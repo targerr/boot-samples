@@ -11,16 +11,17 @@ import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
+import com.example.annotation.SmsScriptHandler;
 import com.example.config.properties.AliYunProperties;
 import com.example.enums.SmsEnum;
-import com.example.service.SmsService;
+import com.example.service.BaseSmsScript;
+import com.example.service.SmsScript;
 import com.google.common.base.Throwables;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.Date;
@@ -31,9 +32,10 @@ import java.util.Date;
  * @Classname SmsServiceImpl
  * @Description
  */
-@Service
+//@Service
 @Slf4j
-public class SmsServiceImpl implements SmsService {
+@SmsScriptHandler("AliSmsScript")
+public class SmsServiceImpl extends BaseSmsScript implements SmsScript {
 
     @Resource
     private AliYunProperties aliYunProperties;
@@ -50,12 +52,11 @@ public class SmsServiceImpl implements SmsService {
 
     /**
      * 发送短信验证码
-     *
-     * @param phone
+     *  @param phone
      * @param captcha
      */
     @Override
-    public Boolean send(String phone, String captcha, SmsEnum smsEnum) {
+    public void send(String phone, String captcha, SmsEnum smsEnum) {
         // 1.初始化
         IAcsClient client = getClient();
         // 2.组装发送短信参数
@@ -63,16 +64,15 @@ public class SmsServiceImpl implements SmsService {
         try {
             // 3.处理响应数据
             CommonResponse response = client.getCommonResponse(request);
-            return assembleSmsRecord(phone, response);
+            assembleSmsRecord(phone, response);
         } catch (Exception e) {
             log.error("TencentSmsScript#send fail:{},params:{}", Throwables.getStackTraceAsString(e), JSON.toJSONString(request));
-            return false;
         }
     }
 
-    private Boolean assembleSmsRecord(String phone, CommonResponse response) {
+    private void assembleSmsRecord(String phone, CommonResponse response) {
         if (response == null) {
-            return false;
+            return;
         }
 
         JSONObject json = JSONObject.parseObject(JSONObject.toJSONString(response));
@@ -80,14 +80,13 @@ public class SmsServiceImpl implements SmsService {
 
         if (!StrUtil.equals(json.getJSONObject("data").getString("Code"), "OK")) {
             log.error("【短信】发送失败, data:{}", json);
-            return false;
+            return;
         }
 
         SmsRecord smsRecord = SmsRecord.builder()
                 .sendDate(Integer.valueOf(DateUtil.format(new Date(), DatePattern.PURE_DATE_PATTERN)))
                 .phone(Long.valueOf(phone)).build();
 
-        return true;
     }
 
     /**

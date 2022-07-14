@@ -8,7 +8,7 @@ import com.example.enums.SmsEnum;
  * @Classname SmsService
  * @Description
  */
-public interface SmsService {
+public interface SmsScript {
 
-    public abstract Boolean send(String phone, String captcha, SmsEnum smsEnum);
+    public abstract void send(String phone, String captcha, SmsEnum smsEnum);
 }
