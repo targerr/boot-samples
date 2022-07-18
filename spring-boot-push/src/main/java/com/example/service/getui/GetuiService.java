@@ -1,6 +1,5 @@
-package com.example.service;
+package com.example.service.getui;
 
-import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.exception.PushException;
 import com.example.param.SendRequest;
@@ -33,42 +32,17 @@ import java.util.stream.Collectors;
 
 /**
  * @Author: wgs
- * @Date 2022/7/18 14:36
- * @Classname GeTuiSender
+ * @Date 2022/7/18 14:57
+ * @Classname GetuiService
  * @Description
  */
-@Service
 @Slf4j
-public class GeTuiSender extends BasePushSender {
+@Service
+public class GetuiService {
     @Autowired
     private PushApi pushApi;
     @Autowired
     private UserApi userApi;
-
-    @Override
-    public PushSenderEnum getPushSenderEnum() {
-        return PushSenderEnum.GE_TUI;
-    }
-
-    @Override
-    protected void validate(SendRequest sendRequest) {
-        if (sendRequest == null || StrUtil.isEmpty(sendRequest.getCid())) {
-            log.debug("【个推】推送参数不合法 data: {}", JSONObject.toJSONString(sendRequest, true));
-            throw new PushException(104, "推送参数不合法");
-        }
-    }
-
-    @Override
-    protected void execute(SendRequest sendRequest) {
-//        pushToSingleByCid(sendRequest);
-        sendRequest.setUserId("123456");
-        pushToSingleByAlias(sendRequest);
-    }
-
-    @Override
-    protected void console(SendRequest sendRequest) {
-        log.debug("【个推】推送参数 data: {}", JSONObject.toJSONString(sendRequest, true));
-    }
 
     /**
      * cid 推送
@@ -97,7 +71,7 @@ public class GeTuiSender extends BasePushSender {
      *
      * @param sendRequest
      */
-    protected void pushToSingleByAlias(SendRequest sendRequest) {
+    public void pushToSingleByAlias(SendRequest sendRequest) {
         batchUnboundAlias(sendRequest.getCid(), sendRequest.getUserId());
         bindAlias(sendRequest.getCid(), sendRequest.getUserId());
 
