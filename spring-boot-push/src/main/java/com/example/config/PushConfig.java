@@ -1,8 +1,8 @@
-package com.example;
+package com.example.config;
 
 import cn.jpush.api.JPushClient;
-import com.example.properties.GetuiProperties;
-import com.example.properties.JpushProperties;
+import com.example.config.properties.GetuiProperties;
+import com.example.config.properties.JpushProperties;
 import com.getui.push.v2.sdk.ApiHelper;
 import com.getui.push.v2.sdk.GtApiConfiguration;
 import com.getui.push.v2.sdk.api.PushApi;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class PushConfig {
     @Autowired
-    private GetuiProperties getuiConfig;
+    private GetuiProperties getuiProperties;
     @Autowired
     private JpushProperties jpushConfig;
 

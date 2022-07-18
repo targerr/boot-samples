@@ -1,4 +1,4 @@
-package com.example.properties;
+package com.example.config.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,16 +8,12 @@ import org.springframework.stereotype.Component;
  * @Author: wgs
  * @Date 2022/7/18 13:46
  * @Classname GetuiProperties
- * @Description 个推配置
+ * @Description 极光推送配置
  */
 @Data
-@ConfigurationProperties(prefix = "push.getui")
+@ConfigurationProperties(prefix = "push.jiguang")
 @Component
-public class GetuiProperties {
-    /**
-     * 应用id
-     */
-    private String appId;
+public class JpushProperties {
     /**
      * 应用key
      */
