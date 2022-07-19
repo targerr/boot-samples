@@ -22,7 +22,7 @@ public class PushConfig {
     @Autowired
     private GetuiProperties getuiProperties;
     @Autowired
-    private JpushProperties jpushConfig;
+    private JpushProperties jpushProperties;
 
     @Bean
     public PushApi pushApi() {
@@ -51,16 +51,16 @@ public class PushConfig {
     private GtApiConfiguration getGtApiConfiguration() {
         GtApiConfiguration apiConfiguration = new GtApiConfiguration();
         // 填写应用配置
-        apiConfiguration.setAppId(getuiConfig.getAppId());
-        apiConfiguration.setAppKey(getuiConfig.getAppKey());
-        apiConfiguration.setMasterSecret(getuiConfig.getMasterSecret());
+        apiConfiguration.setAppId(getuiProperties.getAppId());
+        apiConfiguration.setAppKey(getuiProperties.getAppKey());
+        apiConfiguration.setMasterSecret(getuiProperties.getMasterSecret());
         apiConfiguration.setDomain("https://restapi.getui.com/v2/");
         return apiConfiguration;
     }
 
     @Bean
     public JPushClient jPushClient() {
-        return new JPushClient( jpushConfig.getMasterSecret(),jpushConfig.getAppKey());
+        return new JPushClient( jpushProperties.getMasterSecret(),jpushProperties.getAppKey());
     }
 
 }

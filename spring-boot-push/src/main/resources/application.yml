@@ -16,3 +16,7 @@ push:
     appKey: 769873be50c4ac2af94a3785
     # \u4E2A\u63A8\u670D\u52A1\u7AEFAPI\u9274\u6743\u7801
     masterSecret: 94f38872b2fe07594a72f495
+
+logging:
+  level:
+    com.example: debug

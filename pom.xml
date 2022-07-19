@@ -52,6 +52,7 @@
         <module>spring-boot-upload-oss</module>
         <module>spring-boot-upload-excel</module>
         <module>spring-boot-sms</module>
+        <module>spring-boot-push</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-flyway</module>
         <module>spring-boot-mq-rabbitmq</module>
