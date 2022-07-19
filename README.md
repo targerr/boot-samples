@@ -37,6 +37,7 @@
 | [spring-boot-timer-xxl-job](./spring-boot-timer-xxl-job/HELP.md) | spring-boot 整合xxl-job定时任务
 | [spring-boot-refurbish-anti](./spring-boot-refurbish-anti/HELP.md) | spring-boot 整合redis接口防刷
 | [spring-boot-sms](./spring-boot-sms/HELP.md) | spring-boot 整合短信
+| [spring-boot-push](./spring-boot-push/HELP.md) | spring-boot 整合消息推送
 | [spring-boot-docker](./spring-boot-docker/HELP.md) | spring-boot 整合docker
 | [spring-boot-flyway](./spring-boot-flyway/HELP.md) | spring-boot 整合flyway
 | [spring-boot-upload-excel](./spring-boot-upload-excel/HELP.md) | spring-boot 整合excel
