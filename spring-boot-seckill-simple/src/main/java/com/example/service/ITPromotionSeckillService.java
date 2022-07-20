@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author wgs
@@ -15,5 +15,6 @@ import java.util.List;
  */
 public interface ITPromotionSeckillService extends IService<TPromotionSeckill> {
 
-    List<TPromotionSeckill> findUnstartSeckill();
+
+    public abstract void processSecKill(Long psId, String userId, Integer number);
 }
