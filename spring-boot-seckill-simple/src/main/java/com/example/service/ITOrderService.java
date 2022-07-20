@@ -1,6 +1,6 @@
-package seckill.service;
+package com.example.service;
 
-import seckill.entity.TOrder;
+import com.example.entity.TOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

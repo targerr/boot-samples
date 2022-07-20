@@ -1,8 +1,8 @@
-package seckill.service.impl;
+package com.example.service.impl;
 
-import seckill.entity.TOrder;
-import seckill.mapper.TOrderMapper;
-import seckill.service.ITOrderService;
+import com.example.service.ITOrderService;
+import com.example.entity.TOrder;
+import com.example.mapper.TOrderMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

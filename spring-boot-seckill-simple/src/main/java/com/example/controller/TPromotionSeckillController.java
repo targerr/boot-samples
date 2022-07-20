@@ -1,5 +1,7 @@
-package seckill.controller;
+package com.example.controller;
 
+import com.example.service.ITPromotionSeckillService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 
@@ -14,5 +16,8 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/tPromotionSeckill")
 public class TPromotionSeckillController {
+
+    @Autowired
+    private ITPromotionSeckillService service;
 
 }

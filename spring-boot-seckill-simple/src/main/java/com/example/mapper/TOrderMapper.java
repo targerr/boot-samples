@@ -1,6 +1,6 @@
-package seckill.mapper;
+package com.example.mapper;
 
-import seckill.entity.TOrder;
+import com.example.entity.TOrder;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

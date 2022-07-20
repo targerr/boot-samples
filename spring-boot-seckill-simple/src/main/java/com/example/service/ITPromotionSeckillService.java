@@ -1,7 +1,9 @@
-package seckill.service;
+package com.example.service;
 
-import seckill.entity.TPromotionSeckill;
+import com.example.entity.TPromotionSeckill;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ITPromotionSeckillService extends IService<TPromotionSeckill> {
 
+    List<TPromotionSeckill> findUnstartSeckill();
 }

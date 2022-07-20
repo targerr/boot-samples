@@ -1,6 +1,6 @@
-package seckill.mapper;
+package com.example.mapper;
 
-import seckill.entity.TPromotionSeckill;
+import com.example.entity.TPromotionSeckill;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
