@@ -1,0 +1,16 @@
+package seckill.mapper;
+
+import seckill.entity.TOrder;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+ * <p>
+ *  Mapper 接口
+ * </p>
+ *
+ * @author wgs
+ * @since 2022-07-20
+ */
+public interface TOrderMapper extends BaseMapper<TOrder> {
+
+}
