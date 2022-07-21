@@ -1,4 +1,4 @@
-package com.example.Handler;
+package com.example.handler;
 
 import cn.hutool.core.lang.Dict;
 import com.example.exception.SecKillException;
