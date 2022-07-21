@@ -10,6 +10,11 @@ spring:
     host: 127.0.0.1
     port: 6379
 
+  rabbitmq:
+    host: 172.16.200.220
+    port: 5672
+    username: admin
+    password: 123456
 
 mybatis-plus:
   mapper-locations:

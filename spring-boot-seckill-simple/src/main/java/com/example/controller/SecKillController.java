@@ -1,11 +1,10 @@
 package com.example.controller;
 
 import cn.hutool.core.lang.Dict;
-import com.example.service.ITPromotionSeckillService;
+import com.example.service.PromotionSecKillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,13 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecKillController {
 
     @Autowired
-    private ITPromotionSeckillService service;
+    private PromotionSecKillService service;
 
     @PostMapping("/seckill")
     public Dict processSecKill(Long psId, String userId) {
-        service.processSecKill(psId , userId , 1);
+        String orderNo = service.processSecKill(psId, userId, 1);
+        service.sendOrderToQueue(userId, orderNo);
 
 
-        return Dict.create().set("code",0).set("message"," 恭喜您，抢到商品啦");
+        return Dict.create().set("code", 0).set("message", " 恭喜您，抢到商品啦");
     }
 }

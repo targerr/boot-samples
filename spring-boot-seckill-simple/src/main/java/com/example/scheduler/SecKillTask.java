@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.constants.SecKillConstant;
 import com.example.entity.TPromotionSeckill;
-import com.example.service.ITPromotionSeckillService;
+import com.example.service.PromotionSecKillService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 public class SecKillTask {
     @Autowired
-    private ITPromotionSeckillService seckillService;
+    private PromotionSecKillService seckillService;
     @Resource
     private RedisTemplate redisTemplate;
 
