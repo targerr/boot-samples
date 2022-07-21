@@ -49,3 +49,4 @@
 | [spring-boot-seata](./spring-boot-seata-product/README.md) | spring-boot 整合seata介绍
 | [spring-boot-seata-product](./spring-boot-seata-product/HELP.md) | spring-boot 整合seata-product
 | [spring-boot-seata-order](./spring-boot-seata-order/HELP.md) | spring-boot 整合seata-order
+| [spring-boot-secKill-simple](./spring-boot-seckill-simple/HELP.md) |  spring-boot 整合简单秒杀
