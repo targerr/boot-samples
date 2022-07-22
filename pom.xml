@@ -34,7 +34,6 @@
         <module>spring-boot-cache-redisson</module>
         <module>spring-boot-validate</module>
         <module>spring-boot-token-jwt</module>
-        <module>spring-boot-token-jwt-renew</module>
         <module>spring-boot-token-session</module>
         <module>spring-boot-token-spring-session</module>
         <module>spring-boot-token-redis</module>

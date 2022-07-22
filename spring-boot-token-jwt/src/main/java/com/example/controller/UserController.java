@@ -1,10 +1,10 @@
-package com.example.entity.controller;
+package com.example.controller;
 
+import cn.hutool.jwt.JWTUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.dto.UserTokenDTO;
 import com.example.entity.vo.LoginUserVO;
 import com.example.entity.vo.UpdatePasswordUserVO;
-import com.example.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @Author: wgs
  * @Date 2022/6/9 09:06
  * @Classname UserController
- * @Description
+ * @Description 测试续期相关
  */
 @RestController
 @RequestMapping("/")
@@ -39,7 +39,7 @@ public class UserController {
         UserTokenDTO userTokenDTO = new UserTokenDTO();
         userTokenDTO.setId(userId);
         userTokenDTO.setGmtCreate(System.currentTimeMillis());
-        String token = JWTUtil.generateToken(userTokenDTO);
+        String token = "";//JWTUtil.generateToken(userTokenDTO);
 
         //3.存入token至redis
         redisTemplate.opsForValue().set(userId, token, DURATION, TimeUnit.MILLISECONDS);
@@ -61,7 +61,7 @@ public class UserController {
                 .id(userId)
                 .userName(userName)
                 .gmtCreate(System.currentTimeMillis()).build();
-        String token = JWTUtil.generateToken(userTokenDTO);
+        String token = "";//JWTUtil.generateToken(userTokenDTO);
         //3.更新token
         redisTemplate.opsForValue().set(userId, JSONObject.toJSONString(userTokenDTO), DURATION, TimeUnit.MILLISECONDS);
         return token;
