@@ -24,6 +24,7 @@
         <module>spring-boot-mybatis-generator</module>
         <module>spring-boot-mybatis-plus</module>
         <module>spring-boot-mybatis-plus-generator</module>
+        <module>spring-boot-mybatis-renren-generator</module>
         <module>spring-boot-jpa</module>
         <module>spring-boot-ui-knife4j</module>
         <module>spring-boot-event</module>
@@ -88,6 +89,20 @@
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
