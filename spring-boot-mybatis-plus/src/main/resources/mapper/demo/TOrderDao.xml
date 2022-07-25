@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.modules.demo.dao.TOrderDao">
+
+    <resultMap type="com.example.modules.demo.entity.TOrderEntity" id="tOrderMap">
+        <result property="orderId" column="order_id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="userid" column="userid"/>
+        <result property="recvName" column="recv_name"/>
+        <result property="recvAddress" column="recv_address"/>
+        <result property="recvMobile" column="recv_mobile"/>
+        <result property="postage" column="postage"/>
+        <result property="amout" column="amout"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+</mapper>
