@@ -56,6 +56,7 @@
         <module>spring-boot-docker</module>
         <module>spring-boot-flyway</module>
         <module>spring-boot-mq-rabbitmq</module>
+        <module>spring-boot-mq-activemq</module>
         <module>spring-boot-weixin</module>
         <module>spring-boot-weixin-mp</module>
         <module>spring-boot-pay-ijpay</module>

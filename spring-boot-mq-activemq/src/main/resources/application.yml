@@ -3,7 +3,7 @@ server:
 
 spring:
   activemq:
-    broker-url: tcp://192.168.56.101:61616
+    broker-url: tcp://127.0.0.1:61616
     user: admin
     password: admin
     close-timeout: 15s   # \u5728\u8003\u8651\u7ED3\u675F\u4E4B\u524D\u7B49\u5F85\u7684\u65F6\u95F4
