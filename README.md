@@ -43,6 +43,7 @@
 | [spring-boot-upload-oss](./spring-boot-upload-oss/HELP.md) | spring-boot 整合OSS
 | [spring-boot-mq-rabbitmq](./spring-boot-mq-rabbitmq/HELP.md) | spring-boot 整合rabbitmq
 | [spring-boot-mq-activemq](./spring-boot-mq-activemq/HELP.md) | spring-boot 整合activemq
+| [spring-boot-mq-rocketmq](./spring-boot-mq-rocketmq/HELP.md) | spring-boot 整合rocketmq
 | [spring-boot-weixin-mica-weixin](./spring-boot-weixin/HELP.md) | spring-boot 整合mica-weixin微信公众号授权
 | [spring-boot-weixin-mp](./spring-boot-weixin-mp/HELP.md) | spring-boot 整合微信公众号授权
 | [spring-boot-pay-ijpay](./spring-boot-pay-ijpay/HELP.md) | spring-boot 整合Ijpay支付
