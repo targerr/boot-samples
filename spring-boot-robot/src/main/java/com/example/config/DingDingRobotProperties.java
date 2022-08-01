@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "dingding")
 @Data
-public class DingDingProperties {
+public class DingDingRobotProperties {
     /**
      * 密钥
      */
