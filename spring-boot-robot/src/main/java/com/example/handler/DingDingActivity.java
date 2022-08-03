@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @Author: wgs
  * @Date 2022/8/3 09:32
- * @Classname DingDingActiveity
+ * @Classname DingDingActivity
  * @Description
  */
 @Slf4j
