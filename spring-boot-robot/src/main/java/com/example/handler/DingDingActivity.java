@@ -23,9 +23,7 @@ public class DingDingActivity {
     public static final Map<DingDingHandler.DingDingEnum, DingDingHandler> MAP = new HashMap<>(4);
 
     public DingDingActivity(List<DingDingHandler> handlerList) {
-        handlerList.forEach(e -> {
-            MAP.put(e.getEnum(), e);
-        });
+        handlerList.forEach(e -> MAP.put(e.getEnum(), e));
     }
 
     public DingDingHandler getHeader(DingDingHandler.DingDingEnum dingDingEnum) {
