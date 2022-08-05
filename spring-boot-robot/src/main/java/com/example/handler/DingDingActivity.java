@@ -26,11 +26,11 @@ public class DingDingActivity {
         handlerList.forEach(e -> MAP.put(e.getEnum(), e));
     }
 
-    public DingDingHandler getHeader(DingDingHandler.DingDingEnum dingDingEnum) {
+    public DingDingHandler getHandler(DingDingHandler.DingDingEnum dingDingEnum) {
         return MAP.get(dingDingEnum);
     }
 
     public boolean doHandler(DingDingHandler.DingDingEnum dingDingEnum, ParamInfo paramInfo) {
-        return getHeader(dingDingEnum).doHandler(paramInfo);
+        return getHandler(dingDingEnum).doHandler(paramInfo);
     }
 }
