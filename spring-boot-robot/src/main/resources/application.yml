@@ -1,3 +1,7 @@
 dingding:
   secret:
   url:
+
+logging:
+  level:
+    com.example: debug
