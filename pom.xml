@@ -65,6 +65,7 @@
         <module>spring-boot-seata-product</module>
         <module>spring-boot-seata-order</module>
         <module>spring-boot-seckill-simple</module>
+        <module>spring-cloud-alibaba</module>
     </modules>
     <packaging>pom</packaging>
 
