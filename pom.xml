@@ -56,6 +56,7 @@
         <module>spring-boot-robot</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-flyway</module>
+        <module>spring-boot-cors</module>
         <module>spring-boot-mq-rabbitmq</module>
         <module>spring-boot-mq-activemq</module>
         <module>spring-boot-mq-rocketmq</module>
