@@ -195,3 +195,4 @@ SET NAMES utf8mb4;
         SET FOREIGN_KEY_CHECKS=1;
 
 ```
+#### [mybatis-plus用法](https://mp.weixin.qq.com/s?__biz=MzUxOTAxODc2Mg==&mid=2247493762&idx=1&sn=577b0735e1d089a72e689f6d6df08888&chksm=f982a8e7cef521f1ee987971273788857ce1e15a9d555fb8d134e6bfccad794cf692a09eae7b&scene=21#wechat_redirect)
