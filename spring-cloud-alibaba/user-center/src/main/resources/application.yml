@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        # \u6307\u5B9Anacos server\u7684\u5730\u5740
+        server-addr: 172.16.200.249:8848
+  application:
+    # \u670D\u52A1\u540D\u79F0\u5C3D\u91CF\u7528-\uFF0C\u4E0D\u8981\u7528_\uFF0C\u4E0D\u8981\u7528\u7279\u6B8A\u5B57\u7B26
+    name: user-center
+server:
+  port: 8081

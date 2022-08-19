@@ -11,6 +11,7 @@
 
     <modules>
         <module>content-center</module>
+        <module>user-center</module>
     </modules>
     <packaging>pom</packaging>
 
