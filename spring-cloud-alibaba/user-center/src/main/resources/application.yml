@@ -8,10 +8,13 @@ spring:
   cloud:
     nacos:
       discovery:
-        # \u6307\u5B9Anacos server\u7684\u5730\u5740
+        # 指定nacos server的地址
         server-addr: 172.16.200.249:8848
+        namespace: 1cbd4445-e494-4011-bccb-7ac4c094f9d7
+        # NJ 假设南京机房
+        cluster-name: NJ
   application:
-    # \u670D\u52A1\u540D\u79F0\u5C3D\u91CF\u7528-\uFF0C\u4E0D\u8981\u7528_\uFF0C\u4E0D\u8981\u7528\u7279\u6B8A\u5B57\u7B26
+    # 服务名称尽量用-，不要用_，不要用特殊字符
     name: user-center
 server:
   port: 8081
