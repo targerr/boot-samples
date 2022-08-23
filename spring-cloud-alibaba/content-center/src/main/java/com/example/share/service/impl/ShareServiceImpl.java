@@ -2,6 +2,7 @@ package com.example.share.service.impl;
 
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.feignclient.UserCenterFeignClient;
 import com.example.share.dto.share.ShareDTO;
 import com.example.share.dto.user.UserDTO;
 import com.example.share.entity.Share;
@@ -32,13 +33,18 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
     private RestTemplate restTemplate;
     @Autowired
     private DiscoveryClient discoveryClient;
+    @Autowired
+    private UserCenterFeignClient client;
 
     @Override
     public ShareDTO findById(String id) {
         Share share = getById(id);
         String userId = share.getUserId();
 
-        UserDTO userDTO = buildUserV1(userId);
+        // restTemplate
+        //UserDTO userDTO = buildUserV1(userId);
+        // 使用Feign负载均衡
+        UserDTO userDTO = client.findById(userId);
 
         // 装配ShareDTO对象
         ShareDTO shareDTO = new ShareDTO();
