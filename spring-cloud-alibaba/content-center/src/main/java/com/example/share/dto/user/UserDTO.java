@@ -22,7 +22,7 @@ public class UserDTO {
     /**
      * Id
      */
-    private Integer id;
+    private String id;
 
     /**
      * 微信id

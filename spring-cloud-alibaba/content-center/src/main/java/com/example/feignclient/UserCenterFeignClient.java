@@ -2,6 +2,7 @@ package com.example.feignclient;
 
 import com.example.share.dto.user.UserDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -11,7 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Classname UserCenterFeignClient
  * @Description
  */
-@FeignClient("user-center")
+@FeignClient(value = "user-center",fallback = UserFeignImpl.class)
+@Component
 public interface UserCenterFeignClient {
     /**
      * http://user-center/users/{id}
