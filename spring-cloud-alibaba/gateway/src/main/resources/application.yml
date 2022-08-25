@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        # \u670D\u52A1\u6CE8\u518C\u5730\u5740
+        server-addr: 172.16.200.249:8848
+        # \u547D\u540D\u7A7A\u95F4
+        namespace: 1cbd4445-e494-4011-bccb-7ac4c094f9d7
+    gateway:
+      discovery:
+        locator:
+          # \u8BA9gateway\u901A\u8FC7\u670D\u52A1\u53D1\u73B0\u7EC4\u4EF6\u627E\u5230\u5176\u4ED6\u7684\u5FAE\u670D\u52A1
+          enabled: true
+      routes:
+        - id: path_route
+          uri: lb://user-center
+          predicates:
+            # \u5F53\u4E14\u4EC5\u5F53\u8BBF\u95EE\u8DEF\u5F84\u662F/users/*\u6216\u8005/some-path/**\uFF0C\u624D\u4F1A\u8F6C\u53D1\u7528\u6237\u5FAE\u670D\u52A1
+            # segment\u662F\u4E00\u4E2A\u7279\u6B8A\u7684\u5360\u4F4D\u7B26\uFF0C\u5355\u5C42\u8DEF\u5F84\u5339\u914D
+            # eg. \u8BBF\u95EEhttp://localhost:8040/users/1 -> user-center/users/1
+            - Path=/user/{segment},/some-path/**
+        - id: content-center
+          # lb\u4EE3\u8868\u4ECE\u6CE8\u518C\u4E2D\u5FC3\u83B7\u53D6\u670D\u52A1\uFF0C\u4E14\u5DF2\u8D1F\u8F7D\u5747\u8861\u65B9\u5F0F\u8F6C\u53D1
+          uri: lb://content-center
+          #\u8DEF\u7531\u6761\u4EF6
+          predicates:
+            - Path=/content-center/**
+server:
+  port: 8040
