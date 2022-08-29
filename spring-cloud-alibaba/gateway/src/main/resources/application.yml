@@ -44,4 +44,5 @@ management:
       show-details: always
 logging:
   level:
+    com.example: debug
     org.springframework.cloud.gateway: trace
