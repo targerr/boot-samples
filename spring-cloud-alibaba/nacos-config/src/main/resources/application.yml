@@ -1,2 +1,14 @@
 server:
   port: 7800
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    com.example: debug

@@ -3,8 +3,6 @@ spring:
     name: push
   profiles:
     active: dev
-
-
   cloud:
     nacos:
       discovery:
@@ -14,16 +12,3 @@ spring:
         file-extension: yaml # dataid 的名称就是application的name加file-extension
         namespace: 1cbd4445-e494-4011-bccb-7ac4c094f9d7 # 环境的id
         group: DEFAULT_GROUP
-
-#  cloud:
-#    nacos:
-#      config:
-#        server-addr: 172.16.200.249:8848  # 配置中心地址
-#        file-extension: yaml  # dataid 的名称就是application的name加file-extension
-#        group: DEFAULT_GROUP  # 测试组
-#        namespace: 1cbd4445-e494-4011-bccb-7ac4c094f9d7 # 环境的id
-#        extension-configs:
-#          # 参数配置
-#          - data-id: user-dev.yaml
-#            group: DEFAULT_GROUP
-#            refresh: true
