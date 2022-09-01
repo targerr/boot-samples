@@ -1,3 +1,4 @@
+# 共享配置
 spring:
   application:
     name: push

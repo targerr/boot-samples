@@ -13,6 +13,7 @@
         <module>content-center</module>
         <module>user-center</module>
         <module>gateway</module>
+        <module>nacos-config</module>
     </modules>
     <packaging>pom</packaging>
 
