@@ -40,6 +40,11 @@
             <artifactId>p6spy</artifactId>
             <version>3.9.1</version>
         </dependency>
+        <!--Spring Cloud Alibaba Sentinel-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
 
         <!--feign-->
         <dependency>

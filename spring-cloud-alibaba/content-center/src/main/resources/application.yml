@@ -18,6 +18,12 @@ spring:
           instance: content
           key: 测试
           version: v1
+    # sentinel通信
+    sentinel:
+      transport:
+        dashboard: 172.16.22.197:9100
+        port: 8719
+        client-ip: 172.16.22.197
   application:
     # 服务名称尽量用-，不要用_，不要用特殊字符
     name: content-center
@@ -37,3 +43,10 @@ feign:
       # 全局配置(日志)
       default:
         loggerlevel: full
+
+#开启健康检查,开放所有监控指标
+management:
+  endpoints: #注意是endpoints
+    web:
+      exposure:
+        include: '*'

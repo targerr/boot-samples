@@ -14,4 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IShareService extends IService<Share> {
     public ShareDTO findById(String id);
+
+    ShareDTO detail(String id);
 }

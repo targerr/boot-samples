@@ -53,6 +53,14 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
         return shareDTO;
     }
 
+    @Override
+    public ShareDTO detail(String id) {
+        Share share = getById(id);
+        ShareDTO shareDTO = new ShareDTO();
+        BeanUtils.copyProperties(share,shareDTO);
+        return shareDTO;
+    }
+
     private UserDTO buildUserV1(String userId) {
         List<ServiceInstance> instanceList = discoveryClient.getInstances("user-center");
         String targetUri = instanceList.stream()
