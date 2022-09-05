@@ -16,4 +16,11 @@ public interface IShareService extends IService<Share> {
     public ShareDTO findById(String id);
 
     ShareDTO detail(String id);
+
+    /**
+     * sentinel限流
+     * @param name
+     * @return
+     */
+    String sayHello(String name);
 }

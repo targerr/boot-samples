@@ -33,4 +33,10 @@ public class ShareController {
     public ShareDTO details(@PathVariable("id") String id) {
         return service.detail(id);
     }
+
+
+    @GetMapping(value = "/hello/{name}")
+    public String apiHello(@PathVariable String name) {
+        return service.sayHello(name);
+    }
 }

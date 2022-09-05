@@ -21,9 +21,12 @@ spring:
     # sentinel通信
     sentinel:
       transport:
-        dashboard: 172.16.22.197:9100
-        port: 8719
+        # sentinel-dashboard-1.6.0 的访问路径 ，启动方式java -jar sentinel-dashboard-1.6.0.jar
+        # java -Dserver.port=8082 -jar sentinel-dashboard-1.6.0.jar   默认8080端口
+        dashboard: localhost:9100
         client-ip: 172.16.22.197
+        heartbeat-interval-ms: 500
+      eager: true
   application:
     # 服务名称尽量用-，不要用_，不要用特殊字符
     name: content-center
