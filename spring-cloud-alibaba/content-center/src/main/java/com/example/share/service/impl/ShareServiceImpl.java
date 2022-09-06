@@ -63,13 +63,13 @@ public class ShareServiceImpl extends ServiceImpl<ShareMapper, Share> implements
         return shareDTO;
     }
 
-    @SentinelResource(value = "sayHello",blockHandler = "exceptionHandler",fallback = "")
+    @SentinelResource(value = "sayHello",blockHandler = "exceptionHandler",fallback = "fallback")
     @Override
     public String sayHello(String name) {
         return "Hello, " + name;
     }
 
-    public String exceptionHandler(String name,Throwable e){
+    public String fallback(String name,Throwable e){
         e.printStackTrace();
         log.error("【sentienl】 异常处理!");
         return "异常，请稍后";
