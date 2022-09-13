@@ -53,3 +53,4 @@
 | [spring-boot-seata-product](./spring-boot-seata-product/HELP.md) | spring-boot 整合seata-product
 | [spring-boot-seata-order](./spring-boot-seata-order/HELP.md) | spring-boot 整合seata-order
 | [spring-boot-secKill-simple](./spring-boot-seckill-simple/HELP.md) |  spring-boot 整合简单秒杀
+| [spring-cloud-alibaba](./spring-cloud-alibaba/HELP.md) |  spring-cloud-alibaba 
