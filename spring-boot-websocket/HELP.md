@@ -181,3 +181,6 @@ public class SpringBootWebsocketApplication {
 
 - 执行启动类main方法启动项目，访问地址：http://localhost:8008/webSocket/list
 - 访问地址：http://localhost:8008/webSocket/send
+
+- websocket 协议
+  ![image.png](https://upload-images.jianshu.io/upload_images/4994935-3b8f9baa1d73089e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
