@@ -13,307 +13,289 @@
 </dependencies>
 ~~~
 
-### 第二步：创建application.yml文件
+### 第二步：创建application.yml文件（默认配置）
 
 ~~~yaml
 spring:
   rabbitmq:
-    host: 172.16.200.220
+    host: 127.0.0.1
     port: 5672
     username: admin
     password: 123456
 ~~~
 
-### 第三步： 配置类
+### direct类型
 
-#### 1. 常量配置
-
-```java
-public interface RabbitConsts {
-    //中奖队列名称
-    public final static String QUEUE_HIT = "prize_queue_hit";
-    //参与活动队列
-    public static final String QUEUE_PLAY = "prize_queue_play";
-    //中奖路由名称
-    public final static String EXCHANGE_DIRECT = "prize_exchange_direct";
-
-    /**
-     * 延迟队列
-     */
-    String DELAY_QUEUE = "delay.queue";
-
-    /**
-     * 延迟队列交换器
-     */
-    String DELAY_MODE_QUEUE = "delay.mode";
-}
-
-
-```
-
-#### 2. 初始化配置
+#### 定义消息队列（direct）
 
 ```java
-package com.example.config;
 
-/**
- * rabbit配置
- */
 @Configuration
-@Slf4j
-public class RabbitConfig {
+public class RabbitDirectConfig {
+    @Bean
+    public Queue queue() {
+        // durable:是否持久化默认false;
+        // exclusive:是否当前队列专用，默认false,连接关闭后删除队列
+        // autoDelete:是否自动删除，当生产者或者消费者不在使用该队列，就删除队列
+        //return new Queue("simple_queue",true,false,false)
+        return new Queue("simple_queue");
+
+    }
+}
+```
+
+```java
+
+@Configuration
+public class RabbitDirectConfig {
+    @Bean
+    public Queue directQueue() {
+        return new Queue("direct_queue");
+    }
+
+    @Bean
+    public Queue directQueue2() {
+        return new Queue("direct_queue2");
+    }
+
+    @Bean
+    public DirectExchange directExchange() {
+        return new DirectExchange("directExchange");
+    }
+
+    @Bean
+    public Binding bindingDirect() {
+        return BindingBuilder.bind(directQueue()).to(directExchange()).with("direct");
+    }
+
+    @Bean
+    public Binding bindingDirect2() {
+        return BindingBuilder.bind(directQueue2()).to(directExchange()).with("direct2");
+    }
+}
+```
+
+#### 生产者
+
+```java
+
+@RestController
+public class ProducerController {
     @Autowired
-    private CachingConnectionFactory connectionFactory;
+    private AmqpTemplate amqpTemplate;
 
-
-    @Bean
-    public Queue getQueueHit() {
-        return new Queue(RabbitConsts.QUEUE_HIT);
-    }
-
-    @Bean
-    public Queue getQueuePlay() {
-        return new Queue(RabbitConsts.QUEUE_PLAY);
-    }
-
-    /**
-     * exchange
-     */
-    @Bean
-    DirectExchange directExchange() {
-        return new DirectExchange(RabbitConsts.EXCHANGE_DIRECT);
-    }
-
-    // 绑定队列于路由
-    @Bean
-    Binding bindingExchangeDirect() {
-        return BindingBuilder.bind(getQueueHit()).to(directExchange()).with(RabbitConsts.QUEUE_HIT);
-    }
-
-    @Bean
-    Binding bindingExchangeDirect2() {
-        return BindingBuilder.bind(getQueuePlay()).to(directExchange()).with(RabbitConsts.QUEUE_PLAY);
-    }
-
-
-    ///////////死信队列//////////////
-
-    /**
-     * 普通队列
-     *
-     * @return
-     */
-    @Bean
-    public Queue orderReleaseQueue() {
-        return new Queue("order.release.order.queue", true, false, false);
-    }
-
-
-    /**
-     * 主题模式队列
-     * <li>路由格式必须以 . 分隔，比如 user.email 或者 user.aaa.email</li>
-     * <li>通配符 * ，代表一个占位符，或者说一个单词，比如路由为 user.*，那么 user.email 可以匹配，但是 user.aaa.email 就匹配不了</li>
-     * <li>通配符 # ，代表一个或多个占位符，或者说一个或多个单词，比如路由为 user.#，那么 user.email 可以匹配，user.aaa.email 也可以匹配</li>
-     */
-    @Bean
-    public Exchange orderEventExchange() {
-        return new TopicExchange("order-event-exchange", true, false);
-    }
-
-    /**
-     * 将指定了消息过期时间的队列绑定到交换机
-     */
-    @Bean
-    public Binding orderCreateBinding() {
-        /*
-         * String destination, 目的地（队列名或者交换机名字）
-         * DestinationType destinationType, 目的地类型（Queue、Exhcange）
-         * String exchange,
-         * String routingKey,
-         * Map<String, Object> arguments
-         * */
-        return new Binding("order.delay.queue",
-                Binding.DestinationType.QUEUE,
-                "order-event-exchange",
-                "order.create.order",  // 路由key一般为事件名
-                null);
-    }
-
-    @Bean
-    public Binding orderReleaseBinding() {
-
-        return new Binding("order.release.order.queue",
-                Binding.DestinationType.QUEUE,
-                "order-event-exchange",
-                "order.release.order",
-                null);
-    }
-
-    /**
-     * 死信队列
-     *
-     * @return
-     */
-    @Bean
-    public Queue orderDelayQueue() {
-     /*
-            Queue(String name,  队列名字
-            boolean durable,  是否持久化
-            boolean exclusive,  是否排他
-            boolean autoDelete, 是否自动删除
-            Map<String, Object> arguments) 属性
-         */
-        HashMap<String, Object> arguments = new HashMap<>();
-        //当消息变为死信后重新发送到指定死信交换机
-        arguments.put("x-dead-letter-exchange", "order-event-exchange");
-        //当死信到达死信交换机后，根据该路由键投递到指定的死信队列
-        arguments.put("x-dead-letter-routing-key", "order.release.order");
-        // 消息过期时间
-        arguments.put("x-message-ttl", 6000);
-
-        return new Queue("order.delay.queue", true, false, false, arguments);
-    }
-
-
-    @Bean
-    public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
-        RabbitAdmin admin = new RabbitAdmin(connectionFactory);
-        admin.setAutoStartup(true);
-        return admin;
-    }
-
-    @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory);
-        template.setUseDirectReplyToContainer(false);
-        //发送之前加一个拦截器，每次发送都会调用这个方法，方法名称已经说明了一切了
-        template.setBeforePublishPostProcessors(new MessagePostProcessor() {
-            @Override
-            public Message postProcessMessage(Message message) throws AmqpException {
-                //拦截逻辑添加环境变量 DynamicSourceTtl.get()
-                message.getMessageProperties().getHeaders().put("dataSource", "master");
-                return message;
-            }
-        });
-        template.setMessageConverter(messageConverter());
-        return template;
-    }
-
-    @Bean
-    public MessageConverter messageConverter() {
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        objectMapper.registerModule(new JavaTimeModule());
-        return new Jackson2JsonMessageConverter(objectMapper);
-    }
-
-
-    @Bean
-    public RabbitTemplate rabbitTemplate() {
-        //若使用confirm-callback或return-callback，必须要配置publisherConfirms或publisherReturns为true
-        //每个rabbitTemplate只能有一个confirm-callback和return-callback，如果这里配置了，那么写生产者的时候不能再写confirm-callback和return-callback
-        //使用return-callback时必须设置mandatory为true，或者在配置中设置mandatory-expression的值为true
-        connectionFactory.setPublisherConfirms(true);
-        connectionFactory.setPublisherReturns(true);
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMandatory(true);
+    @RequestMapping("/sendMsg")
+    public String sendFanoutMsg(String msg) {
         /**
-         * 如果消息没有到exchange,则confirm回调,ack=false
-         * 如果消息到达exchange,则confirm回调,ack=true
-         * exchange到queue成功,则不回调return
-         * exchange到queue失败,则回调return(需设置mandatory=true,否则不回回调,消息就丢了)
+         * 1.队列名称
+         * 2.路由key名称
+         * 3.发送内容
          */
-        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
-            @Override
-            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                if (ack) {
-                    log.info("消息发送成功:correlationData({}),ack({}),cause({})", correlationData, ack, cause);
-                } else {
-                    log.info("消息发送失败:correlationData({}),ack({}),cause({})", correlationData, ack, cause);
-                }
-            }
-        });
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
-            @Override
-            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-                log.info("消息丢失:exchange({}),route({}),replyCode({}),replyText({}),message:{}", exchange, routingKey, replyCode, replyText, message);
-            }
-        });
-        return rabbitTemplate;
+        System.out.println("使用Rabbitmq将待发送短信的订单纳入处理队列，msg：" + msg);
+        amqpTemplate.convertAndSend("directExchange", "direct", msg);
+        return "success";
     }
-
 
 }
 ```
 
-### 第四步： 监听
+#### 监听队列
 
-~~~java
+- 使用消息监听器对消息队列监听(direct)
+
+```java
 
 @Component
-public class Consumer {
-
-    @RabbitListener(queues = "order.release.order.queue")
-    public void getMessage(Object msg, Channel channel, Message message) throws IOException {
-        System.out.println("消费时间：" + LocalDateTime.now());
-        System.out.println("消费者接收到的消息：" + msg);
-        channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
+public class RabbitMessageListener {
+    @RabbitListener(queues = "direct_queue")
+    public void receive(String id) {
+        System.out.println("已完成短信发送业务，id：" + id);
     }
 }
+```
 
-~~~
-
-### 第五步：创建消息体
-
-~~~java
-
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class MessageStruct implements Serializable {
-    private static final long serialVersionUID = 392365881428311040L;
-
-    private String message;
-}
-
-~~~
-
-### 第六步：创建测试
+- 使用多消息监听器对消息队列监听进行消息轮循处理(direct)
 
 ```java
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest
-public class MqTest {
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-
-    @Test
-    public void send() {
-        JSONObject json = new JSONObject();
-        json.put("code", 200);
-        // rabbitTemplate.convertAndSend(RabbitKeys.EXCHANGE_DIRECT, RabbitKeys.QUEUE_HIT, json);
-        rabbitTemplate.convertAndSend(RabbitConsts.QUEUE_PLAY, json);
-
-    }
-
-    @Test
-    public void ttlMsg() {
-        JSONObject json = new JSONObject();
-        json.put("code", 200);
-        //给MQ发送消息
-        rabbitTemplate.convertAndSend("order-event-exchange", "order.create.order", json);
+@Component
+public class RabbitMessageListener2 {
+    @RabbitListener(queues = "direct_queue")
+    public void receive(String id) {
+        System.out.println("已完成短信发送业务（two），id：" + id);
     }
 }
+```
+
+### topic类型
+
+#### 定义消息队列(topic)
+
+```java
+
+@Configuration
+public class RabbitTopicConfig {
+    @Bean
+    public Queue topicQueue() {
+        return new Queue("topic_queue");
+    }
+
+    @Bean
+    public Queue topicQueue2() {
+        return new Queue("topic_queue2");
+    }
+
+    @Bean
+    public TopicExchange topicExchange() {
+        return
+                new TopicExchange("topicExchange");
+    }
+
+    @Bean
+    public Binding bindingTopic() {
+        return BindingBuilder.bind(topicQueue()).to(
+                topicExchange()).with("topic.*.*");
+    }
+
+    @Bean
+    public Binding bindingTopic2() {
+        return BindingBuilder.bind(topicQueue2())
+                .to(topicExchange()).with("topic.#");
+    }
+}
+```
+
+#### 绑定规则
+
+![image.png](https://upload-images.jianshu.io/upload_images/4994935-53bb3e447523c8f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### 生产与消费消息(topic)
+
+```java
+
+@RestController
+public class ProducerController {
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
+    @RequestMapping("/sendMsg")
+    public String sendFanoutMsg(String msg) {
+        /**
+         * 1.队列名称
+         * 2.路由key名称
+         * 3.发送内容
+         */
+        System.out.println("使用Rabbitmq将待发送短信的订单纳入处理队列，msg：" + msg);
+        amqpTemplate.convertAndSend("topicExchange", "topic.order.id", msg);
+        return "success";
+    }
+
+}
+
 
 ```
 
-[参考文档](https://juejin.cn/post/6998325022112612388)
-[参考文档](https://blog.csdn.net/suchahaerkang/article/details/109131090?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-109131090-blog-120004761.pc_relevant_antiscanv2&spm=1001.2101.3001.4242.2&utm_relevant_index=4)
+#### 使用消息监听器对消息队列监听(topic)
 
+```java
 
+@Component
+public class RabbitTopicMessageListener {
+    @RabbitListener(queues = "topic_queue")
+    public void receive(String id) {
+        System.out.println("已完成短信发送业务，id：" + id);
+    }
 
+    @RabbitListener(queues = "topic_queue2")
+    public void receive2(String id) {
+    }
+}
+```
 
+### fanout类型
 
+#### 定义消息队列（fanout）
+
+```java
+
+@Configuration
+public class RabbitDirectConfig {
+    @Bean
+    public Queue fanoutQueue() {
+        return new Queue("fanout_queue");
+    }
+
+    @Bean
+    public Queue fanoutQueue2() {
+        return new Queue("fanout_queue2");
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchange() {
+        return new FanoutExchange("fanoutExchange");
+    }
+
+  
+    @Bean
+    public Binding bindingFanout() {
+        // fanout类型无with()
+        return BindingBuilder.bind(fanoutQueue()).to(fanoutExchange());
+    }
+
+    @Bean
+    public Binding bindingFanout2() {
+        return BindingBuilder.bind(fanoutQueue2()).to(fanoutExchange());
+    }
+}
+```
+
+#### 生产者
+
+```java
+
+@RestController
+public class ProducerController {
+    @Autowired
+    private AmqpTemplate amqpTemplate;
+
+    @RequestMapping("/sendMsg")
+    public String sendFanoutMsg(String msg) {
+        /**
+         * 1.队列名称
+         * 2.路由key名称
+         * 3.发送内容
+         */
+        amqpTemplate.convertAndSend("fanoutExchange", "", msg);
+        return "success";
+    }
+
+}
+```
+
+#### 监听队列
+
+- 使用消息监听器对消息队列监听(fanout)
+
+```java
+
+@Component
+public class RabbitMessageListener {
+    @RabbitListener(queues = "fanout_queue")
+    public void receive(String id) {
+        System.out.println("已完成短信发送业务，id：" + id);
+    }
+}
+```
+
+- 使用多消息监听器对消息队列监听进行消息轮循处理(direct)
+
+```java
+
+@Component
+public class RabbitMessageListener2 {
+    @RabbitListener(queues = "fanout_queue")
+    public void receive(String id) {
+        System.out.println("已完成短信发送业务（two），id：" + id);
+    }
+}
+```
