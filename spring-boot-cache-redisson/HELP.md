@@ -273,3 +273,4 @@ public class RedissionTest {
 ```
 
 [参考](https://my.oschina.net/u/4499317/blog/5058309?_from=gitee_search)
+[面试题](https://mp.weixin.qq.com/s?__biz=Mzg3NjU3NTkwMQ==&mid=2247505097&idx=1&sn=5c03cb769c4458350f4d4a321ad51f5a&source=41#wechat_redirect)
