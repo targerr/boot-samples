@@ -9,6 +9,22 @@ public interface RabbitConsts {
     public final static String EXCHANGE_DIRECT = "prize_exchange_direct";
 
     /**
+     * 定义交换机
+     */
+     String EXCHANGE_SPRINGBOOT_NAME = "mt_ex";
+
+
+    /**
+     * 短信队列
+     */
+     String FANOUT_SMS_QUEUE = "fanout_sms_queue";
+    /**
+     * 邮件队列
+     */
+     String FANOUT_EMAIL_QUEUE = "fanout_email_queue";
+
+
+    /**
      * 延迟队列
      */
     String DELAY_QUEUE = "delay.queue";

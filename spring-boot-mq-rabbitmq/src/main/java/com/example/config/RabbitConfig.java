@@ -33,6 +33,35 @@ public class RabbitConfig {
 
 
     @Bean
+    public Queue smsQueue() {
+        return new Queue(RabbitConsts.FANOUT_SMS_QUEUE);
+    }
+
+    @Bean
+    public Queue emailQueue() {
+        return new Queue(RabbitConsts.FANOUT_EMAIL_QUEUE);
+    }
+
+
+    @Bean
+    FanoutExchange fanoutExchange(){
+        return new FanoutExchange(RabbitConsts.EXCHANGE_SPRINGBOOT_NAME);
+    }
+
+
+    // 绑定交换机 sms
+    @Bean
+    public Binding bindingSmsFanoutExchange(Queue  smsQueue,FanoutExchange fanoutSmsExchange){
+        return BindingBuilder.bind(smsQueue).to(fanoutSmsExchange);
+    }
+
+    // 绑定交换机 email
+    @Bean
+    public Binding bindingEmailFanoutExchange(Queue emailQueue, FanoutExchange fanoutExchange) {
+        return BindingBuilder.bind(emailQueue).to(fanoutExchange);
+    }
+
+    @Bean
     public Queue getQueueHit() {
         return new Queue(RabbitConsts.QUEUE_HIT);
     }
@@ -62,86 +91,6 @@ public class RabbitConfig {
     }
 
 
-    ///////////死信队列//////////////
-
-    /**
-     * 普通队列
-     *
-     * @return
-     */
-    @Bean
-    public Queue orderReleaseQueue() {
-        return new Queue("order.release.order.queue", true, false, false);
-    }
-
-
-    /**
-     * 主题模式队列
-     * <li>路由格式必须以 . 分隔，比如 user.email 或者 user.aaa.email</li>
-     * <li>通配符 * ，代表一个占位符，或者说一个单词，比如路由为 user.*，那么 user.email 可以匹配，但是 user.aaa.email 就匹配不了</li>
-     * <li>通配符 # ，代表一个或多个占位符，或者说一个或多个单词，比如路由为 user.#，那么 user.email 可以匹配，user.aaa.email 也可以匹配</li>
-     */
-    @Bean
-    public Exchange orderEventExchange() {
-        return new TopicExchange("order-event-exchange", true, false);
-    }
-
-    /**
-     * 将指定了消息过期时间的队列绑定到交换机
-     */
-    @Bean
-    public Binding orderCreateBinding() {
-        /*
-         * String destination, 目的地（队列名或者交换机名字）
-         * DestinationType destinationType, 目的地类型（Queue、Exhcange）
-         * String exchange,
-         * String routingKey,
-         * Map<String, Object> arguments
-         * */
-        return new Binding("order.delay.queue",
-                Binding.DestinationType.QUEUE,
-                "order-event-exchange",
-                "order.create.order",  // 路由key一般为事件名
-                null);
-    }
-
-    @Bean
-    public Binding orderReleaseBinding() {
-
-        return new Binding("order.release.order.queue",
-                Binding.DestinationType.QUEUE,
-                "order-event-exchange",
-                "order.release.order",
-                null);
-    }
-
-    /**
-     * 死信队列
-     *
-     * @return
-     */
-    @Bean
-    public Queue orderDelayQueue() {
-     /*
-            Queue(String name,  队列名字
-            boolean durable,  是否持久化
-            boolean exclusive,  是否排他
-            boolean autoDelete, 是否自动删除
-            Map<String, Object> arguments) 属性
-         */
-        HashMap<String, Object> arguments = new HashMap<>();
-        //当消息变为死信后重新发送到指定死信交换机
-        arguments.put("x-dead-letter-exchange", "order-event-exchange");
-        //当死信到达死信交换机后，根据该路由键投递到指定的死信队列
-        arguments.put("x-dead-letter-routing-key", "order.release.order");
-        // 消息过期时间
-        arguments.put("x-message-ttl", 6000);
-
-        return new Queue("order.delay.queue", true, false, false, arguments);
-    }
-
-
-
     @Bean
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
         RabbitAdmin admin = new RabbitAdmin(connectionFactory);
@@ -150,19 +99,54 @@ public class RabbitConfig {
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
+    public RabbitTemplate rabbitTemplate() {
         RabbitTemplate template = new RabbitTemplate(connectionFactory);
+
         template.setUseDirectReplyToContainer(false);
         //发送之前加一个拦截器，每次发送都会调用这个方法，方法名称已经说明了一切了
         template.setBeforePublishPostProcessors(new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
                 //拦截逻辑添加环境变量 DynamicSourceTtl.get()
-                message.getMessageProperties().getHeaders().put("dataSource", "master");
+                final Map<String, Object> headers = message.getMessageProperties().getHeaders();
+                headers .put("dataSource", "master");
+                headers .put("tag", "vip");
                 return message;
             }
         });
+        // json序列化
         template.setMessageConverter(messageConverter());
+
+        // 确认机制
+        //若使用confirm-callback或return-callback，必须要配置publisherConfirms或publisherReturns为true
+        //每个rabbitTemplate只能有一个confirm-callback和return-callback，如果这里配置了，那么写生产者的时候不能再写confirm-callback和return-callback
+        //使用return-callback时必须设置mandatory为true，或者在配置中设置mandatory-expression的值为true
+        connectionFactory.setPublisherConfirmType(CachingConnectionFactory.ConfirmType.CORRELATED);
+        connectionFactory.setPublisherReturns(true);
+        template.setMandatory(true);
+        /**
+         * 如果消息没有到exchange,则confirm回调,ack=false
+         * 如果消息到达exchange,则confirm回调,ack=true
+         * exchange到queue成功,则不回调return
+         * exchange到queue失败,则回调return(需设置mandatory=true,否则不回回调,消息就丢了)
+         */
+        template.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+            @Override
+            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+                log.info("确认状态: {}", ack);
+                if (ack) {
+                    log.info("消息发送成功:消息唯一标识: ({}),确认状态({})", correlationData, ack);
+                } else {
+                    log.info("消息发送失败:消息唯一标识: ({}),确认状态({}),造成原因({})", correlationData, ack, cause);
+                }
+            }
+        });
+        template.setReturnCallback(new RabbitTemplate.ReturnCallback() {
+            @Override
+            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+                log.info("消息丢失:exchange({}),route({}),replyCode({}),replyText({}),message:{}", exchange, routingKey, replyCode, replyText, message);
+            }
+        });
         return template;
     }
 
@@ -175,40 +159,6 @@ public class RabbitConfig {
         return new Jackson2JsonMessageConverter(objectMapper);
     }
 
-
-    @Bean
-    public RabbitTemplate rabbitTemplate() {
-        //若使用confirm-callback或return-callback，必须要配置publisherConfirms或publisherReturns为true
-        //每个rabbitTemplate只能有一个confirm-callback和return-callback，如果这里配置了，那么写生产者的时候不能再写confirm-callback和return-callback
-        //使用return-callback时必须设置mandatory为true，或者在配置中设置mandatory-expression的值为true
-        connectionFactory.setPublisherConfirms(true);
-        connectionFactory.setPublisherReturns(true);
-        RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMandatory(true);
-        /**
-         * 如果消息没有到exchange,则confirm回调,ack=false
-         * 如果消息到达exchange,则confirm回调,ack=true
-         * exchange到queue成功,则不回调return
-         * exchange到queue失败,则回调return(需设置mandatory=true,否则不回回调,消息就丢了)
-         */
-        rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
-            @Override
-            public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-                if (ack) {
-                    log.info("消息发送成功:correlationData({}),ack({}),cause({})", correlationData, ack, cause);
-                } else {
-                    log.info("消息发送失败:correlationData({}),ack({}),cause({})", correlationData, ack, cause);
-                }
-            }
-        });
-        rabbitTemplate.setReturnCallback(new RabbitTemplate.ReturnCallback() {
-            @Override
-            public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
-                log.info("消息丢失:exchange({}),route({}),replyCode({}),replyText({}),message:{}", exchange, routingKey, replyCode, replyText, message);
-            }
-        });
-        return rabbitTemplate;
-    }
 
 
 }
