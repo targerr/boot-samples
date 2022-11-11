@@ -13,3 +13,7 @@ spring:
           max-attempts: 5
           ####重试间隔次数
           initial-interval: 3000
+
+logging:
+  level:
+    com.example: debug

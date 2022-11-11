@@ -1,9 +1,6 @@
 package com.example;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.config.RabbitConsts;
-import com.example.message.MessageStruct;
-import org.assertj.core.util.DateUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -26,9 +23,13 @@ public class MqTest {
     @Test
     public void send() {
         JSONObject json = new JSONObject();
-        json.put("code", 200);
         // rabbitTemplate.convertAndSend(RabbitKeys.EXCHANGE_DIRECT, RabbitKeys.QUEUE_HIT, json);
-        rabbitTemplate.convertAndSend(RabbitConsts.QUEUE_PLAY, json);
+        for (int i = 0; i < 5; i++) {
+            json.put("code", 200+i);
+            System.err.println(200+i);
+
+            rabbitTemplate.convertAndSend("fanout_sms_queue", JSONObject.toJSONString(json));
+        }
 
     }
 
