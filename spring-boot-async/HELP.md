@@ -182,3 +182,5 @@ public class AsyncJob {
 2022-04-18 17:14:54.928  INFO 62613 --- [           main] com.example.job.AsyncJob                 : task3执行成功，当前线程名称【main】耗时 3005 ms
 2022-04-18 17:14:54.928  INFO 62613 --- [           main] c.e.SpringBootAsyncApplicationTests      : 同步任务，总耗时：10022 毫秒
 ```
+
+### [异步任务异常监控](./monitor.md)
