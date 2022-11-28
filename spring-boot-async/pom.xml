@@ -13,5 +13,13 @@
     <name>spring-boot-async</name>
     <description>spring-boot-async</description>
 
+    <dependencies>
+        <!-- aop 依赖, aspectj -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+    </dependencies>
+
 
 </project>

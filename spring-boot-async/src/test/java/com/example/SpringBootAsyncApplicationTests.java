@@ -1,6 +1,8 @@
 package com.example;
 
+import cn.hutool.http.HttpUtil;
 import com.example.job.AsyncJob;
+import com.example.service.AsyncTaskManager;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -8,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -20,6 +24,9 @@ class SpringBootAsyncApplicationTests {
 
     @Autowired
     private AsyncJob asyncJob;
+
+    @Autowired
+    private AsyncTaskManager asyncTaskManager;
 
     /**
      * 测试异步任务
@@ -57,5 +64,31 @@ class SpringBootAsyncApplicationTests {
         log.info("同步任务，总耗时：{} 毫秒", (endTime - startTime));
 
     }
+
+
+    @Test
+    public  void testServiceTask(){
+        List<Thread> threads = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    System.out.println(asyncTaskManager.submit());
+                }
+            });
+
+            threads.add(thread);
+
+        }
+
+
+        threads.forEach(Thread::start);
+
+        System.out.println("执行完毕");
+
+    }
+
 
 }
