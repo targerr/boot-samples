@@ -2,11 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.example</groupId>
     <artifactId>spring-cloud-commerce</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>spring-cloud-commerce</name>
-    <description>spring-cloud-commerce</description>
+    <description>父模块</description>
+
+    <modules>
+        <module>commerce-common</module>
+        <module>commerce-mvc-config</module>
+        <module>commerce-alibaba-nacos-client</module>
+        <module>commerce-admin</module>
+        <module>commerce-authority-center</module>
+        <module>commerce-gateway</module>
+        <module>commerce-service</module>
+    </modules>
+
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -17,19 +31,15 @@
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <!-- spring cloud alibaba 依赖 -->
         <spring-cloud-alibaba.version>2.2.4.RELEASE</spring-cloud-alibaba.version>
+        <json.version>1.2.58</json.version>
     </properties>
-    <modules>
-        <module>commerce-common</module>
-        <module>commerce-mvc-config</module>
-    </modules>
 
-    <packaging>pom</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.1.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath />
     </parent>
 
 
@@ -46,10 +56,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+       <!--健康检查-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!--字符串操作-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -60,6 +72,7 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
+        <!--工具大全-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -83,10 +96,11 @@
             <version>0.10.5</version>
             <scope>runtime</scope>
         </dependency>
+        <!--json-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.47</version>
+            <version>${json.version}</version>
         </dependency>
     </dependencies>
 
@@ -113,15 +127,33 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- 配置远程仓库 -->
+    <!-- 使用阿里 maven 库 -->
     <repositories>
         <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>https://repo.spring.io/milestone</url>
+            <id>ali-maven</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
             </snapshots>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
 </project>
