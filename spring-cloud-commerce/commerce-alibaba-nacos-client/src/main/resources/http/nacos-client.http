@@ -1,0 +1,3 @@
+### 查询服务实例信息
+GET http://localhost:8000/ecommerce-nacos-client/nacos-client/service-instance
+Accept: application/json
