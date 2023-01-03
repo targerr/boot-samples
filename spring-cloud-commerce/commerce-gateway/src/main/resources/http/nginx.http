@@ -1,0 +1,17 @@
+### 登录
+POST http://www.ecommerce.com/imooc/e-commerce/login
+Content-Type: application/json
+
+{
+  "username": "Qinyi@imooc.com",
+  "password": "25d55ad283aa400af464c76d713c07ad"
+}
+
+### 查询服务 Nginx -> Gatyeway -> MicroService
+GET http://www.ecommerce.com/imooc/ecommerce-nacos-client/nacos-client/service-instance?serviceId=e-commerce-gateway
+Accept: application/json
+e-commerce-user: eyJhbGciOiJSUzI1NiJ9.eyJlLWNvbW1lcmNlLXVzZXIiOiJ7XCJpZFwiOjEsXCJ1c2VybmFtZVwiOlwiUWlueWlAaW1vb2MuY29tXCJ9IiwianRpIjoiZTk3Yjg2NjEtMjczYy00ZGFkLThhNTEtNzFjNzBlNTI4MDI0IiwiZXhwIjoxNjMwODU3NjAwfQ.K2yehUtgZOQnHgUAKezuqdAVl9JVN0y_8xx1UiNXHP_oiHDmBYxUbdkBvjq3cvBQLF_UKjfuYaZ0zmdJq3QgHqLThIS35Bd9pewjlcxUmDvLaVPzrdj-Ov22lbT6GmPwqcC2b_Fx0TqvEMe_1QGAQjcLCNCS8Pg9xmahY1_nf-5hqiSezRJBlLBko7aa82TkfkGZjfC_7rP6ev6F22l3_Bi-FUf5WnXqxqao260nD-tH-hN5wJ-_tZ4B5y2pVgtGBH_ebbGFiBl2eE9Azmz2vwbEoPWbrQvKGPj6R1v-w8uX7m4okNatxe0eqc_O2S8UGjQ7IIsB7fqXJ8b37yJt5A
+token: imooc
+
+### SpringBoot Admin
+http://www.ecommerce.com/e-commerce-admin

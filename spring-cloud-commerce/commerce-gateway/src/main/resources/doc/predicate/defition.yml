@@ -1,0 +1,29 @@
+[
+  {
+    "filters":[
+      {
+        "args":{
+          "parts":"1"
+        },
+        "name":"StripPrefix"
+      },
+      {
+        "args":{
+          "parts":"true"
+        },
+        "name":"Time"
+      }
+    ],
+    "id":"commerce-nacos-client",
+    "order":0,
+    "predicates":[
+      {
+        "args":{
+          "pattern":"/nacos-s/**"
+        },
+        "name":"Path"
+      }
+    ],
+    "uri":"lb://commerce-nacos-client"
+  }
+]

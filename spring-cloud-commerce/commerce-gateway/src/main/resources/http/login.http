@@ -1,0 +1,17 @@
+### 登录
+POST 127.0.0.1:9001/gateway/ecommerce-authority-center/authority/token
+Content-Type: application/json
+
+{
+  "username": "tom",
+  "password": "25d55ad283aa400af464c76d713c07ad"
+}
+
+###
+POST 127.0.0.1:9001/imooc/e-commerce/register
+Content-Type: application/json
+
+{
+  "username": "ImoocQinyi@imooc.com",
+  "password": "25d55ad283aa400af464c76d713c07ad"
+}
