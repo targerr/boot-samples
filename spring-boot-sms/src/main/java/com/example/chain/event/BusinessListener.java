@@ -25,6 +25,7 @@ public class BusinessListener  {
     public void processEvent(BusinessEvent event) {
         log.error("【事件】获取消息,data: {}", JSONObject.toJSONString(event.getSource(), true));
 
-        smsScriptHolder.route("TencentSmsScript").send("18806513872", "1212", SmsEnum.用户登录);
+        smsScriptHolder.route("TencentSmsScript")
+                .send("18806513872", "1212", SmsEnum.用户登录);
     }
 }

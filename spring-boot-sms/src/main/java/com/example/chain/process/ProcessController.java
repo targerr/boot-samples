@@ -21,7 +21,7 @@ import java.util.Map;
 public class ProcessController {
     private Map<String, ProcessTemplate> templateConfig = new HashMap<String, ProcessTemplate>();
 
-    public ProcessContext<ProcessModel> process(ProcessContext context) {
+    public ProcessContext<ProcessModel> process(ProcessContext<ProcessModel> context) {
         List<BusinessProcess> businessProcesses = templateConfig.get(context.getCode()).getProcessList();
 
         for (BusinessProcess business : businessProcesses) {
