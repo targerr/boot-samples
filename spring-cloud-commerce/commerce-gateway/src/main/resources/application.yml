@@ -1,0 +1,81 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /gateway
+
+spring:
+  application:
+    name: commerce-gateway
+  cloud:
+    nacos:
+      discovery:
+        enabled: true # 如果不想使用 Nacos 进行服务注册和发现, 设置为 false 即可
+        server-addr: 172.16.200.249:8848
+        #server-addr: 127.0.0.1:8848
+        # server-addr: 127.0.0.1:8848,127.0.0.1:8849,127.0.0.1:8850 # Nacos 服务器地址
+        namespace: 1cbd4445-e494-4011-bccb-7ac4c094f9d7
+#        metadata:
+#          management:
+#            context-path: ${server.servlet.context-path}/actuator
+    # 静态路由
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 让gateway可以发现nacos中的微服务
+      routes:
+        - id: product_route # 路由的名字
+          uri: lb://commerce-nacos-client # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=/nacos-s/** # 符合这个规定的才进行1转发
+          filters:
+            - StripPrefix=1 # 将第一层去掉
+            - Time=true
+            - HeaderToken=false
+        - id: commerce-authority # 路由的名字
+          uri: lb://commerce-authority-center # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=${server.servlet.context-path}/ecommerce-authority-center/** # 符合这个规定的才进行1转发
+          filters:
+            - StripPrefix=1 # 将第一层去掉
+        - id: ecommerce-account-service # 路由的名字
+          uri: lb://commerce-account-service # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=${server.servlet.context-path}/ecommerce-account-service/** # 符合这个规定的才进行1转发
+          filters:
+            - StripPrefix=1 # 将第一层去掉
+            - Time=true
+        - id: ecommerce-goods-service # 路由的名字
+          uri: lb://commerce-goods-service # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=${server.servlet.context-path}/ecommerce-goods-service/** # 符合这个规定的才进行1转发
+          filters:
+            - StripPrefix=1 # 将第一层去掉
+
+  zipkin:
+    base-url: http://127.0.0.1:9411/ #zipkin server的请求地址
+    discoveryClientEnabled: false #让nacos把它当成一个URL，而不要当做服务名
+    sleuth:
+      sampler:
+        probability: 1.0 #采样的百分比
+
+# 这个地方独立配置, 是网关的数据, 代码 GatewayConfig.java 中读取被监听
+nacos:
+  gateway:
+    route:
+      config:
+        data-id: commerce-gateway-router
+        group: commerce
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    com.example: debug
+    org.springframework.cloud.gateway: trace
