@@ -1,0 +1,11 @@
+push:
+  getui:
+#    应用id
+    appId: ${appId}
+#    应用key
+    appKey: ${APP_KEY}
+
+
+logging:
+  level:
+    com.example: debug
