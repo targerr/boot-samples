@@ -67,6 +67,8 @@
         <module>spring-boot-seata-order</module>
         <module>spring-boot-seckill-simple</module>
         <module>spring-cloud-alibaba</module>
+        <module>spring-boot-envfile</module>
+        <module>spring-boot-cache-guava</module>
     </modules>
     <packaging>pom</packaging>
 
