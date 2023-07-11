@@ -1,0 +1,11 @@
+Exception in thread "Thread-5" java.lang.NoClassDefFoundError: com/alibaba/nacos/common/http/DefaultHttpClientFactory
+	at com.alibaba.nacos.common.http.HttpClientBeanHolder.shutdown(HttpClientBeanHolder.java:110)
+	at com.alibaba.nacos.common.http.HttpClientBeanHolder.access$000(HttpClientBeanHolder.java:35)
+	at com.alibaba.nacos.common.http.HttpClientBeanHolder$1.run(HttpClientBeanHolder.java:50)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Caused by: java.lang.ClassNotFoundException: com.alibaba.nacos.common.http.DefaultHttpClientFactory
+	at java.base/java.net.URLClassLoader.findClass(URLClassLoader.java:476)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:589)
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:151)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:522)
+	... 4 more
