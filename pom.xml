@@ -69,6 +69,7 @@
         <module>spring-cloud-alibaba</module>
         <module>spring-boot-envfile</module>
         <module>spring-boot-cache-guava</module>
+        <module>spring-boot-weixin-js</module>
     </modules>
     <packaging>pom</packaging>
 
