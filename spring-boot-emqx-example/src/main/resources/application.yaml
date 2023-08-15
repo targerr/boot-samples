@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: emqx-example-serivce
+  main:
+    # 循环依赖
+    allow-circular-references: true
+    # bean覆盖配置
+    allow-bean-definition-overriding: true
+#  profiles:
+#    active: dev
+server:
+  port: 9091
+
+# mqtt 配置
+mqtt:
+#  hostUrl: tcp://192.168.3.25:1883
+  hostUrl: tcp://emqx-test.relaper.cc:1883
+#  hostUrl: tcp://172.16.0.81:18083
+  username: admin
+  password: public
+  client-id: mqtt_accept_client11114241
+  cleanSession: false
+  reconnect: true
+  timeout: 100
+  keepAlive: 100
+  defaultTopic: client:report:1
+  isOpen: true
+  qos: 1
+  subscribes:
+    - {topic: "server:report:client:report:2",ops: 1}
+    - {topic: "test/scene/linkage/notify/mqtt",ops: 1}
+    - {topic: "dev/scene/linkage/notify/mqtt",ops: 1}
