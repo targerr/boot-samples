@@ -488,3 +488,104 @@ public class OssFileController {
 }
 
 ```
+
+### 六、阿里云对象存储(oss)之服务端签名后直传
+> 基于Post Policy的使用规则在服务端通过各种语言代码完成签名，然后通过表单直传数据到OSS。由于服务端签名直传无需将AccessKey暴露在前端页面，相比JavaScript客户端签名直传具有更高的安全性。
+代码:
+```java
+
+@Slf4j
+@RestController
+@RequestMapping("/")
+class AliTokenController {
+
+    private static final String DEFAULT_DIR = "default";
+
+    @Resource
+    private OSS oss;
+
+    @PostMapping("/get-token")
+    public JSONObject getToken() {
+
+        // 过期时间默认5分钟
+        Date expiration = DateUtil.offsetMinute(new Date(),5);
+
+
+        try {
+            PolicyConditions policyConds = new PolicyConditions();
+            policyConds.addConditionItem("bucket", "bucket值");
+            policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, 0, 1024 * 1024 * 1024);
+            policyConds.addConditionItem(MatchMode.StartWith, PolicyConditions.COND_KEY, "dir文件夹");
+            String postPolicy = oss.generatePostPolicy(expiration, policyConds);
+            byte[] binaryData = postPolicy.getBytes("utf-8");
+            String encodedPolicy = BinaryUtil.toBase64String(binaryData);
+            String postSignature = oss.calculatePostSignature(postPolicy);
+
+        }catch (Exception e) {
+            log.error("生成临时签名异常", e);
+            throw new RuntimeException( "生成临时签名异常");
+        }
+
+
+        return new JSONObject();
+    }
+
+}
+
+```
+
+### [参考](https://blog.csdn.net/HaoGeCSDN2002/article/details/129471064)
+
+```java
+ 
+@SuppressWarnings("all")
+@RestController
+public class OssController {
+    @Autowired
+    OSS ossClient;
+ 
+    @Value("${spring.cloud.alicloud.oss.endpoint}")
+    private String endoint;
+ 
+    @Value("${spring.cloud.alicloud.oss.bucket}")
+    private String bucket;
+ 
+    @Value("${spring.cloud.alicloud.access-key}")
+    private String accessId;
+ 
+    @RequestMapping("oss/policy")
+    public R Policy() {
+        // 填写Host地址，格式为https://bucketname.endpoint。
+        String host = "https://" + bucket + "." + endoint;
+        // 设置上传到OSS文件的前缀，可置空此项。置空后，文件将上传至Bucket的根目录下。
+        String format = new SimpleDateFormat("yyyy:MM:hh").format(new Date());
+        String dir = format + "/";
+        Map<String, String> respMap = null;
+        try {
+            long expireTime = 6000;
+            long expireEndTime = System.currentTimeMillis() + expireTime * 1000;
+            Date expiration = new Date(expireEndTime);
+            PolicyConditions policyConds = new PolicyConditions();
+            policyConds.addConditionItem(PolicyConditions.COND_CONTENT_LENGTH_RANGE, 0, 1048576000);
+            policyConds.addConditionItem(MatchMode.StartWith, PolicyConditions.COND_KEY, dir);
+ 
+            String postPolicy = ossClient.generatePostPolicy(expiration, policyConds);
+            byte[] binaryData = postPolicy.getBytes("utf-8");
+            String encodedPolicy = BinaryUtil.toBase64String(binaryData);
+            String postSignature = ossClient.calculatePostSignature(postPolicy);
+ 
+            respMap = new LinkedHashMap<String, String>();
+            respMap.put("accessid", accessId);
+            respMap.put("policy", encodedPolicy);
+            respMap.put("signature", postSignature);
+            respMap.put("dir", dir);
+            respMap.put("host", host);
+            respMap.put("expire", String.valueOf(expireEndTime / 1000));
+ 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return R.ok().put("data", respMap);
+    }
+}
+```
