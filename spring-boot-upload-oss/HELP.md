@@ -11,7 +11,7 @@
     <dependency>
         <groupId>com.aliyun.oss</groupId>
         <artifactId>aliyun-sdk-oss</artifactId>
-        <version>3.10.2</version>
+        <version>3.15.1</version>
         <scope>compile</scope>
     </dependency>
     <!--七牛云依赖-->
@@ -534,7 +534,9 @@ class AliTokenController {
 
 ```
 
-### [参考](https://blog.csdn.net/HaoGeCSDN2002/article/details/129471064)
+### 七、 阿里云对象存储(oss)之服务端签名后直传
+
+[参考](https://blog.csdn.net/HaoGeCSDN2002/article/details/129471064)
 
 ```java
  
@@ -588,4 +590,84 @@ public class OssController {
         return R.ok().put("data", respMap);
     }
 }
+```
+
+### 八、 使用STS临时访问凭证访问OSS
+#### [官网方文档](https://www.alibabacloud.com/help/zh/oss/developer-reference/use-temporary-access-credentials-provided-by-sts-to-access-oss?spm=a2c63.p38356.0.0.3c171017f0VuTw#concept-xzh-nzk-2gb）)
+#### [参考博客](https://blog.csdn.net/qq_36256590/article/details/125995315)
+请求:
+```
+public class StsServiceSample {
+    public static void main(String[] args) {
+        // STS接入地址，例如sts.cn-hangzhou.aliyuncs.com。
+        String endpoint = "sts.cn-hangzhou.aliyuncs.com";
+        // 填写步骤1生成的RAM用户访问密钥AccessKey ID和AccessKey Secret。
+        String accessKeyId = "";
+        String accessKeySecret = "";
+        // 填写步骤3获取的角色ARN。
+        String roleArn = "acs:ram::1950485882171507:role/ramoss";
+        // 自定义角色会话名称，用来区分不同的令牌，例如可填写为SessionTest。
+        String roleSessionName = "alice";
+        // 以下Policy用于限制仅允许使用临时访问凭证向目标存储空间examplebucket下的src目录上传文件。
+        // 临时访问凭证最后获得的权限是步骤4设置的角色权限和该Policy设置权限的交集，即仅允许将文件上传至目标存储空间examplebucket下的src目录。
+        // 如果policy为空，则用户将获得该角色下所有权限。
+        String policy = "{\n" +
+                "    \"Version\": \"1\", \n" +
+                "    \"Statement\": [\n" +
+                "        {\n" +
+                "            \"Action\": [\n" +
+                "                \"oss:dihuman\"\n" +
+                "            ], \n" +
+                "            \"Resource\": [\n" +
+                "                \"acs:oss:*:*:dihuman/src/*\" \n" +
+                "            ], \n" +
+                "            \"Effect\": \"Allow\"\n" +
+                "        }\n" +
+                "    ]\n" +
+                "}";
+        // 设置临时访问凭证的有效时间为3600秒。
+        Long durationSeconds = 3600L;
+        try {
+            // regionId表示RAM的地域ID。以华东1（杭州）地域为例，regionID填写为cn-hangzhou。也可以保留默认值，默认值为空字符串（""）。
+            String regionId = "";
+            // 添加endpoint。适用于Java SDK 3.12.0及以上版本。
+            DefaultProfile.addEndpoint(regionId, "Sts", endpoint);
+            // 添加endpoint。适用于Java SDK 3.12.0以下版本。
+            // DefaultProfile.addEndpoint("",regionId, "Sts", endpoint);
+            // 构造default profile。
+            IClientProfile profile = DefaultProfile.getProfile(regionId, accessKeyId, accessKeySecret);
+            // 构造client。
+            DefaultAcsClient client = new DefaultAcsClient(profile);
+            final AssumeRoleRequest request = new AssumeRoleRequest();
+            // 适用于Java SDK 3.12.0及以上版本。
+            request.setSysMethod(MethodType.POST);
+            // 适用于Java SDK 3.12.0以下版本。
+            //request.setMethod(MethodType.POST);
+            request.setRoleArn(roleArn);
+            request.setRoleSessionName(roleSessionName);
+//            request.setPolicy(policy);
+            request.setDurationSeconds(durationSeconds);
+            final AssumeRoleResponse response = client.getAcsResponse(request);
+            System.out.println("Expiration: " + response.getCredentials().getExpiration());
+            System.out.println("Access Key Id: " + response.getCredentials().getAccessKeyId());
+            System.out.println("Access Key Secret: " + response.getCredentials().getAccessKeySecret());
+            System.out.println("Security Token: " + response.getCredentials().getSecurityToken());
+            System.out.println("RequestId: " + response.getRequestId());
+        } catch (ClientException e) {
+            System.out.println("Failed：");
+            System.out.println("Error code: " + e.getErrCode());
+            System.out.println("Error message: " + e.getErrMsg());
+            System.out.println("RequestId: " + e.getRequestId());
+        }
+    }
+
+}
+
+```
+输出:
+```
+Access Key Id: STS.NTjRoHsc8juQXYo3d5ajQERsK
+Access Key Secret: GG828iBq3zwUUibr58GgcrweYQqtvFc4DFgeCMf7Y4yq
+Security Token: CAIS6gF1q6Ft5B2yfSjIr5ffGdX8nrwZ3be6Wn/e12RgbeV9qpfYqTz2IHhMfXNuAukds/k+mWBY5/wZlqx6T55OSBRTkSPCJc0Fnzm6aq/t5uaXj9Vd+rDHdEGXDxnkprywB8zyUNLafNq0dlnAjVUd6LDmdDKkLTfHWN/z/vwBVNkMWRSiZjdrHcpfIhAYyPUXLnzML/2gQHWI6yjydBM551Ig2T4vuf7mnZTBskXk4QekmrNPlePYOYO5asRgBpB7Xuqu0fZ+Hqi7i3YIskIUr/4t0fEVpGeX74vGGTdL6hCBKPHEaVWS1amvtcMagAEnCVLKHUVRFjL4zB2nF5ZbIE991z3xvrwhxOY4BarXsj3xLXYbDanCrjeVTEwyr6xFeZ8EpiGCYE8uNUhRHwYPuANjJPfye6mvUbzktFqWjbRYhxnKCTsEunZ7hC+bEDaS6GpozARIsezemNjoQF5jP12SabAKJD9TFaaS48g2hCAA
+RequestId: 4FAB3613-FD85-5F35-868C-8A44F2A911C5
 ```
