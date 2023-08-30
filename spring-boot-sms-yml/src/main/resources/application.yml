@@ -1,0 +1,20 @@
+server:
+  port: 8082
+
+
+
+wgs:
+  name: hhhh
+  jwt:
+    accessTokenExpireTime: 300000
+    refreshTokenExpireTime: 259200000
+  ali:
+    apiKey: 13414
+    apiSecret: 23233
+
+  leanCloud:
+    app-id: 123
+    appKey: appKey
+
+  sms-provider:
+    name: ali
