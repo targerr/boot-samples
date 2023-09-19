@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>boot-samples</artifactId>
+        <groupId>com.example</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>spring-boot-aspose</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>aspose-cells</groupId>
+            <artifactId>aspose</artifactId>
+            <version>8.5.2</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/aspose-cells-8.5.2.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-words-3rd</artifactId>
+            <version>18.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/aspose-words-3rd-18.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.aspose</groupId>
+            <artifactId>aspose-pdf</artifactId>
+            <version>17.3.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/aspose.pdf-17.3.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.2.9.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+
+
+
+</project>
