@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket学习</title>
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <style>
+    </style>
+</head>
+<body style="background-color: #FFFFFF">
+    <h1>websocket学习</h1>
+    <div style="width: 100%;height: 100%;">
+        <table>
+            <tr>
+                <td>
+                    <input id="msg" type="text" value="" placeholder="请填写信息" onkeydown="enterLis()">
+                </td>
+                <td>
+                    <input type="button" value="提交" onclick="sendMessage()" class="oa_btn">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="cons" style="border: 1px solid red; font-size: 12px;"></div>
+</body>
+<script>
+    var socket;
+    var step = 1;
+    function openSocket() {
+        var host= window.location.host;
+
+        var socketUrl = "ws://"+host+"/ws/serverTwo?username=" + new Date().getTime();
+        console.log(socketUrl);
+        if(socket!=null){
+            socket.close();
+            socket=null;
+        }
+        socket = new WebSocket(socketUrl);
+        //打开事件
+        socket.onopen = function() {
+            console.log("websocket已打开");
+        };
+        //获得消息事件
+        socket.onmessage = function(msg) {
+            console.log(msg.data);
+            //发现消息进入,开始处理前端触发逻辑
+            $("#cons").append("<p style='margin-left: 15px;'>"+msg.data+"</p>");
+        };
+        //关闭事件
+        socket.onclose = function() {
+            console.log("websocket已关闭");
+        };
+        //发生了错误事件
+        socket.onerror = function() {
+            console.log("websocket发生了错误");
+        }
+    }
+    $(function () {
+        openSocket();
+        setInterval(function () {
+            var lastDom = $("#cons p:last");
+            var content = lastDom.text();
+            if (content.endsWith("。。。")) {
+                lastDom.text(content.substr(0,content.length-1));
+            }else if (content.endsWith("。。")){
+                lastDom.text(content.substr(0,content.length-1));
+            } else if (content.endsWith("。")){
+                lastDom.text(content+"。。");
+            }
+        },1000)
+    });
+    function sendMessage() {
+        var msg = {
+            step: step,
+            msg : $("#msg").val()
+        };
+        socket.send(JSON.stringify(msg));
+        step+=1;
+        $("#msg").val('');
+    }
+    function enterLis(event) {
+        var oEvent = event || window.event || arguments.callee.caller.arguments[0];
+        var keyCode = oEvent.keyCode;
+        if (keyCode === 13) {
+            sendMessage();
+        }
+    }
+
+</script>
+</html>

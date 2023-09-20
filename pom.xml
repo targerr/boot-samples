@@ -73,6 +73,7 @@
         <module>spring-boot-emqx-example</module>
         <module>spring-boot-sms-yml</module>
         <module>spring-boot-aspose</module>
+        <module>spring-boot-websocket-boot</module>
     </modules>
     <packaging>pom</packaging>
 
