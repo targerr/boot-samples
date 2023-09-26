@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: log-stack-02
+  redis:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+
+server:
+  servlet:
+    context-path: /api
+  port: 8000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 打开所有的监控点
+  endpoint:
+    health:
+      show-details: always
