@@ -561,3 +561,6 @@ public class MyWebSocketHandler implements WebSocketHandler {
 ### 测试
 
 ![image.png](https://upload-images.jianshu.io/upload_images/4994935-e46cd42c28510a53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+#### [聊天](https://gitee.com/huanzi-qch/springBoot/blob/master/springboot-websocket/src/main/java/cn/huanzi/qch/springbootwebsocket/WebSocketServer.java)
+#### [聊天文档](https://huanzi-qch.gitee.io/spring-boot/#/docs/%E3%80%8ASpringBoot%E7%B3%BB%E5%88%97%E2%80%94%E2%80%94WebSocket%E3%80%8B)
