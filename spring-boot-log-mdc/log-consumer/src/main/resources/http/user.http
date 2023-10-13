@@ -1,0 +1,11 @@
+POST http://127.0.0.1:9527/api/user
+Content-Type: application/json
+
+{"name":"张三","articleId":"2222"}
+
+###
+GET http://127.0.0.1:9527/hello?name=lisi&articleId=111
+Accept: application/json
+
+###
+

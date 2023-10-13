@@ -1,0 +1,1 @@
+#### 参考: [springboot 单机应用使用MDC生成唯一日志id](https://blog.csdn.net/qq_38366063/article/details/131132287)
