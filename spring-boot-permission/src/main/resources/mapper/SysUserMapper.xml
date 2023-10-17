@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.entity.SysUser">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="username" column="username" jdbcType="VARCHAR"/>
+            <result property="telephone" column="telephone" jdbcType="VARCHAR"/>
+            <result property="mail" column="mail" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="deptId" column="dept_id" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="operator" column="operator" jdbcType="VARCHAR"/>
+            <result property="operateTime" column="operate_time" jdbcType="TIMESTAMP"/>
+            <result property="operateIp" column="operate_ip" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,username,telephone,
+        mail,password,dept_id,
+        status,remark,operator,
+        operate_time,operate_ip
+    </sql>
+</mapper>

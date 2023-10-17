@@ -1,0 +1,28 @@
+spring:
+  datasource:
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        url: jdbc:mysql://localhost:3306/springboot?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#        username: root
+#        password: root123456
+        driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+        url: jdbc:p6spy:mysql://localhost:3306/permission?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: root123456
+
+
+security:
+  salt: tech_π # 密码加盐, 更安全的做法是每个用户的密码使用独立的盐，并将其保存在用户表中
+  salt-index: 3 # 盐插入的位置
+per:
+  jwt:
+    issuer: pai_coding # 签发者
+    secret: hello_world # 签名密钥
+    expire: 2592000000 # jwt的有效期，默认30天
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mapper/*.xml
+    - classpath*:/mapper/**/*.xml
+
+logging:
+  level:
+    com.example: debug

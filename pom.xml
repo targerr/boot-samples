@@ -75,6 +75,8 @@
         <module>spring-boot-aspose</module>
         <module>spring-boot-websocket-boot</module>
         <module>spring-boot-log-mdc</module>
+        <module>spring-boot-activite</module>
+        <module>spring-boot-permission</module>
     </modules>
     <packaging>pom</packaging>
 
