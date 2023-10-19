@@ -44,6 +44,12 @@ public enum ResultEnum {
     USER_NAME_ERROR(30, "用户名已经存在"),
     USER_EMAIL_ERROR(31, "邮箱已被占用"),
     USER_TEL_ERROR(32, "电话已被占用"),
+    DEPT_NAME_ERROR(33, "同一层级下存在相同名称的部门"),
+    DEPT_NOT_EXIST(34, "部门不存在"),
+    DEPT_ROOT_ERROR(35, "根目录禁止修改"),
+    DEPT_PARENT_ERROR(36, "父部门禁止移动到子部门"),
+    DEPT_SUBSECTOR_ERROR(36, "当前部门下面有子部门，无法删除"),
+    DEPT_USER_ERROR(36, "当前部门下面有用户，无法删除"),
     ;
     private Integer code;
     private String message;
