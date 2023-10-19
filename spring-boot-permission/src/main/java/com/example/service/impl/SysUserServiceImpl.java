@@ -9,6 +9,7 @@ import com.example.dto.UserInfoDTO;
 import com.example.entity.SysUser;
 import com.example.enums.ResultEnum;
 import com.example.exception.PreException;
+import com.example.req.UserReq;
 import com.example.service.SysUserService;
 import com.example.mapper.SysUserMapper;
 import com.example.service.help.UserPwdEncoder;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -48,6 +50,54 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         userInfoDTO.setToken(toke);
         return userInfoDTO;
+    }
+
+    @Override
+    public String register(UserReq userReq) {
+        SysUser sysUser = getSysUserByUserName(userReq.getUsername().trim());
+        if (Objects.nonNull(sysUser)) {
+            throw new PreException(ResultEnum.USER_NAME_ERROR);
+        }
+        if (checkTelephoneExist(userReq.getTelephone())) {
+            throw new PreException(ResultEnum.USER_TEL_ERROR);
+        }
+        if (checkMailExist(userReq.getMail())) {
+            throw new PreException(ResultEnum.USER_EMAIL_ERROR);
+        }
+
+        SysUser user = registerByUserNameAndPassword(userReq);
+
+        int userId = sysUserMapper.insert(user);
+
+        return userSessionHelper.genSession(userId);
+    }
+
+    private SysUser registerByUserNameAndPassword(UserReq userReq) {
+        String password = "12345678";
+
+        SysUser user = SysUser.builder().username(userReq.getUsername())
+                .telephone(userReq.getTelephone()).mail(userReq.getMail())
+                .password(userPwdEncoder.encPwd(password))
+                .deptId(userReq.getDeptId())
+                .status(userReq.getStatus())
+                .remark(userReq.getRemark())
+                .build();
+//        user.setOperator(RequestHolder.getCurrentUser().getUsername());
+//        user.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
+        user.setOperateTime(new Date());
+        return user;
+    }
+
+    private boolean checkMailExist(String mail) {
+        LambdaQueryWrapper<SysUser> queryUser = Wrappers.lambdaQuery();
+        queryUser.eq(SysUser::getMail, mail);
+        return sysUserMapper.selectCount(queryUser) > 0;
+    }
+
+    private boolean checkTelephoneExist(String telephone) {
+        LambdaQueryWrapper<SysUser> queryUser = Wrappers.lambdaQuery();
+        queryUser.eq(SysUser::getTelephone, telephone);
+        return sysUserMapper.selectCount(queryUser) > 0;
     }
 
     private SysUser getSysUserByUserName(String username) {

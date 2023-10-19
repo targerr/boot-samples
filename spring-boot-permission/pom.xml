@@ -16,6 +16,7 @@
         <java.version>11</java.version>
         <commons.lang.version>2.6</commons.lang.version>
         <jwt.version>4.4.0</jwt.version>
+        <knife4j.version>4.0.0</knife4j.version>
     </properties>
     <dependencies>
         <!-- mysql数据库 -->
@@ -40,11 +41,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>2.0.7</version>
-        </dependency>
 
         <dependency>
             <groupId>com.auth0</groupId>
@@ -57,6 +53,14 @@
             <artifactId>commons-lang</artifactId>
             <version>${commons.lang.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

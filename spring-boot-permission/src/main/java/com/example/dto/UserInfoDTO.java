@@ -1,7 +1,7 @@
 package com.example.dto;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -12,11 +12,13 @@ import lombok.experimental.Accessors;
  * @Description
  */
 @Data
-@ApiModel("用户基础实体对象")
+@Schema(description = "用户基础实体对象")
 @Accessors(chain = true)
 public class UserInfoDTO {
-    @ApiModelProperty(value = "业务主键")
+
+    @Schema(description = "业务主键")
     private Long id;
-    @ApiModelProperty(value = "token")
+
+    @Schema(description = "token")
     private String token;
 }

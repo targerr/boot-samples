@@ -40,7 +40,10 @@ public enum ResultEnum {
     ORDER_FINISH_SUCCESS(26,"成功完结订单"),
     LOGIN_FAIL(27,"登陆失败"),
     USER_NOT_EXISTS(28, "用户不存在"),
-    USER_PWD_ERROR(29, "用户名or密码错误");
+    USER_PWD_ERROR(29, "用户名or密码错误"),
+    USER_NAME_ERROR(30, "用户名已经存在"),
+    USER_EMAIL_ERROR(31, "邮箱已被占用"),
+    USER_TEL_ERROR(32, "电话已被占用"),
     ;
     private Integer code;
     private String message;

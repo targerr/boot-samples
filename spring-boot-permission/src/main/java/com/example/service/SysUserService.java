@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dto.UserInfoDTO;
 import com.example.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.req.UserReq;
 
 /**
 * @author wanggaoshuai
@@ -19,4 +20,12 @@ public interface SysUserService extends IService<SysUser> {
      * @return {@link UserInfoDTO}
      */
     UserInfoDTO login(String username, String password);
+
+    /**
+     * 登记
+     *
+     * @param userReq 用户需求
+     * @return {@link String}
+     */
+    String register(UserReq userReq);
 }
