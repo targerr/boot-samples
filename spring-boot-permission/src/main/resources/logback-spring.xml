@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{X-B3-TraceId:-} %X{X-B3-SpanId:-} [%.-15thread] %-5level [%file:%M:%line] %msg%n"/>
+    <!-- 开发环境控制台输出即可 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <logger name="com.example" level="INFO"/>
+    <logger name="mybatis.sql" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="DEBUG"/>
+    <root level="INFO">
+        <appender-ref ref="console"/>
+    </root>
+
+    <!-- 文件日志配置 每日生成一个，所以采用滚动生成-->
+    <appender name="fileInfoLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %caller{1} %-5level %logger - %msg%n</pattern>
+        </encoder>
+        <!-- 滚动策略，按时间滚动-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--<fileNamePattern>/work/home/program/logs/program.%d.log</fileNamePattern>-->
+            <fileNamePattern>logs/per.%d.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="console" />
+        <appender-ref ref="fileInfoLog" />
+    </root>
+</configuration>

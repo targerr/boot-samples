@@ -1,0 +1,130 @@
+2023-10-20 10:46:25 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)
+ INFO  com.example.SpringBootPermission - Starting SpringBootPermission on wanggaoshuaideMacBook-Pro.local with PID 14043 (/Users/wanggaoshuai/develop/IdeaProjects/gitee/boot-samples/spring-boot-permission/target/classes started by wanggaoshuai in /Users/wanggaoshuai/develop/IdeaProjects/gitee/boot-samples)
+2023-10-20 10:46:25 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:56)
+ DEBUG com.example.SpringBootPermission - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.4.RELEASE
+2023-10-20 10:46:25 [main] Caller+0	 at org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651)
+ INFO  com.example.SpringBootPermission - No active profile set, falling back to default profiles: default
+2023-10-20 10:46:26 [main] Caller+0	 at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92)
+ INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-10-20 10:46:26 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-10-20 10:46:26 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-10-20 10:46:26 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2023-10-20 10:46:26 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-10-20 10:46:26 [main] Caller+0	 at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284)
+ INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 560 ms
+2023-10-20 10:46:26 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-10-20 10:46:26 [main] Caller+0	 at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204)
+ INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-20 10:46:26 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61)
+ INFO  com.example.SpringBootPermission - Started SpringBootPermission in 1.305 seconds (JVM running for 1.637)
+2023-10-20 10:46:32 [http-nio-8080-exec-1] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-20 10:46:32 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+ INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-10-20 10:46:32 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+ INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2023-10-20 10:46:32 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:33 [http-nio-8080-exec-2] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:34 [http-nio-8080-exec-3] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:35 [http-nio-8080-exec-4] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:35 [http-nio-8080-exec-7] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:35 [http-nio-8080-exec-8] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:36 [http-nio-8080-exec-9] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:36 [http-nio-8080-exec-10] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:36 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:36 [http-nio-8080-exec-2] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:36 [http-nio-8080-exec-3] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:36 [http-nio-8080-exec-4] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:37 [http-nio-8080-exec-5] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:37 [http-nio-8080-exec-6] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:37 [http-nio-8080-exec-7] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /swagger-ui.html
+2023-10-20 10:46:46 [http-nio-8080-exec-2] Caller+0	 at org.springframework.web.servlet.DispatcherServlet.noHandlerFound(DispatcherServlet.java:1251)
+ WARN  org.springframework.web.servlet.PageNotFound - No mapping for GET /v3/api-docs/swagger-config
+2023-10-20 10:54:18 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)
+ INFO  com.example.SpringBootPermission - Starting SpringBootPermission on wanggaoshuaideMacBook-Pro.local with PID 14693 (/Users/wanggaoshuai/develop/IdeaProjects/gitee/boot-samples/spring-boot-permission/target/classes started by wanggaoshuai in /Users/wanggaoshuai/develop/IdeaProjects/gitee/boot-samples)
+2023-10-20 10:54:18 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:56)
+ DEBUG com.example.SpringBootPermission - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.4.RELEASE
+2023-10-20 10:54:18 [main] Caller+0	 at org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651)
+ INFO  com.example.SpringBootPermission - No active profile set, falling back to default profiles: default
+2023-10-20 10:54:18 [main] Caller+0	 at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92)
+ INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-10-20 10:54:18 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-10-20 10:54:18 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-10-20 10:54:18 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2023-10-20 10:54:18 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-10-20 10:54:18 [main] Caller+0	 at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284)
+ INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 658 ms
+2023-10-20 10:54:19 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-10-20 10:54:19 [main] Caller+0	 at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204)
+ INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-20 10:54:19 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61)
+ INFO  com.example.SpringBootPermission - Started SpringBootPermission in 1.632 seconds (JVM running for 1.976)
+2023-10-20 10:54:25 [http-nio-8080-exec-1] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-20 10:54:25 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+ INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-10-20 10:54:25 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+ INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2023-10-20 10:54:26 [http-nio-8080-exec-9] Caller+0	 at org.springdoc.api.AbstractOpenApiResource.getOpenApi(AbstractOpenApiResource.java:355)
+ INFO  org.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 131 ms
+2023-10-20 10:55:31 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:55)
+ INFO  com.example.SpringBootPermission - Starting SpringBootPermission on wanggaoshuaideMacBook-Pro.local with PID 14793 (/Users/wanggaoshuai/develop/IdeaProjects/gitee/boot-samples/spring-boot-permission/target/classes started by wanggaoshuai in /Users/wanggaoshuai/develop/IdeaProjects/gitee/boot-samples)
+2023-10-20 10:55:31 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:56)
+ DEBUG com.example.SpringBootPermission - Running with Spring Boot v2.2.5.RELEASE, Spring v5.2.4.RELEASE
+2023-10-20 10:55:31 [main] Caller+0	 at org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:651)
+ INFO  com.example.SpringBootPermission - No active profile set, falling back to default profiles: default
+2023-10-20 10:55:32 [main] Caller+0	 at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:92)
+ INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2023-10-20 10:55:32 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2023-10-20 10:55:32 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-10-20 10:55:32 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.31]
+2023-10-20 10:55:32 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-10-20 10:55:32 [main] Caller+0	 at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.prepareWebApplicationContext(ServletWebServerApplicationContext.java:284)
+ INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 703 ms
+2023-10-20 10:55:32 [main] Caller+0	 at org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.initialize(ExecutorConfigurationSupport.java:181)
+ INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2023-10-20 10:55:32 [main] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2023-10-20 10:55:32 [main] Caller+0	 at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:204)
+ INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2023-10-20 10:55:32 [main] Caller+0	 at org.springframework.boot.StartupInfoLogger.logStarted(StartupInfoLogger.java:61)
+ INFO  com.example.SpringBootPermission - Started SpringBootPermission in 1.678 seconds (JVM running for 2.009)
+2023-10-20 10:55:43 [http-nio-8080-exec-1] Caller+0	 at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:173)
+ INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-20 10:55:43 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:525)
+ INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-10-20 10:55:43 [http-nio-8080-exec-1] Caller+0	 at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:547)
+ INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2023-10-20 10:55:43 [http-nio-8080-exec-3] Caller+0	 at org.springdoc.api.AbstractOpenApiResource.getOpenApi(AbstractOpenApiResource.java:355)
+ INFO  org.springdoc.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 120 ms
+2023-10-20 10:57:59 [SpringContextShutdownHook] Caller+0	 at org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.shutdown(ExecutorConfigurationSupport.java:218)
+ INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

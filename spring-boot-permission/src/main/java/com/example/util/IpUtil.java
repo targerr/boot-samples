@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.util;
 
 import com.example.dto.region.IpRegionInfo;
 import com.github.hui.quick.plugin.base.file.FileWriteUtil;
@@ -222,8 +222,4 @@ public class IpUtil {
         }
     }
 
-    public static void main(String[] args) throws SocketException {
-        System.out.println(getLocalIp4Address());
-        System.out.println(JsonUtil.toStr(getLocationByIp("115.220.189.251")));
-    }
 }
