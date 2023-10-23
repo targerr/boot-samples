@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.SysRoleAclMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.entity.SysRoleAcl">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+            <result property="aclId" column="acl_id" jdbcType="INTEGER"/>
+            <result property="operator" column="operator" jdbcType="VARCHAR"/>
+            <result property="operateTime" column="operate_time" jdbcType="TIMESTAMP"/>
+            <result property="operateIp" column="operate_ip" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,role_id,acl_id,
+        operator,operate_time,operate_ip
+    </sql>
+</mapper>

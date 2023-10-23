@@ -14,32 +14,42 @@ import lombok.NoArgsConstructor;
 
 /**
  * 
- * @TableName sys_role
+ * @TableName sys_acl_module
  */
-@TableName(value ="sys_role")
+@TableName(value ="sys_acl_module")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SysRole implements Serializable {
+public class SysAclModule implements Serializable {
     /**
-     * 角色id
+     * 权限模块id
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 
+     * 权限模块名称
      */
     private String name;
 
     /**
-     * 角色的类型，1：管理员角色，2：其他
+     * 上级权限模块id
      */
-    private Integer type;
+    private Integer parentId;
 
     /**
-     * 状态，1：可用，0：冻结
+     * 权限模块层级
+     */
+    private String level;
+
+    /**
+     * 权限模块在当前层级下的顺序，由小到大
+     */
+    private Integer seq;
+
+    /**
+     * 状态，1：正常，0：冻结
      */
     private Integer status;
 
@@ -54,12 +64,12 @@ public class SysRole implements Serializable {
     private String operator;
 
     /**
-     * 最后一次更新的时间
+     * 最后一次操作时间
      */
     private Date operateTime;
 
     /**
-     * 最后一次更新者的ip地址
+     * 最后一次更新操作者的ip地址
      */
     private String operateIp;
 
@@ -77,10 +87,12 @@ public class SysRole implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        SysRole other = (SysRole) that;
+        SysAclModule other = (SysAclModule) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getParentId() == null ? other.getParentId() == null : this.getParentId().equals(other.getParentId()))
+            && (this.getLevel() == null ? other.getLevel() == null : this.getLevel().equals(other.getLevel()))
+            && (this.getSeq() == null ? other.getSeq() == null : this.getSeq().equals(other.getSeq()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getRemark() == null ? other.getRemark() == null : this.getRemark().equals(other.getRemark()))
             && (this.getOperator() == null ? other.getOperator() == null : this.getOperator().equals(other.getOperator()))
@@ -94,7 +106,9 @@ public class SysRole implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getParentId() == null) ? 0 : getParentId().hashCode());
+        result = prime * result + ((getLevel() == null) ? 0 : getLevel().hashCode());
+        result = prime * result + ((getSeq() == null) ? 0 : getSeq().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getRemark() == null) ? 0 : getRemark().hashCode());
         result = prime * result + ((getOperator() == null) ? 0 : getOperator().hashCode());
@@ -111,7 +125,9 @@ public class SysRole implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
-        sb.append(", type=").append(type);
+        sb.append(", parentId=").append(parentId);
+        sb.append(", level=").append(level);
+        sb.append(", seq=").append(seq);
         sb.append(", status=").append(status);
         sb.append(", remark=").append(remark);
         sb.append(", operator=").append(operator);

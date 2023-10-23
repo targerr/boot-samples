@@ -2,6 +2,9 @@ package com.example.service;
 
 import com.example.entity.SysRole;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.req.RoleReq;
+
+import java.net.SocketException;
 
 /**
 * @author wanggaoshuai
@@ -10,4 +13,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SysRoleService extends IService<SysRole> {
 
+    void saveRole(RoleReq roleReq) ;
+    void updateRole(RoleReq roleReq) ;
 }

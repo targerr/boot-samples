@@ -50,6 +50,9 @@ public enum ResultEnum {
     DEPT_PARENT_ERROR(36, "父部门禁止移动到子部门"),
     DEPT_SUBSECTOR_ERROR(36, "当前部门下面有子部门，无法删除"),
     DEPT_USER_ERROR(36, "当前部门下面有用户，无法删除"),
+    ROLE_NAME_ERROR(37, "角色名已存在"),
+    ROLE_NOT_EXIST(37, "更新角色不存在"),
+    ACL_MODULE_NAME_ERROR(33, "同一层级下存在相同名称"),
     ;
     private Integer code;
     private String message;

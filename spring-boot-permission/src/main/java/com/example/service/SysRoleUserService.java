@@ -1,7 +1,9 @@
 package com.example.service;
 
+import com.alibaba.fastjson.JSON;
 import com.example.entity.SysRoleUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.req.RoleUserReq;
 
 /**
 * @author wanggaoshuai
@@ -10,4 +12,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SysRoleUserService extends IService<SysRoleUser> {
 
+    void changeRoleUsers(RoleUserReq roleUserReq);
+
+    JSON querySelectedAandUnselectedByRoleId(int roleId);
 }
