@@ -2,6 +2,8 @@ package com.example.service;
 
 import com.example.entity.SysAcl;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.req.AclModuleReq;
+import com.example.req.AclReq;
 
 /**
 * @author wanggaoshuai
@@ -10,4 +12,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SysAclService extends IService<SysAcl> {
 
+    void saveAcl(AclReq acl);
+
+    void updateAcl(AclReq acl);
+
+    void deleteAcl(int id);
 }

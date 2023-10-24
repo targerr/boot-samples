@@ -2,6 +2,7 @@ package com.example.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.entity.SysRoleAcl;
+import com.example.req.RoleAclReq;
 import com.example.service.SysRoleAclService;
 import com.example.mapper.SysRoleAclMapper;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,10 @@ import org.springframework.stereotype.Service;
 public class SysRoleAclServiceImpl extends ServiceImpl<SysRoleAclMapper, SysRoleAcl>
     implements SysRoleAclService{
 
+    @Override
+    public void changeRoleAcls(RoleAclReq roleAclReq) {
+
+    }
 }
 
 

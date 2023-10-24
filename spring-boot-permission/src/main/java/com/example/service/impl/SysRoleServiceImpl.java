@@ -1,21 +1,27 @@
 package com.example.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.entity.SysRole;
+import com.example.entity.SysRoleUser;
 import com.example.enums.ResultEnum;
 import com.example.exception.PreException;
+import com.example.mapper.SysRoleUserMapper;
 import com.example.req.RoleReq;
 import com.example.service.SysRoleService;
 import com.example.mapper.SysRoleMapper;
 import com.example.util.IpUtil;
+import com.google.common.collect.Lists;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.net.SocketException;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @author wanggaoshuai
@@ -28,6 +34,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
 
     @Resource
     private SysRoleMapper sysRoleMapper;
+    @Resource
+    private SysRoleUserMapper sysRoleUserMapper;
 
     @Override
     public void saveRole(RoleReq roleReq) {
@@ -65,6 +73,18 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole>
 
         sysRoleMapper.updateById(after);
     }
+
+    @Override
+    public List<SysRole> getRoleListByUserId(int userId) {
+        final List<SysRoleUser> sysRoleUserList = sysRoleUserMapper.selectList(new LambdaQueryWrapper<SysRoleUser>().eq(SysRoleUser::getUserId, userId));
+        if (CollectionUtils.isEmpty(sysRoleUserList)){
+            return Lists.newArrayList();
+        }
+
+        List<Integer> roleIds = sysRoleUserList.stream().map(SysRoleUser::getRoleId).collect(Collectors.toList());
+        return sysRoleMapper.selectList(new LambdaQueryWrapper<SysRole>().in(SysRole::getId,roleIds));
+    }
+
     public boolean existNameExist(String name, Integer id) {
         LambdaQueryWrapper<SysRole> queryWrapper = Wrappers.lambdaQuery();
         queryWrapper.eq(SysRole::getName, name)

@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.AclModuleLevelDto;
 import com.example.vo.DeptVo;
 
 import java.util.List;
@@ -12,4 +13,8 @@ import java.util.List;
  */
 public interface SysTreeService {
     public List<DeptVo> getDeptTree();
+
+    List<AclModuleLevelDto> aclModuleTree();
+
+    List<AclModuleLevelDto> userAclTree(int userId);
 }

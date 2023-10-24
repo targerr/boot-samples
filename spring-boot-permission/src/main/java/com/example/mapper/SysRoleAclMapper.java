@@ -1,7 +1,9 @@
 package com.example.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.example.entity.SysRoleAcl;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.entity.SysRoleUser;
 
 /**
 * @author wanggaoshuai

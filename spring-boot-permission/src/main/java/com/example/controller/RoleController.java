@@ -1,8 +1,10 @@
 package com.example.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.example.req.RoleAclReq;
 import com.example.req.RoleReq;
 import com.example.req.RoleUserReq;
+import com.example.service.SysRoleAclService;
 import com.example.service.SysRoleService;
 import com.example.service.SysRoleUserService;
 import com.example.utils.ResultVoUtil;
@@ -30,6 +32,8 @@ public class RoleController {
     private SysRoleService sysRoleService;
     @Autowired
     private SysRoleUserService sysRoleUserService;
+    @Autowired
+    private SysRoleAclService sysRoleAclService;
 
     @PostMapping("/save")
     @Operation(summary = "新增角色", description = "新增")
@@ -54,14 +58,15 @@ public class RoleController {
     @RequestMapping("/roleTree")
     @Parameters(@Parameter(name = "roleId", example = "1", description = "角色id", required = true, in = ParameterIn.QUERY))
     public ResVo roleTree(@RequestParam("roleId") int roleId) {
+
 //        sysTreeService.roleTree(roleId)
         return ResultVoUtil.success();
     }
 
     @RequestMapping("/changeAcls.json")
-    public ResVo changeAcls(@RequestParam("roleId") int roleId, @RequestParam(value = "aclIds", required = false, defaultValue = "") String aclIds) {
+    public ResVo changeAcls(@Validated @RequestBody RoleAclReq roleAclReq) {
 //        List<Integer> aclIdList = StringUtil.splitToListInt(aclIds);
-//        sysRoleAclService.changeRoleAcls(roleId, aclIdList);
+        sysRoleAclService.changeRoleAcls(roleAclReq);
         return ResultVoUtil.success();
     }
 

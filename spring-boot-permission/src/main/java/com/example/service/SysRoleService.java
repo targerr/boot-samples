@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.req.RoleReq;
 
 import java.net.SocketException;
+import java.util.List;
 
 /**
 * @author wanggaoshuai
@@ -15,4 +16,6 @@ public interface SysRoleService extends IService<SysRole> {
 
     void saveRole(RoleReq roleReq) ;
     void updateRole(RoleReq roleReq) ;
+
+    List<SysRole> getRoleListByUserId(int userId);
 }

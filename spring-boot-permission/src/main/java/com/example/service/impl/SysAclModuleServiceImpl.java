@@ -5,9 +5,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.entity.SysAcl;
 import com.example.entity.SysAclModule;
 import com.example.enums.ResultEnum;
 import com.example.exception.PreException;
+import com.example.mapper.SysAclMapper;
 import com.example.req.AclModuleReq;
 import com.example.service.SysAclModuleService;
 import com.example.mapper.SysAclModuleMapper;
@@ -31,6 +33,8 @@ public class SysAclModuleServiceImpl extends ServiceImpl<SysAclModuleMapper, Sys
         implements SysAclModuleService {
     @Resource
     private SysAclModuleMapper sysAclModuleMapper;
+    @Resource
+    private SysAclMapper sysAclMapper;
 
     @Override
     public void saveAclModule(AclModuleReq aclModule) {
@@ -71,7 +75,7 @@ public class SysAclModuleServiceImpl extends ServiceImpl<SysAclModuleMapper, Sys
         String afterLevel = LevelUtil.calculateLevel(getLevel(aclModule.getParentId()), aclModule.getParentId());
         SysAclModule after = SysAclModule.builder().name(aclModule.getName()).parentId(aclModule.getParentId()).seq(aclModule.getSeq())
                 .status(aclModule.getStatus()).remark(aclModule.getRemark()).build();
-        after.setLevel(LevelUtil.calculateLevel(getLevel(aclModule.getParentId()), aclModule.getParentId()));
+        after.setLevel(afterLevel);
 //        module.setOperator(RequestHolder.getCurrentUser().getUsername());
 //        module.setOperateIp(IpUtil.getRemoteIp(RequestHolder.getCurrentRequest()));
         after.setOperateTime(new Date());
@@ -81,24 +85,49 @@ public class SysAclModuleServiceImpl extends ServiceImpl<SysAclModuleMapper, Sys
 
     @Override
     public void deleteAclModule(int id) {
+        SysAclModule sysAclModule = sysAclModuleMapper.selectById(id);
+        if (Objects.isNull(sysAclModule)) {
+            throw new PreException(ResultEnum.ACL_MODULE_NAME_ERROR);
+        }
 
+        final List<SysAclModule> childModelListByLevel = getChildModelListByLevel(sysAclModule.getLevel());
+        if (CollectionUtils.isNotEmpty(childModelListByLevel)) {
+            throw new PreException(ResultEnum.ACL_MODULE_NAME_ERROR);
+        }
+
+        if (countByAclModuleId(id)) {
+            throw new PreException(ResultEnum.ACL_MODULE_NAME_ERROR);
+        }
+
+        sysAclModuleMapper.deleteById(id);
+    }
+
+    private boolean countByAclModuleId(int id) {
+        LambdaQueryWrapper<SysAcl> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(SysAcl::getAclModuleId, id);
+        return sysAclMapper.selectCount(queryWrapper) > 0;
     }
 
     private void updateWithChild(SysAclModule before, SysAclModule after) {
         String newLevelPrefix = after.getLevel();
         String oldLevelPrefix = before.getLevel();
-        if (!newLevelPrefix.equals(oldLevelPrefix)) {
-            List<SysAclModule> sysAclModules = getChildModelListByLevel(oldLevelPrefix);
-            if (CollectionUtils.isNotEmpty(sysAclModules)) {
-                checkLevel(after, sysAclModules);
-                for (SysAclModule module : sysAclModules) {
-                    String level = module.getLevel();
-                    if (level.indexOf(oldLevelPrefix) == 0) {
-                        level = newLevelPrefix + level.substring(oldLevelPrefix.length());
-                        module.setLevel(level);
-                        sysAclModuleMapper.updateById(module);
-                    }
-                }
+        if (newLevelPrefix.equals(oldLevelPrefix)) {
+            sysAclModuleMapper.updateById(after);
+            return;
+        }
+
+        List<SysAclModule> sysAclModules = getChildModelListByLevel(oldLevelPrefix);
+        if (CollectionUtils.isEmpty(sysAclModules)) {
+            sysAclModuleMapper.updateById(after);
+        }
+
+        checkLevel(after, sysAclModules);
+        for (SysAclModule module : sysAclModules) {
+            String level = module.getLevel();
+            if (level.indexOf(oldLevelPrefix) == 0) {
+                level = newLevelPrefix + level.substring(oldLevelPrefix.length());
+                module.setLevel(level);
+                sysAclModuleMapper.updateById(module);
             }
         }
 

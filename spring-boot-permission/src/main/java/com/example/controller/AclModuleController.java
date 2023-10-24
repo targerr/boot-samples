@@ -1,7 +1,6 @@
 package com.example.controller;
 
 import com.example.req.AclModuleReq;
-import com.example.req.DeptReq;
 import com.example.service.SysAclModuleService;
 import com.example.service.SysTreeService;
 import com.example.utils.ResultVoUtil;
@@ -25,7 +24,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("/aclModule")
 @Tag(name = "权限模块控制类")
-public class AclModuleReqController {
+public class AclModuleController {
     @Resource
     private SysAclModuleService sysAclModuleService;
     @Resource
@@ -54,5 +53,11 @@ public class AclModuleReqController {
     public ResVo delete(@RequestParam("id") int id) {
         sysAclModuleService.deleteAclModule(id);
         return ResultVoUtil.success();
+    }
+
+    @PostMapping("/tree")
+    @Operation(summary = "权限模块树",description = "权限模块树")
+    public ResVo treeAclModule(){
+        return ResultVoUtil.success(sysTreeService.aclModuleTree());
     }
 }

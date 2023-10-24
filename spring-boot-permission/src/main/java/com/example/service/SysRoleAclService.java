@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.entity.SysRoleAcl;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.req.RoleAclReq;
 
 /**
 * @author wanggaoshuai
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SysRoleAclService extends IService<SysRoleAcl> {
 
+    void changeRoleAcls(RoleAclReq roleAclReq);
 }
