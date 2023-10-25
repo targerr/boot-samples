@@ -17,4 +17,6 @@ public interface SysTreeService {
     List<AclModuleLevelDto> aclModuleTree();
 
     List<AclModuleLevelDto> userAclTree(int userId);
+
+    List<AclModuleLevelDto> roleTree(int roleId);
 }

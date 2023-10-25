@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.context.ReqInfoContext;
 import com.example.entity.SysRole;
 import com.example.entity.SysRoleUser;
 import com.example.entity.SysUser;
@@ -88,9 +89,15 @@ public class SysRoleUserServiceImpl extends ServiceImpl<SysRoleUserMapper, SysRo
         LambdaQueryWrapper<SysRoleUser> deleteWrapper = Wrappers.lambdaQuery();
         deleteWrapper.eq(SysRoleUser::getRoleId, roleUserReq.getRoleId());
         sysRoleUserMapper.delete(deleteWrapper);
-
+        final ReqInfoContext.ReqInfo reqInfo = ReqInfoContext.getReqInfo();
         List<SysRoleUser> insertList = roleUserReq.getUserIds().stream()
-                .map(userId -> SysRoleUser.builder().roleId(roleUserReq.getRoleId()).userId(userId).operateTime(new Date()).build())
+                .map(userId -> SysRoleUser.builder()
+                        .roleId(roleUserReq.getRoleId())
+                        .userId(userId)
+                        .operateTime(new Date())
+                        .operateIp(reqInfo.getClientIp())
+                        .operator(reqInfo.getUser().getUserName())
+                        .build())
                 .collect(Collectors.toList());
 
         insertList.forEach(e -> {

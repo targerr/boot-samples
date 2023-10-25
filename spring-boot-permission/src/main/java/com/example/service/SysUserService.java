@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.dto.BaseUserInfoDTO;
 import com.example.dto.UserInfoDTO;
 import com.example.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -28,4 +29,13 @@ public interface SysUserService extends IService<SysUser> {
      * @return {@link String}
      */
     String register(UserReq userReq);
+
+    /**
+     * 获取登录的用户信息,并更行丢对应的ip信息
+     *
+     * @param session  用户会话
+     * @param clientIp 用户最新的登录ip
+     * @return 返回用户基本信息
+     */
+    BaseUserInfoDTO getAndUpdateUserIpInfoBySessionId(String session, String clientIp);
 }

@@ -55,6 +55,7 @@ public enum ResultEnum {
     ACL_MODULE_NAME_ERROR(33, "同一层级下存在相同名称"),
     ACL_NAME_ERROR(33, "当前权限模块下面存在相同名称的权限点"),
     ACL_NOT_EXIST(34, "权限不存在"),
+    USER_ACL_NOT_EXIST(34, "用户操作未被授权"),
     ;
     private Integer code;
     private String message;

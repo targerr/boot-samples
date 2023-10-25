@@ -12,4 +12,10 @@ import java.util.List;
  */
 public interface SysCoreService {
     List<SysAcl> getUserAclList(Integer userId);
+
+    List<SysAcl> getRoleAclList(int roleId);
+
+    List<SysAcl> getCurrentUserAclList();
+
+    public boolean hasUrlAcl(String url);
 }

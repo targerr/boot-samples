@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
  * @since 1.0.0
  */
 @Data
-@Schema(name = "权限模块")
+@Schema(name = "权限模块model",description ="权限模块实体")
 public class AclModuleReq {
     @Schema(description = "权限模块id")
     private Integer id;

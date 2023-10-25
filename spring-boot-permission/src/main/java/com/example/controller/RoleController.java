@@ -1,12 +1,14 @@
 package com.example.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.example.dto.AclModuleLevelDto;
 import com.example.req.RoleAclReq;
 import com.example.req.RoleReq;
 import com.example.req.RoleUserReq;
 import com.example.service.SysRoleAclService;
 import com.example.service.SysRoleService;
 import com.example.service.SysRoleUserService;
+import com.example.service.SysTreeService;
 import com.example.utils.ResultVoUtil;
 import com.example.vo.ResVo;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +19,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Author: wgs
@@ -34,6 +38,8 @@ public class RoleController {
     private SysRoleUserService sysRoleUserService;
     @Autowired
     private SysRoleAclService sysRoleAclService;
+    @Autowired
+    private SysTreeService sysTreeService;
 
     @PostMapping("/save")
     @Operation(summary = "新增角色", description = "新增")
@@ -55,29 +61,29 @@ public class RoleController {
         return ResultVoUtil.success(sysRoleService.list());
     }
 
-    @RequestMapping("/roleTree")
+    @GetMapping("/roleTree")
     @Parameters(@Parameter(name = "roleId", example = "1", description = "角色id", required = true, in = ParameterIn.QUERY))
     public ResVo roleTree(@RequestParam("roleId") int roleId) {
 
-//        sysTreeService.roleTree(roleId)
+        List<AclModuleLevelDto> roleTree  = sysTreeService.roleTree(roleId);
         return ResultVoUtil.success();
     }
 
-    @RequestMapping("/changeAcls.json")
+    @Operation(summary = "角色与权限绑定", description = "")
+    @PostMapping("/changeAcls.json")
     public ResVo changeAcls(@Validated @RequestBody RoleAclReq roleAclReq) {
-//        List<Integer> aclIdList = StringUtil.splitToListInt(aclIds);
         sysRoleAclService.changeRoleAcls(roleAclReq);
         return ResultVoUtil.success();
     }
 
-    @RequestMapping("/changeUsers.json")
+    @PostMapping("/changeUsers.json")
     @Operation(summary = "角色与用户绑定", description = "")
     public ResVo changeUsers(@Validated @RequestBody RoleUserReq roleUserReq) {
         sysRoleUserService.changeRoleUsers(roleUserReq);
         return ResultVoUtil.success();
     }
 
-    @RequestMapping("/users")
+    @GetMapping("/users")
     @Parameters(@Parameter(name = "roleId", example = "1", description = "角色id", required = true, in = ParameterIn.QUERY))
     @Operation(summary = "查询选择与未选中用户", description = "")
     public ResVo users(@RequestParam("roleId") int roleId) {

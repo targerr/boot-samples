@@ -1,10 +1,13 @@
 package com.example.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.convert.Convert;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.dto.BaseUserInfoDTO;
 import com.example.dto.UserInfoDTO;
 import com.example.entity.SysUser;
 import com.example.enums.ResultEnum;
@@ -14,6 +17,9 @@ import com.example.service.SysUserService;
 import com.example.mapper.SysUserMapper;
 import com.example.service.help.UserPwdEncoder;
 import com.example.service.help.UserSessionHelper;
+import com.example.util.IpUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,6 +33,7 @@ import java.util.Objects;
  * @createDate 2023-10-17 14:47:42
  */
 @Service
+@Slf4j
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         implements SysUserService {
     @Resource
@@ -70,6 +77,41 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         int userId = sysUserMapper.insert(user);
 
         return userSessionHelper.genSession(userId);
+    }
+
+    @Override
+    public BaseUserInfoDTO getAndUpdateUserIpInfoBySessionId(String session, String clientIp) {
+        if (StringUtils.isBlank(session)) {
+            return null;
+        }
+
+        Long userId = userSessionHelper.getUserIdBySession(session);
+        if (userId == null) {
+            return null;
+        }
+
+        // 查询用户信息，并更新最后一次使用的ip
+        SysUser user = sysUserMapper.selectById(userId);
+        if (user == null) {
+            throw new PreException(ResultEnum.USER_NOT_EXISTS);
+        }
+
+        String dbIp = user.getOperateIp();
+        if (StringUtils.isBlank(dbIp) || StringUtils.equals(dbIp, clientIp)) {
+            user.setOperateIp(clientIp);
+            sysUserMapper.updateById(user);
+        }
+
+
+        BaseUserInfoDTO baseUserInfoDTO = new BaseUserInfoDTO();
+        baseUserInfoDTO.setUserName(user.getUsername());
+        baseUserInfoDTO.setId(userId);
+        baseUserInfoDTO.setTelephone(user.getTelephone());
+        if (StringUtils.isNotBlank(clientIp)){
+            baseUserInfoDTO.setRegion(IpUtil.getLocationByIp(clientIp).toRegionStr());
+        }
+
+        return baseUserInfoDTO;
     }
 
     private SysUser registerByUserNameAndPassword(UserReq userReq) {

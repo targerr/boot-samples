@@ -28,7 +28,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/acl")
-@Tag(name = "权限控制类")
+@Tag(name = "权限点控制类")
 public class AclController {
     @Resource
     private SysAclService sysAclService;
@@ -44,7 +44,7 @@ public class AclController {
 
     @PostMapping("/update")
     @Operation(summary = "权限点更新",description = "更新")
-    public ResVo update(@Validated @RequestBody AclReq aclReq) {
+    public ResVo update(@Validated @RequestBody  AclReq aclReq) {
         sysAclService.updateAcl(aclReq);
         return ResultVoUtil.success();
     }
@@ -58,8 +58,11 @@ public class AclController {
         sysAclService.deleteAcl(id);
         return ResultVoUtil.success();
     }
-    @RequestMapping("acls.json")
-    @ResponseBody
+    @PostMapping("acls.json")
+    @Operation(summary = "权限点展示",description = "展示")
+    @Parameters({
+            @Parameter(name = "aclId",example = "1",description = "权限点id",required = true,in = ParameterIn.QUERY),
+    })
     public ResVo acls(@RequestParam("aclId") int aclId) {
         Map<String, Object> map = Maps.newHashMap();
 //        List<SysRole> roleList = sysRoleService.getRoleListByAclId(aclId);

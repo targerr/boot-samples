@@ -2,17 +2,13 @@ package com.example.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Data
-@Schema(name = "部门model",description ="部门实体")
+@Schema(name = "部门model", description = "部门实体")
 public class DeptReq {
 
     @Schema(description = "部门id")

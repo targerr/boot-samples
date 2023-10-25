@@ -27,7 +27,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/user")
-@Tag(name = "用户控制器")
+@Tag(name = "系统用户控制器")
 public class SysUserController {
     @Autowired
     private SysTreeService sysTreeService;
@@ -38,7 +38,7 @@ public class SysUserController {
     @Parameters({
             @Parameter(name = "userId",example = "1",description = "用户id",required = true,in = ParameterIn.QUERY),
     })
-    @RequestMapping("/acls")
+    @PostMapping("/acls")
     public ResVo acls(@RequestParam("userId") int userId) {
         Map<String, Object> map = Maps.newHashMap();
         map.put("acls", sysTreeService.userAclTree(userId));

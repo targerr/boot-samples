@@ -6,6 +6,7 @@ import com.example.dto.AclModuleLevelDto;
 import com.example.entity.SysAcl;
 import com.example.entity.SysAclModule;
 import com.example.entity.SysDept;
+import com.example.mapper.SysAclMapper;
 import com.example.mapper.SysAclModuleMapper;
 import com.example.mapper.SysDeptMapper;
 import com.example.service.SysCoreService;
@@ -16,10 +17,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -36,6 +34,8 @@ public class SysTreeServiceImpl implements SysTreeService {
     private SysAclModuleMapper sysAclModuleMapper;
     @Resource
     private SysCoreService sysCoreService;
+    @Resource
+    private SysAclMapper sysAclMapper;
 
     @Override
     public List<DeptVo> getDeptTree() {
@@ -71,6 +71,31 @@ public class SysTreeServiceImpl implements SysTreeService {
             return aclDto;
         }).collect(Collectors.toList());
 
+        return aclListToTree(aclDtoList);
+    }
+
+    @Override
+    public List<AclModuleLevelDto> roleTree(int roleId) {
+        // 1、当前用户已分配的权限点
+        List<SysAcl> userAclList = sysCoreService.getCurrentUserAclList();
+        // 2、当前角色分配的权限点
+        List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
+        // 3、当前系统所有权限点
+        List<AclDto> aclDtoList = Lists.newArrayList();
+        Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+        Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
+
+        List<SysAcl> allAclList = sysAclMapper.selectList(null);
+        for (SysAcl acl : allAclList) {
+            AclDto dto = AclDto.adapt(acl);
+            if (userAclIdSet.contains(acl.getId())) {
+                dto.setHasAcl(true);
+            }
+            if (roleAclIdSet.contains(acl.getId())) {
+                dto.setChecked(true);
+            }
+            aclDtoList.add(dto);
+        }
         return aclListToTree(aclDtoList);
     }
 

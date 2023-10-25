@@ -3,6 +3,7 @@ package com.example;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
  * @Author: wgs
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @Description
  */
 @SpringBootApplication
+@ServletComponentScan
 @MapperScan({"com.example.mapper","com.example.modules.demo.dao"})
 public class SpringBootPermission {
     public static void main(String[] args) {

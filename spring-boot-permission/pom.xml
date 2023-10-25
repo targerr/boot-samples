@@ -77,6 +77,12 @@
             <version>2.6.6</version>
         </dependency>
 
+        <!-- aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!-- 全局依赖版本管理 -->
