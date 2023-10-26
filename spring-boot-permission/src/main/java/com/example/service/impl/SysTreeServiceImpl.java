@@ -81,21 +81,21 @@ public class SysTreeServiceImpl implements SysTreeService {
         // 2、当前角色分配的权限点
         List<SysAcl> roleAclList = sysCoreService.getRoleAclList(roleId);
         // 3、当前系统所有权限点
-        List<AclDto> aclDtoList = Lists.newArrayList();
+        List<SysAcl> allAclList = sysAclMapper.selectList(null);
+
         Set<Integer> userAclIdSet = userAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
         Set<Integer> roleAclIdSet = roleAclList.stream().map(sysAcl -> sysAcl.getId()).collect(Collectors.toSet());
 
-        List<SysAcl> allAclList = sysAclMapper.selectList(null);
-        for (SysAcl acl : allAclList) {
-            AclDto dto = AclDto.adapt(acl);
-            if (userAclIdSet.contains(acl.getId())) {
-                dto.setHasAcl(true);
-            }
-            if (roleAclIdSet.contains(acl.getId())) {
-                dto.setChecked(true);
-            }
-            aclDtoList.add(dto);
-        }
+        // 构建权限点DTO列表
+        List<AclDto> aclDtoList = allAclList.stream()
+                .map(acl -> {
+                    AclDto dto = AclDto.adapt(acl);
+                    dto.setHasAcl(userAclIdSet.contains(acl.getId()));
+                    dto.setChecked(roleAclIdSet.contains(acl.getId()));
+                    return dto;
+                })
+                .collect(Collectors.toList());
+
         return aclListToTree(aclDtoList);
     }
 

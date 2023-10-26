@@ -66,7 +66,7 @@ public class RoleController {
     public ResVo roleTree(@RequestParam("roleId") int roleId) {
 
         List<AclModuleLevelDto> roleTree  = sysTreeService.roleTree(roleId);
-        return ResultVoUtil.success();
+        return ResultVoUtil.success(roleTree);
     }
 
     @Operation(summary = "角色与权限绑定", description = "")

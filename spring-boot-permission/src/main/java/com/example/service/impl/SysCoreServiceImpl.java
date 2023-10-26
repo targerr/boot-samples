@@ -48,19 +48,20 @@ public class SysCoreServiceImpl implements SysCoreService {
         return getAclIdListByRoleIdList(roleIds);
     }
 
+
     @Override
     public List<SysAcl> getRoleAclList(int roleId) {
-        final List<SysRoleAcl> sysRoleAcls = sysRoleAclMapper.selectList(new LambdaQueryWrapper<SysRoleAcl>().eq(SysRoleAcl::getRoleId, roleId));
-        if (CollectionUtils.isEmpty(sysRoleAcls)) {
+        final List<Integer> aclIds =  sysRoleAclMapper.selectList(new LambdaQueryWrapper<SysRoleAcl>()
+                .eq(SysRoleAcl::getRoleId, roleId))
+                .stream()
+                .map(SysRoleAcl::getAclId)
+                .collect(Collectors.toList());
+        if (CollectionUtils.isEmpty(aclIds)) {
             return new ArrayList<>();
         }
 
-        final List<Integer> collect = sysRoleAcls.stream()
-                .map(SysRoleAcl::getAclId)
-                .collect(Collectors.toList());
-        final LambdaQueryWrapper<SysAcl> queryWrapper = new LambdaQueryWrapper<SysAcl>()
-                .in(SysAcl::getId, collect);
-        return sysAclMapper.selectList(queryWrapper);
+        return sysAclMapper.selectList(new LambdaQueryWrapper<SysAcl>()
+                .in(SysAcl::getId, aclIds));
     }
 
     @Override
@@ -75,8 +76,7 @@ public class SysCoreServiceImpl implements SysCoreService {
             return new ArrayList<>();
         }
         List<Integer> aclIdList = sysRoleAcls.stream().map(SysRoleAcl::getAclId).collect(Collectors.toList());
-        List<SysAcl> sysAclList = sysAclMapper.selectList(new LambdaQueryWrapper<SysAcl>().in(SysAcl::getId, aclIdList));
-        return sysAclList;
+        return sysAclMapper.selectList(new LambdaQueryWrapper<SysAcl>().in(SysAcl::getId, aclIdList));
     }
 
     private List<Integer> getRoleIdListByUserId(Integer userId) {
@@ -89,6 +89,26 @@ public class SysCoreServiceImpl implements SysCoreService {
     }
 
     public boolean hasUrlAcl(String url) {
+        if (isSuperAdmin()) {
+            return true;
+        }
+
+        List<SysAcl> sysAclList = sysAclMapper.selectList(new LambdaQueryWrapper<SysAcl>().eq(SysAcl::getUrl, url));
+        if (CollectionUtils.isEmpty(sysAclList)) {
+            return true;
+        }
+
+        return sysAclList.stream()
+                // 过滤无效权限点
+                .filter(acl -> acl != null && acl.getStatus() == 1)
+                .anyMatch(acl -> getCurrentUserAclList().stream()
+                        .map(SysAcl::getId)
+                        .collect(Collectors.toSet())
+                        .contains(acl.getId())
+                );
+    }
+
+    public boolean hasUrlAcl1(String url) {
         if (isSuperAdmin()) {
             return true;
         }
