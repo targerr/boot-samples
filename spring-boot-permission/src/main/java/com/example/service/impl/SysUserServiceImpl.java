@@ -1,20 +1,19 @@
 package com.example.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.convert.Convert;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.dto.BaseUserInfoDTO;
 import com.example.dto.UserInfoDTO;
+import com.example.dto.UserStatisticInfoDTO;
+import com.example.entity.SysRole;
 import com.example.entity.SysUser;
 import com.example.enums.ResultEnum;
 import com.example.exception.PreException;
-import com.example.req.UserReq;
-import com.example.service.SysUserService;
 import com.example.mapper.SysUserMapper;
+import com.example.req.UserReq;
+import com.example.service.SysRoleService;
+import com.example.service.SysUserService;
 import com.example.service.help.UserPwdEncoder;
 import com.example.service.help.UserSessionHelper;
 import com.example.util.IpUtil;
@@ -23,8 +22,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -42,6 +41,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
     private UserPwdEncoder userPwdEncoder;
     @Resource
     private UserSessionHelper userSessionHelper;
+    @Resource
+    private SysRoleService sysRoleService;
 
     @Override
     public UserInfoDTO login(String username, String password) {
@@ -107,11 +108,36 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         baseUserInfoDTO.setUserName(user.getUsername());
         baseUserInfoDTO.setId(userId);
         baseUserInfoDTO.setTelephone(user.getTelephone());
-        if (StringUtils.isNotBlank(clientIp)){
+        if (StringUtils.isNotBlank(clientIp)) {
             baseUserInfoDTO.setRegion(IpUtil.getLocationByIp(clientIp).toRegionStr());
         }
 
         return baseUserInfoDTO;
+    }
+
+    @Override
+    public UserStatisticInfoDTO queryUserInfoWithStatistic(Integer userId) {
+        SysUser user = sysUserMapper.selectById(userId);
+        if (Objects.isNull(user)) {
+            throw new PreException(ResultEnum.USER_NOT_EXISTS);
+        }
+
+        UserStatisticInfoDTO userHomeDTO = new UserStatisticInfoDTO();
+
+        // 用户资料完整度
+        int cnt = 0;
+        if (StringUtils.isNotEmpty(user.getTelephone())){
+            ++cnt;
+        }
+        if (StringUtils.isNotEmpty(user.getMail())){
+            ++cnt;
+        }
+        userHomeDTO.setInfoPercent(cnt * 100 / 2);
+
+        final List<SysRole> roleListByUserId = sysRoleService.getRoleListByUserId(userId);
+        userHomeDTO.setRoleCount(roleListByUserId.size());
+
+        return userHomeDTO;
     }
 
     private SysUser registerByUserNameAndPassword(UserReq userReq) {
@@ -148,6 +174,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser>
         SysUser user = sysUserMapper.selectOne(queryUser);
         return user;
     }
+
+
 }
 
 

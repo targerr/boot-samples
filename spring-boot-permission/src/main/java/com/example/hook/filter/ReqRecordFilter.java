@@ -83,13 +83,11 @@ public class ReqRecordFilter implements Filter {
                 }
                 reqInfo.setPath(url);
             }
-            reqInfo.setReferer(request.getHeader("referer"));
+            // 通过header取用户信息
+            reqInfo.setReferer(request.getHeader(LoginOutService.USER_TOKEN));
             reqInfo.setClientIp(IpUtil.getClientIp(request));
             reqInfo.setUserAgent(request.getHeader("User-Agent"));
             reqInfo.setDeviceId(getOrInitDeviceId(request, response));
-
-            // 通过header取用户信息
-            String token = request.getHeader(LoginOutService.USER_TOKEN);
             // 初始化登录信息
             globalInitService.initLoginUser(reqInfo);
 
