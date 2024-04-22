@@ -1,94 +1,75 @@
-# \u4FDD\u9669\u914D\u7F6E
+# 泰康
 taikang:
-  # \u6E20\u9053\u4EE3\u7801
+  # 渠道代码
   channelcode: 105000001373
-  # \u5BC6\u94A5
+  # 密钥
   signSecret: SgCsHPBPH2121Nn
-  # \u6295\u4FDD\u63A5\u53E3
+  # 投保接口
   insureUrl: https://open360uat.tk.cn/open/api/open
-  # \u767E\u4E07\u533B\u7597
+  # 百万医疗
   medical:
-    # \u6708\u7F34\u65B9\u6848
+    # 月缴方案
     monthConfig:
-      # \u5206\u4EAB\u94FE\u63A5\u53C2\u6570
+      # 分享链接参数
       tkOpenFrom: 2b86889af2ce89a7c874b14e0b7735829673ae2eba2585a6a2252e5a8aa3d07a
-      # \u63CF\u8FF0
-      msg: \u767E\u4E07\u533B\u7597-\u6708\u7F34\u65B9\u6848
-      # \u4EA7\u54C1\u4EE3\u7801
+      # 描述
+      msg: 百万医疗-月缴方案
+      # 产品代码
       productcode: N20240018
-      # \u6708\u7F34\u7B49\u989D\u65B9\u6848\u4EE3\u7801
+      # 月缴等额方案代码
       comboCode: 10N01531
-      # \u6708\u7F34 \u9B54\u65B9\u4EE3\u7801
+      # 月缴 魔方代码
       discountSubType: 10N01531M001
-      # \u57FA\u7840\u7248 \u4FDD\u989D
+      # 基础版 保额
       baseTotalAmount: 600000000
-      # \u5347\u7EA7\u7248 \u4FDD\u989D
+      # 升级版 保额
       upgradeTotalAmount: 6000000
-      # \u57FA\u7840\u9669\u522B\u4FE1\u606F
+      # 基础险别信息
       baseRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-      # \u5347\u7EA7\u9669\u522B\u4FE1\u606F
-      upgradeRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-    # \u5E74\u7F34\u65B9\u6848
+      # 升级险别信息
+      upgradeRiskList: ""
+    # 年缴方案
     yearConfig:
-      # \u5206\u4EAB\u94FE\u63A5\u53C2\u6570
+      # 分享链接参数
       tkOpenFrom: 4ae02542388713f1ba4938601c4f8f34143c80f666ca8db88fa34519d8ca7ed5
-      # \u63CF\u8FF0
-      msg: \u767E\u4E07\u533B\u7597-\u5E74\u7F34\u65B9\u6848
-      # \u4EA7\u54C1\u4EE3\u7801
+      # 描述
+      msg: 百万医疗-年缴方案
+      # 产品代码
       productcode: N20240004
-      # \u5E74\u7F34 \u5B9A\u989D\u65B9\u6848\u4EE3\u7801
+      # 年缴 定额方案代码
       comboCode: 10C01661
-      # \u5E74\u7F34 \u9B54\u65B9\u4EE3\u7801
+      # 年缴 魔方代码
       discountSubType: 10C01661Y001
-      # \u57FA\u7840\u7248 \u4FDD\u989D
+      # 基础版 保额
       baseTotalAmount: 600000000
-      # \u5347\u7EA7\u7248 \u4FDD\u989D
+      # 升级版 保额
       upgradeTotalAmount: 6000000
-      # \u57FA\u7840\u9669\u522B\u4FE1\u606F
+      # 基础险别信息
       baseRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-      # \u5347\u7EA7\u9669\u522B\u4FE1\u606F
-      upgradeRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-  # \u65C5\u6E38\u610F\u5916
-  travel:
-    # \u6708\u7F34\u65B9\u6848
-    monthConfig:
-      # \u5206\u4EAB\u94FE\u63A5\u53C2\u6570
-      tkOpenFrom: 686473d3ef4589d8e413c5e800f68dd87e651ff3ed6df00ceb4a4b3477b63bfa
-      # \u63CF\u8FF0
-      msg: \u65C5\u6E38\u9669-\u6708\u7F34\u65B9\u6848
-      # \u4EA7\u54C1\u4EE3\u7801
-      productcode: N20230018
-      # \u6708\u7F34\u7B49\u989D\u65B9\u6848\u4EE3\u7801
-      comboCode: 11N00658
-      # \u6708\u7F34 \u9B54\u65B9\u4EE3\u7801
-      discountSubType: 10N01531M001
-      # \u57FA\u7840\u7248 \u4FDD\u989D
-      baseTotalAmount: 326000000
-      # \u5347\u7EA7\u7248 \u4FDD\u989D
-      upgradeTotalAmount: 326000000
-      # \u57FA\u7840\u9669\u522B\u4FE1\u606F
-      baseRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-      # \u5347\u7EA7\u9669\u522B\u4FE1\u606F
-      upgradeRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-    # \u5E74\u7F34\u65B9\u6848
-    yearConfig:
-      # \u5206\u4EAB\u94FE\u63A5\u53C2\u6570
-      tkOpenFrom: 686473d3ef4589d8e413c5e800f68dd87e651ff3ed6df00ceb4a4b3477b63bfa
-      # \u63CF\u8FF0
-      msg: \u65C5\u6E38\u9669-\u5E74\u7F34\u65B9\u6848
-      # \u4EA7\u54C1\u4EE3\u7801
-      productcode: N20230018
-      # \u5E74\u7F34 \u5B9A\u989D\u65B9\u6848\u4EE3\u7801
-      comboCode: 11N00658
-      # \u57FA\u7840\u7248 \u4FDD\u989D
-      baseTotalAmount: 326000000
-      # \u5347\u7EA7\u7248 \u4FDD\u989D
-      upgradeTotalAmount: 326000000
-      # \u57FA\u7840\u9669\u522B\u4FE1\u606F
-      baseRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-      # \u5347\u7EA7\u9669\u522B\u4FE1\u606F
-      upgradeRiskList: "[{\"amount\":3000000,\"kindCode\":\"PYL00310Z326\"},{\"amount\":6000000,\"kindCode\":\"PYL00310Z328\"}]"
-
+      # 升级险别信息
+      upgradeRiskList: ""
+    # 旅游意外
+    travel:
+      # 月缴方案
+      monthConfig:
+      # 年缴方案
+      yearConfig:
+        # 分享链接参数
+        tkOpenFrom: 686473d3ef4589d8e413c5e800f68dd87e651ff3ed6df00ceb4a4b3477b63bfa
+        # 描述
+        msg: 旅游险-年缴方案
+        # 产品代码
+        productcode: N20230018
+        # 年缴 定额方案代码
+        comboCode: 11N00658
+        # 基础版 保额
+        baseTotalAmount: 326000000
+        # 升级版 保额
+        upgradeTotalAmount: 326000000
+        # 基础险别信息
+        baseRiskList: "[{\"amount\":\"15000000\",\"premium\":\"687\",\"kindCode\":\"PYW00050Z674\"},{\"amount\":\"5000000\",\"premium\":\"35\",\"kindCode\":\"PYW00048Z311\"},{\"amount\":\"5000000\",\"premium\":\"152\",\"kindCode\":\"PYW00048Z312\"},{\"amount\":\"5000000\",\"premium\":\"3\",\"kindCode\":\"PYW00048Z305\"},{\"amount\":\"5000000\",\"premium\":\"3\",\"kindCode\":\"PYW00048Z306\"},{\"amount\":\"5000000\",\"premium\":\"4\",\"kindCode\":\"PYW00048Z307\"},{\"amount\":\"5000000\",\"premium\":\"5\",\"kindCode\":\"PYW00048Z308\"},{\"amount\":\"5000000\",\"premium\":\"6\",\"kindCode\":\"PYW00048Z309\"},{\"amount\":\"5000000\",\"premium\":\"7\",\"kindCode\":\"PYW00048Z310\"},{\"amount\":\"100000000\",\"premium\":\"40\",\"kindCode\":\"PYW00047Z541\"},{\"amount\":\"5000000\",\"premium\":\"25\",\"kindCode\":\"AYW00063Z006\"},{\"amount\":\"5000000\",\"premium\":\"38\",\"kindCode\":\"AYW00063Z649\"},{\"amount\":\"3000000\",\"premium\":\"21\",\"kindCode\":\"AYW00043Z698\"}]"
+        # 升级险别信息
+        upgradeRiskList: ""
 
 
 person:

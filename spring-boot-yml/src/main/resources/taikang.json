@@ -1,0 +1,551 @@
+{
+  "_百万医疗": "险别代码固定值",
+  "基础版": [
+    {
+      "kindCode": "PYL00310Z328",
+      "amount": "6000000"
+    },
+    {
+      "kindCode": "PYL00310Z326",
+      "amount": "3000000"
+    }
+  ],
+  "升级版": [
+    {
+      "amount": "6000000",
+      "kindCode": "PYL00310Z328"
+    },
+    {
+      "amount": "3000000",
+      "kindCode": "PYL00310Z326"
+    },
+    {
+      "amount": "3000000",
+      "kindCode": "PYL00310Z329"
+    },
+    {
+      "amount": "3000000",
+      "kindCode": "PYL00310Z330"
+    },
+    {
+      "amount": "6000000",
+      "kindCode": "PYL00310Z331"
+    },
+    {
+      "amount": "3000000",
+      "kindCode": "PYL00310Z332"
+    },
+    {
+      "amount": "6000000",
+      "kindCode": "PYL00310Z334"
+    },
+    {
+      "amount": "6000000",
+      "kindCode": "PYL00310Z951"
+    },
+    {
+      "amount": "3000",
+      "kindCode": "AYL00188Z605"
+    }
+  ],
+  "景点游青年款": {
+    "3": [
+      {
+        "amount": "15000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "257"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "30"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "137"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "3"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "3"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "3"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "6"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "36"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z006",
+        "premium": "25"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z649",
+        "premium": "38"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "21"
+      }
+    ],
+    "7": [
+      {
+        "amount": "15000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "687"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "35"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "152"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "3"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "3"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "7"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "40"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z006",
+        "premium": "25"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z649",
+        "premium": "38"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "21"
+      }
+    ],
+    "20": [
+      {
+        "amount": "15000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "1400"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "40"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "193"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "8"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "9"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "51"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z006",
+        "premium": "50"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z649",
+        "premium": "75"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "21"
+      }
+    ],
+    "30": [
+      {
+        "amount": "15000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "1944"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "30"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "193"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "8"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "9"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "51"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z006",
+        "premium": "50"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "AYW00063Z649",
+        "premium": "75"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "21"
+      }
+    ]
+  },
+  "景点游老年款": {
+    "3": [
+      {
+        "amount": "10000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "220"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "38"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "148"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "8"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "47"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "27"
+      }
+    ],
+    "7": [
+      {
+        "amount": "10000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "565"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "42"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "165"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "4"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "8"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "9"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "52"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "27"
+      }
+    ],
+    "20": [
+      {
+        "amount": "10000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "1110"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "53"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "209"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "8"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "10"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "12"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "66"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "27"
+      }
+    ],
+    "30": [
+      {
+        "amount": "10000000",
+        "kindCode": "PYW00050Z674",
+        "premium": "1529"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z311",
+        "premium": "53"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z312",
+        "premium": "209"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z305",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z306",
+        "premium": "5"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z307",
+        "premium": "6"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z308",
+        "premium": "8"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z309",
+        "premium": "10"
+      },
+      {
+        "amount": "5000000",
+        "kindCode": "PYW00048Z310",
+        "premium": "12"
+      },
+      {
+        "amount": "100000000",
+        "kindCode": "PYW00047Z541",
+        "premium": "66"
+      },
+      {
+        "amount": "3000000",
+        "kindCode": "AYW00043Z698",
+        "premium": "27"
+      }
+    ]
+  }
+}
