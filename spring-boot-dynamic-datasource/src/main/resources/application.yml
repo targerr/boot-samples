@@ -1,0 +1,50 @@
+spring:
+  datasource: #单数据源
+    url: jdbc:mysql://localhost:3306/jfinal_demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: root123456
+  dynamic: # 动态数据源
+    primary: master # 这个表示默认的数据源
+    datasource:
+      master:
+        # 数据库名，从配置 database.name 中获取
+        url: jdbc:mysql://localhost:3306/jfinal_demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: root123456
+        # type:放开表示 实例化DruidDataSource。注释掉走默认实例化HikarDataSourc
+        type: com.alibaba.druid.pool.DruidDataSource
+        #DruidDataSource自有属性
+        filters: stat
+        initialSize: 0
+        minIdle: 1
+        maxActive: 200
+        maxWait: 10000
+        time-between-eviction-runs-millis: 60000
+        min-evictable-idle-time-millis: 200000
+        testWhileIdle: true
+        testOnBorrow: true
+        validationQuery: select 1
+      slave:
+        # 数据库名，从配置 database.name 中获取
+        url: jdbc:mysql://172.16.200.212/insurance-docking?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+
+
+#spring:
+#  datasource:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/jfinal_demo?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#      username: root
+#      password: root123456
+
+
+mybatis-plus:
+  configuration:
+    #开启下划线转驼峰
+    map-underscore-to-camel-case: true
+
+
+logging:
+  level:
+    com.example: debug

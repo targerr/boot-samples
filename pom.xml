@@ -78,6 +78,8 @@
         <module>spring-boot-activite</module>
         <module>spring-boot-permission</module>
         <module>spring-boot-yml</module>
+        <module>spring-boot-dynamic-datasource</module>
+        <module>spring-boot-dynamic-datasource-fast</module>
     </modules>
     <packaging>pom</packaging>
 
