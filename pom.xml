@@ -80,6 +80,7 @@
         <module>spring-boot-yml</module>
         <module>spring-boot-dynamic-datasource</module>
         <module>spring-boot-dynamic-datasource-fast</module>
+        <module>spring-boot-word</module>
     </modules>
     <packaging>pom</packaging>
 
