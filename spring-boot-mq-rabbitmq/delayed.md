@@ -1,4 +1,7 @@
 ### RabbitMQ延时消息
+**[参考](https://zhuanlan.zhihu.com/p/641458427)**
+
+**[高级特性](https://blog.csdn.net/QRLYLETITBE/article/details/126685420)**
 
 #### 配置类
 
