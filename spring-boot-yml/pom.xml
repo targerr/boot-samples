@@ -16,6 +16,7 @@
         <java.version>11</java.version>
     </properties>
     <dependencies>
+        <!-- 点击配置文件 yml 可以快速跳转到配置类（@ConfigurationProperties） -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
