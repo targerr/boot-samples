@@ -36,9 +36,9 @@ public class Wordl2Pdf {
      * @param pdfPath 转换之后pdf的全路径带文件名
      */
     public static void doc2pdf(String wordPath, String pdfPath) {
-        if (!getLicense()) { // 验证License 若不验证则转化出的pdf文档会有水印产生
-            return;
-        }
+//        if (!getLicense()) { // 验证License 若不验证则转化出的pdf文档会有水印产生
+//            return;
+//        }
         try {
             long old = System.currentTimeMillis();
             File file = new File(pdfPath); //新建一个pdf文档

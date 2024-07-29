@@ -29,7 +29,7 @@
             <artifactId>aspose-words-3rd</artifactId>
             <version>18.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/aspose-words-3rd-18.1.jar</systemPath>
+            <systemPath>${basedir}/lib/aspose-words-21.1-jdk17-cracked.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.aspose</groupId>
