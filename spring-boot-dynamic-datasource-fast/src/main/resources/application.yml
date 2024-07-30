@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/jfinal_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root123456
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+
+#多数据源的配置
+dynamic:
+  datasource:
+    master:
+      url: jdbc:mysql://localhost:3306/jfinal_demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: root123456
+    dev:
+      # 数据库名
+      url: jdbc:mysql://172.16.200.212/insurance-docking?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+
+
+
+mybatis-plus:
+  configuration:
+    #开启下划线转驼峰
+    map-underscore-to-camel-case: true
+
+
+logging:
+  level:
+    com.example: debug
