@@ -206,8 +206,6 @@ public class RSASign {
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println("\n");
-//        RSAKeyPair keyPair = generateKeyPair();
 
         test2(PRIVATE_KEY,PUBLIC_KEY, src);
         System.out.println("\n");
