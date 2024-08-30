@@ -1,6 +1,7 @@
 package com.example.config;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.ttl.TtlRunnable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
  * @Date 2022/4/18 15:14
  * @Classname AsyncConfig
  * @Description 自定义异步任务线程池, 异步任务异常捕获处理器
+ * TTL的使用就是包装提交的Runnable或Callable或线程池，注意：包装Runnable或Callable时，每次提交都要重新包装，这样很麻烦，可以直接包装线程池，或者使用Spring提供的ThreadPoolTaskExecutor，该类会对提交的Runnable进行包装：*
  */
 @EnableAsync// 开启 Spring 异步任务支持
 @Configuration
@@ -33,7 +35,8 @@ public class AsyncConfig implements AsyncConfigurer {
         executor.setMaxPoolSize(2);
         // 线程池所使用的缓冲队列
         executor.setQueueCapacity(2);
-        executor.setThreadNamePrefix("Qinyi-Async-");   // 这个非常重要
+        // 这个非常重要
+        executor.setThreadNamePrefix("Qinyi-Async-");
 
         // 等待所有任务结果候再关闭线程池
         executor.setWaitForTasksToCompleteOnShutdown(true);
@@ -43,6 +46,10 @@ public class AsyncConfig implements AsyncConfigurer {
                 new ThreadPoolExecutor.CallerRunsPolicy()
         );
         // 初始化线程池, 初始化 core 线程
+        executor.initialize();
+
+        // 设置包装器
+        executor.setTaskDecorator(TtlRunnable::get);
         executor.initialize();
 
         return executor;
