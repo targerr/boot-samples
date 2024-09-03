@@ -82,6 +82,7 @@
         <module>spring-boot-dynamic-datasource-fast</module>
         <module>spring-boot-word</module>
         <module>spring-boot-encrypt</module>
+        <module>spring-boot-dynamic-datasource-mp</module>
     </modules>
     <packaging>pom</packaging>
 
