@@ -8,10 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-word</artifactId>
+    <artifactId>spring-boot-word</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-word</name>
-    <description>spring-word</description>
+    <name>spring-boot-word</name>
+    <description>spring-boot-word</description>
     <properties>
         <java.version>11</java.version>
     </properties>
