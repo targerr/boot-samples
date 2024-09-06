@@ -9,10 +9,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>spring-boot-com.example.seckill-simple</artifactId>
+    <artifactId>com.example.seckill-simple</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-com.example.seckill-simple</name>
-    <description>spring-boot-com.example.seckill-simple</description>
+    <name>com.example.seckill-simple</name>
+    <description>com.example.seckill-simple</description>
     <properties>
         <java.version>11</java.version>
     </properties>
