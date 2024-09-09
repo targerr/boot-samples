@@ -1,0 +1,10 @@
+
+logging:
+  level:
+    com.example: debug
+
+example:
+  service:
+    enabled: true
+    prefix: 1234
+    suffix: test
