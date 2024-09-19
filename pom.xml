@@ -83,6 +83,7 @@
         <module>spring-boot-word</module>
         <module>spring-boot-encrypt</module>
         <module>spring-boot-dynamic-datasource-mp</module>
+        <module>spring-boot-plugin</module>
     </modules>
     <packaging>pom</packaging>
 
