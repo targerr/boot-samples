@@ -11,8 +11,8 @@
 
     <artifactId>com.example.seckill-simple</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>com.example.seckill-simple</name>
-    <description>com.example.seckill-simple</description>
+    <name>spring-boot-seckill-simple</name>
+    <description>秒杀</description>
     <properties>
         <java.version>11</java.version>
     </properties>
