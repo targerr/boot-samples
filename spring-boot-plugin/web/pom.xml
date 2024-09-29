@@ -9,9 +9,12 @@
     <description>web</description>
     <properties>
         <java.version>11</java.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring-boot.version>2.7.10</spring-boot.version>
+        <spring-boot.version>2.7.6</spring-boot.version>
+        <json.version>1.2.58</json.version>
     </properties>
     <dependencies>
         <dependency>
@@ -25,6 +28,29 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- 阿里巴巴 json中间件 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${json.version}</version>
+        </dependency>
+
+
+        <!-- MyBatis-Plus依赖 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.3.4</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+
         <!--日志插件-->
         <dependency>
             <groupId>com.example</groupId>
@@ -32,7 +58,35 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--多数据源-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>plugin-dynamic-datasource</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!--字典绑定-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>plugin-echo</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
+
+        <!--hello-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>plugin-hello</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+
+
+
+
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
