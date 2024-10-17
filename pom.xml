@@ -84,6 +84,7 @@
         <module>spring-boot-encrypt</module>
         <module>spring-boot-dynamic-datasource-mp</module>
         <module>spring-boot-plugin</module>
+        <module>spring-boot-aop</module>
     </modules>
     <packaging>pom</packaging>
 
