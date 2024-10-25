@@ -81,6 +81,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--日志插件-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>common-log</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
 
 
 
