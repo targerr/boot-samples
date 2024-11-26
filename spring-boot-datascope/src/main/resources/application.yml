@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: sequence
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/jfinal_demo?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root123456
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mapper/*.xml
+    - classpath*:/mapper/**/*.xml
+
+logging:
+  level:
+    com.example: debug

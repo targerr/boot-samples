@@ -85,6 +85,8 @@
         <module>spring-boot-dynamic-datasource-mp</module>
         <module>spring-boot-plugin</module>
         <module>spring-boot-aop</module>
+        <module>spring-boot-web-stater</module>
+        <module>spring-boot-datascope</module>
     </modules>
     <packaging>pom</packaging>
 
