@@ -87,6 +87,7 @@
         <module>spring-boot-aop</module>
         <module>spring-boot-web-stater</module>
         <module>spring-boot-datascope</module>
+        <module>spring-boot-drools</module>
     </modules>
     <packaging>pom</packaging>
 
