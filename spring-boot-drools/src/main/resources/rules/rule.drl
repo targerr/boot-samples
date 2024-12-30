@@ -1,0 +1,187 @@
+package rules
+
+import java.util.List;
+import java.text.SimpleDateFormat
+import java.util.Date
+import com.example.springbootdrools.drools.Order
+import com.example.springbootdrools.drools.ConditionResponse
+import com.example.springbootdrools.drools.OrderItem
+import cn.hutool.json.JSONUtil
+
+
+
+//测试contains规则
+rule "rule1"
+    when
+        $orderItem:OrderItem()
+        $order:Order(orderItemList contains $orderItem)
+    then
+        System.out.println("测试-rule1 contains 规则触发："+$order.getOrderItemList());
+end
+
+//测试not contains规则
+rule "rule2"
+    when
+        $orderItem:OrderItem()
+        $order:Order(orderItemList not contains $orderItem)
+    then
+        System.out.println("测试-rule2 not contains 规则触发："+$order.getOrderItemList());
+end
+
+
+//测试contains规则
+rule "contains-rule1"
+    when
+        $orderItem:OrderItem()
+        $order:Order(orderItemList contains $orderItem)
+    then
+        System.out.println("测试-rule1 contains 规则触发："+$order.getOrderItemList());
+end
+
+//测试not contains规则
+rule "not-contains-rule2"
+    when
+        $orderItem:OrderItem()
+        $order:Order(orderItemList not contains $orderItem)
+    then
+        System.out.println("测试-rule2 not contains 规则触发："+$order.getOrderItemList());
+end
+
+
+//测试⽐较操作符memberOf
+rule "memberOf-rule6"
+    when
+        $orderItem:OrderItem()
+    	Order($orderItem not memberOf orderItemList)
+    then
+    	System.out.println("测试⽐较操作符not memberOf触发...");
+end
+
+
+//Drools提供的内置⽅法insert
+//rule "insert-rule7"
+//    when
+//        eval(true) //默认成⽴
+//    then
+//        Order order = new Order();
+//        order.setAmount(1000);
+//        insert(order);
+//        System.out.println("测试Drools提供的内置⽅法insert 触发...,order:"+order);
+//        System.out.println("insert()方法： "+ JSONUtil.toJsonStr(order));
+//end
+
+//Drools提供的内置⽅法insert
+rule "insert-rule77"
+    when
+      $conditionResponse:ConditionResponse()
+    then
+        Order order = new Order();
+        order.setAmount(1000);
+        insert(order);
+
+          $conditionResponse.setResultStr(JSONUtil.toJsonStr(order));
+
+        System.out.println("测试Drools提供的内置⽅法insert 触发...,order:"+order);
+        System.out.println("insert()方法： "+ JSONUtil.toJsonStr(order));
+end
+
+
+//Drools提供的内置⽅法update
+// ⽤来实现对当前Working Memory当中的 Fact进⾏更新，⽤来告诉当前的 Working Memory 该 Fact 对象已经发生了变化。
+//rule "insert-rule8"
+//    when
+//        $order:Order(amount == 100)
+//    then
+//        $order.setAmount(1000);
+//        update($order);
+//        System.out.println("测试Drools提供的内置⽅法update 触发...,order:"+$order);
+//end
+
+
+//
+//// 规则一：输出当前时间
+//rule "date_effective_rule_1"
+//    when
+//    then
+//        System.out.println("当前时间:" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+//end
+//
+//// 规则二： 该规则会在2022-05-18 10:54:26之后被激活
+//rule "date_effective_rule_2"
+//    date-effective "2022-05-18 10:54:26"
+//    when
+//    then
+//        System.out.println("date_effective_rule_2执行了,规则允许被执行的时间应该在2022-05-18 10:54:26之后");
+//end
+//
+//// 规则三： 该规则会在2023-05-18 10:54:26之后被激活
+//rule "date_effective_rule_3"
+//    date-effective "2023-05-18 10:54:26"
+//    when
+//    then
+//        System.out.println("date_effective_rule_3会在时间到了2023-05-18 10:54:26才激活");
+//end
+//
+//
+rule "group-rule1"
+    agenda-group "001"
+    when
+        eval(true)
+    then
+        System.out.println("执行规则1");
+end
+rule "group-rule2"
+    agenda-group "002"
+    when
+        eval(true)
+    then
+        System.out.println("执行规则2");
+end
+
+
+global java.lang.String name;
+
+rule "group-rule6"
+    when
+        eval(true)
+    then
+        System.out.println("测试Global--全局order："+name);
+end
+
+
+
+//不带参数的进行查询
+query "query-1"
+    $order : Order(amount == 100)
+end
+//带参数的进行查询
+query "query-2"(Integer amountParam)
+    $order : Order(amount == amountParam)
+
+end
+
+//定义函数
+function String format(String name){
+    return "hello "+name;
+}
+
+rule "function_rule"
+    when
+        eval(true)
+    then
+        //调⽤上⾯定义的函数
+        String ret = format("李祥");
+        System.out.println(ret);
+end
+
+
+rule "for_rule"
+    when
+
+       $order:Order()
+       $conditionList: List()
+       $condition: OrderItem(name == 'xiaomi') from $conditionList
+    then
+      System.out.println("for循环规则！");
+      System.out.println(JSONUtil.toJsonStr($condition));
+end

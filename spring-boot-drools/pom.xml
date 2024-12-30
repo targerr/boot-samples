@@ -39,6 +39,7 @@
             <artifactId>kie-spring</artifactId>
             <version>${drools.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>

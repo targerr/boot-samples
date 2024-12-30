@@ -1,0 +1,100 @@
+import com.example.springbootdrools.model.TieredPricing
+import cn.hutool.json.JSONUtil;
+global com.example.springbootdrools.model.TieredPricing tp;
+
+dialect "mvel"
+
+// 25200 秒 = 420 分钟=7个小时
+rule "从早七点开始计费"
+    salience 1000
+    when
+        $tp:TieredPricing(startTime < 25200)
+    then
+        Integer dur = tp.endTime - 25200;
+        modify($tp){
+            startTime = 25200;
+            duration = dur
+        }
+        System.out.println("drl-从早七点开始计费："+JSONUtil.toJsonStr(tp));
+end
+
+// 72000秒=1200分=20时
+rule "计费截止到晚八点"
+    salience 1000
+    when
+        $tp:TieredPricing(endTime > 72000)
+    then
+        Integer dur = 72000 - tp.startTime;
+        modify($tp){
+            endTime = 72000;
+            duration = dur;
+        }
+       System.out.println("drl-计费截止到晚八点："+JSONUtil.toJsonStr(tp));
+end
+
+// 1800秒=30分=0.5小时 5块钱一个小时
+rule "超过半小时，每半个小时计费一次"
+    activation-group "cost"
+    salience 3
+    when
+        $tp:TieredPricing(duration > 1800 )
+    then
+        Double c = Math.ceil((tp.endTime - tp.startTime) / 1800f) * 2.5;
+        modify($tp){
+            cost=c.floatValue();
+        }
+
+         System.out.println("drl-超过半小时，每半个小时计费一次："+JSONUtil.toJsonStr(tp));
+end
+
+// 1800秒=30分=0.5小时 5块钱一个小时
+rule "进场30分钟内不收费，但计入时间"
+    activation-group "cost"
+    salience 4
+    when
+        $tp:TieredPricing(endTime-startTime <= 1800)
+    then
+        modify($tp){
+            cost=0;
+        }
+
+    System.out.println("drl-进场30分钟内不收费，但计入时间："+JSONUtil.toJsonStr(tp));
+end
+
+// 72000秒=1200分=20时；86400秒=1440分=24小时
+rule "晚20时后不计费"
+    activation-group "cost"
+    salience 5
+    when
+        $tp:TieredPricing(startTime >= 72000 && endTime <=86400 )
+    then
+        modify($tp){
+            cost=0;
+        }
+        System.out.println("drl-晚20时后不计费："+JSONUtil.toJsonStr(tp));
+end
+
+// 25200 秒 = 420 分钟=7个小时
+rule "早7时前不计费"
+    activation-group "cost"
+    salience 6
+    when
+        $tp:TieredPricing(startTime >= 0 && endTime <=25200 )
+    then
+        modify($tp){
+            cost=0;
+        }
+        System.out.println("drl-早7时前不计费："+JSONUtil.toJsonStr(tp));
+end
+
+rule "每天最高收费50元"
+    activation-group "cost"
+    salience 7
+    when
+        $c:TieredPricing(cost > 50)
+    then
+        modify($c){
+            cost=50
+        }
+     System.out.println("drl-每天最高收费50元："+JSONUtil.toJsonStr(tp));
+end
