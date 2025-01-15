@@ -1,0 +1,12 @@
+spring:
+  alarm:
+    template:
+      enabled: true
+      channel: YAML
+      template-path: template.json
+      templates:
+        send-message-notice:
+          templateId: "send-message-notice"
+          templateName: "Template One"
+          templateContent: "This is the content of template one."
+

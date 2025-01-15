@@ -1,0 +1,27 @@
+[
+  {
+    "templateId": "exception-fallback",
+    "templateName": "服务降级模板",
+    "templateContent": "> - 应用： <font color=\"#1890ff\">#{[applicationName]}</font>\n> - 环境： <font color=\"#1890ff\">#{[environment]}</font>\n> - 地区Code：<font color=\"#1890ff\">#{[areaCode]}</font>\n\n------\n\n- 请求地址：#{[url]}\n\n- 请求服务：<font color=\"#1890ff\">#{[serviceName]}</font>\n\n- 请求方法名称：#{[classMethod]}\n\n - 方法入参:\n```\n#{[method_params]}\n```\n- 降级异常信息：\n\n```java\n#{[cause]}\n```\n\n------\n\n- 降级默认处理结果：\n```json\n#{[returnVal]}\n```"
+  },
+  {
+    "templateId": "job-notice",
+    "templateName": "定时任务通知",
+    "templateContent": "- 任务触发实例：#{[schedulerInstanceId]}\n\n- 开始时间：#{[startTime]}\n\n- 结束时间：#{[endTime]}\n\n- 请求方法名称：#{[classMethod]}\n\n- 定时任务执行结果 ：<font color=\"#e96900\">#{[result]}</font>"
+  },
+  {
+    "templateId": "http-request-notify",
+    "templateName": "RPC-接口请求",
+    "templateContent": "> - 应用： <font color=\"#1890ff\">#{[applicationName]}</font>\n> - 环境： <font color=\"#1890ff\">#{[environment]}</font>\n> - 地区：<font color=\"#1890ff\">#{[areaName]}</font>\n\n------\n\n"
+  },
+  {
+    "templateId": "external-http-request-notify",
+    "templateName": "RPC-接口请求",
+    "templateContent": "> - 应用： <font color=\"#1890ff\">#{[applicationName]}</font>\n> - 环境： <font color=\"#1890ff\">#{[environment]}</font>\n> - 地区：<font color=\"#1890ff\">#{[areaName]}</font>\n\n- 解密请求参数:\n`\n#{[decryptParam]}\n`\n\n- 请求APPID: #{[appId]}\n\n"
+  },
+  {
+    "templateId": "send-message-notice",
+    "templateName": "消息推送通知",
+    "templateContent": "- 应用： <font color=\"#1890ff\">#{[applicationName]}</font>\n- 环境： <font color=\"#1890ff\">#{[environment]}</font>\n- 地区：<font color=\"#1890ff\">#{[areaName]}</font>\n\n- 请求参数:\n```json \n#{[requestBody]}\n``` \n\n- 响应参数: \n```json \n  #{[responseBody]}\n``` \n\n"
+  }
+]
