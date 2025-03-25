@@ -89,6 +89,7 @@
         <module>spring-boot-datascope</module>
         <module>spring-boot-drools</module>
         <module>spring-boot-config-loading</module>
+        <module>spring-boot-api</module>
     </modules>
     <packaging>pom</packaging>
 
