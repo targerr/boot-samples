@@ -90,6 +90,7 @@
         <module>spring-boot-drools</module>
         <module>spring-boot-config-loading</module>
         <module>spring-boot-api</module>
+        <module>spring-boot-hmac</module>
     </modules>
     <packaging>pom</packaging>
 
