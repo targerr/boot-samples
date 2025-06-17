@@ -74,6 +74,7 @@
         <module>spring-boot-sms-yml</module>
         <module>spring-boot-aspose</module>
         <module>spring-boot-websocket-boot</module>
+        <module>spring-boot-websocket-abstract</module>
         <module>spring-boot-log-mdc</module>
         <module>spring-boot-activite</module>
         <module>spring-boot-permission</module>
