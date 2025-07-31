@@ -1,5 +1,8 @@
 ## 规则引擎
 
+* [规则引擎 Drools讲解与实战](https://blog.csdn.net/ly_7956/article/details/136110842)
+
+
 ### 理解规则引擎
 
 ```java

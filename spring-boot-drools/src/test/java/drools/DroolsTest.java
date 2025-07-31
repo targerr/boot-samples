@@ -1,6 +1,7 @@
 package drools;
 
 import cn.hutool.json.JSONUtil;
+import com.example.springbootdrools.SpringbootDroolsApplication;
 import com.example.springbootdrools.drools.ConditionResponse;
 import com.example.springbootdrools.drools.Order;
 import com.example.springbootdrools.drools.OrderItem;
@@ -29,7 +30,7 @@ import java.util.List;
  * @Description https://blog.csdn.net/weixin_47533244/article/details/128237383
  * https://www.cnblogs.com/huan1993/p/16284781.html
  */
-@SpringBootTest
+@SpringBootTest(classes = SpringbootDroolsApplication.class)
 @Slf4j
 public class DroolsTest {
     @Autowired

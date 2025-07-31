@@ -1,0 +1,137 @@
+import com.example.springbootdrools.drools.Calculation
+import java.math.BigDecimal
+import cn.hutool.json.JSONUtil;
+
+// 个人所得税：计算应纳税所得额
+rule "个人所得税：计算应纳税所得额"
+    enabled true
+    salience 3
+    no-loop true
+    date-effective "1-Sep-2011"
+when
+    $cal : Calculation(wage > 0)
+then
+    $cal.setWagemore($cal.getWage().subtract($cal.getThreshold()));
+    update($cal);
+//    modify($cal) {
+//        setWagemore($cal.getWage().subtract($cal.getThreshold()))
+//    }
+
+    System.out.println("【应纳税所得额】" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：应纳税所得额 <= 1500
+rule "税率设定：<= 1500"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore <= 1500)
+then
+    $cal.setCess(new BigDecimal("0.03"));
+    $cal.setPreminus(BigDecimal.ZERO);
+    update($cal);
+    System.out.println("【税率设定】<= 1500：" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：1500 < 应纳税额 <= 4500
+rule "税率设定：1500~4500"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore > 1500 && wagemore <= 4500)
+then
+    $cal.setCess(new BigDecimal("0.1"));
+    $cal.setPreminus(new BigDecimal("105"));
+    update($cal);
+    System.out.println("【税率设定】1500~4500：" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：4500 < 应纳税额 <= 9000
+rule "税率设定：4500~9000"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore > 4500 && wagemore <= 9000)
+then
+    $cal.setCess(new BigDecimal("0.2"));
+    $cal.setPreminus(new BigDecimal("555"));
+    update($cal);
+    System.out.println("【税率设定】4500~9000：" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：9000 < 应纳税额 <= 35000
+rule "税率设定：9000~35000"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore > 9000 && wagemore <= 35000)
+then
+    $cal.setCess(new BigDecimal("0.25"));
+    $cal.setPreminus(new BigDecimal("1005"));
+    update($cal);
+    System.out.println("【税率设定】9000~35000：" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：35000 < 应纳税额 <= 55000
+rule "税率设定：35000~55000"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore > 35000 && wagemore <= 55000)
+then
+    $cal.setCess(new BigDecimal("0.3"));
+    $cal.setPreminus(new BigDecimal("2755"));
+    update($cal);
+    System.out.println("【税率设定】35000~55000：" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：55000 < 应纳税额 <= 80000
+rule "税率设定：55000~80000"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore > 55000 && wagemore <= 80000)
+then
+    $cal.setCess(new BigDecimal("0.35"));
+    $cal.setPreminus(new BigDecimal("5505"));
+    update($cal);
+    System.out.println("【税率设定】55000~80000：" + JSONUtil.toJsonStr($cal));
+end
+
+// 税率设置规则：应纳税额 > 80000
+rule "税率设定：> 80000"
+    salience 2
+    no-loop true
+    activation-group "SETCess_Group"
+when
+    $cal : Calculation(wagemore > 80000)
+then
+    $cal.setCess(new BigDecimal("0.45"));
+    $cal.setPreminus(new BigDecimal("13505"));
+    update($cal);
+    System.out.println("【税率设定】> 80000：" + JSONUtil.toJsonStr($cal));
+end
+
+// 最终计算税后工资
+rule "税后工资计算"
+    salience 1
+when
+    $cal : Calculation(wagemore > 0 && cess > 0)
+then
+    $cal.setWageminus($cal.getWagemore().multiply($cal.getCess()).subtract($cal.getPreminus()));
+    $cal.setActualwage($cal.getWage().subtract($cal.getWageminus()));
+
+    System.out.println("【个税计算结果】");
+    System.out.println("税前工资: " + $cal.getWage());
+    System.out.println("应纳税额: " + $cal.getWagemore());
+    System.out.println("税率: " + $cal.getCess());
+    System.out.println("速算扣除数: " + $cal.getPreminus());
+    System.out.println("税额: " + $cal.getWageminus());
+    System.out.println("税后工资: " + $cal.getActualwage());
+end
