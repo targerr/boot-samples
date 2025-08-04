@@ -92,6 +92,7 @@
         <module>spring-boot-config-loading</module>
         <module>spring-boot-api</module>
         <module>spring-boot-hmac</module>
+        <module>spring-boot-timeout</module>
     </modules>
     <packaging>pom</packaging>
 
