@@ -93,6 +93,7 @@
         <module>spring-boot-api</module>
         <module>spring-boot-hmac</module>
         <module>spring-boot-timeout</module>
+        <module>springboot-column-encryption</module>
     </modules>
     <packaging>pom</packaging>
 
