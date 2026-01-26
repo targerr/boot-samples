@@ -57,13 +57,13 @@ public class SequenceRoleVO implements Serializable {
     private String timeFormat;
 
     @ApiModelProperty(value = "流水号长度")
-    private Byte sequenceLength;
+    private Integer sequenceLength;
 
     @ApiModelProperty(value = "流水号开始", example = "1")
     private Integer sequenceBegin;
 
     @ApiModelProperty(value = "流水号步长")
-    private Byte sequenceInterval;
+    private Integer sequenceInterval;
 
     @ApiModelProperty(value = "创建者", example = "1")
     private Long createdBy;
