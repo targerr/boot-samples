@@ -1,0 +1,34 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /blog
+spring:
+  # 数据源
+  datasource:
+    dynamic:
+      primary: master
+      strict: true
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/vue3_blog?allowPublicKeyRetrieval=true&useSSL=false
+          username: root
+          password: root123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+        slave:
+          url: jdbc:mysql://127.0.0.1:3306/vue3_mall?allowPublicKeyRetrieval=true&useSSL=false
+          username: root
+          password: xxxxxx
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: xxxxxxxx
+    port: 6379
+    password: xxxxxxxx
+    database: 0
+# MybatisPlus
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+  type-aliases-package: org.example.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
