@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>boot-samples</artifactId>
+    <groupId>com.example</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <groupId>org.example</groupId>
+  <artifactId>spring-boot-vue</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>spring-boot-vue</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>11</java.version>
+    <!-- 显式定义 Spring Boot 版本 -->
+    <spring-boot.version>2.7.18</spring-boot.version>
+    <!-- 第三方依赖版本管理 -->
+    <mybatis-plus.version>3.4.0</mybatis-plus.version>
+    <druid.version>1.2.4</druid.version>
+    <hutool.version>5.7.15</hutool.version>
+    <fastjson.version>2.0.21</fastjson.version>
+    <captcha.version>1.3.0</captcha.version>
+    <dynamic-datasource.version>3.6.1</dynamic-datasource.version>
+  </properties>
+
+  <!-- 子模块声明 -->
+  <modules>
+    <module>spring-boot-admin</module>
+    <!-- 其他子模块 -->
+  </modules>
+
+  <!-- 依赖管理：统一管理子模块的依赖版本 -->
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- MySQL 驱动 -->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+        <scope>runtime</scope>
+      </dependency>
+
+      <!-- MyBatis Plus -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+        <version>${mybatis-plus.version}</version>
+      </dependency>
+
+      <!-- Druid 数据源 -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>${druid.version}</version>
+      </dependency>
+
+      <!-- Hutool 工具包 -->
+      <dependency>
+        <groupId>cn.hutool</groupId>
+        <artifactId>hutool-all</artifactId>
+        <version>${hutool.version}</version>
+      </dependency>
+
+      <!-- FastJSON -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+      </dependency>
+
+      <!-- 验证码 -->
+      <dependency>
+        <groupId>com.anji-plus</groupId>
+        <artifactId>spring-boot-starter-captcha</artifactId>
+        <version>${captcha.version}</version>
+      </dependency>
+
+      <!-- 动态数据源 -->
+      <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+        <version>${dynamic-datasource.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <!-- 构建配置 -->
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>
