@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>通义千问打字机 - 流式SSE演示</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; }
+    .row { margin-bottom: 12px; }
+    label { display: inline-block; width: 100px; }
+    #output { white-space: pre-wrap; border: 1px solid #ddd; padding: 12px; min-height: 160px; background: #fafafa; }
+    #status { color: #555; font-size: 12px; }
+    .btn { padding: 8px 12px; margin-right: 8px; }
+    .small { font-size: 12px; color: #888; }
+  </style>
+</head>
+<body>
+  <h2>通义千问打字机效果（SSE流式响应）</h2>
+
+  <div class="row">
+    <label for="prompt">提示词</label>
+    <input id="prompt" type="text" style="width: 480px;" placeholder="例如：请用中文逐步讲解快速排序，并给出Java示例" />
+  </div>
+
+  <div class="row">
+    <button class="btn" onclick="startStream()">开始生成</button>
+    <button class="btn" onclick="stopStream()">停止</button>
+    <span id="status"></span>
+  </div>
+
+  <div id="output" placeholder="结果会像打字机一样逐字显示..."></div>
+
+  <script>
+    let es = null;
+
+    function startStream() {
+      const prompt = document.getElementById('prompt').value.trim();
+      if (!prompt) {
+        alert('请输入提示词');
+        return;
+      }
+      document.getElementById('output').textContent = '';
+      document.getElementById('status').textContent = '连接中...';
+
+      const params = new URLSearchParams({ prompt });
+      const url = `/api/qwen/stream/sse?${params.toString()}`;
+      
+      // 创建 EventSource 对象，连接到 SSE 服务端
+      es = new EventSource(url);
+      // 连接成功时触发
+      es.onopen = () => {
+        document.getElementById('status').textContent = '已连接，开始流式输出...';
+      };
+      // 每次收到消息时触发
+      es.onmessage = (evt) => {
+        // 收到的消息是 JSON 字符串，需要解析为对象
+        const chunk = evt.data || '';
+        const out = document.getElementById('output');
+        out.textContent += chunk;
+        out.scrollTop = out.scrollHeight;
+      };
+
+      es.onerror = (err) => {
+        console.error('SSE error:', err);
+        document.getElementById('status').textContent = '连接错误或已结束';
+        stopStream();
+      };
+    }
+
+    function stopStream() {
+      if (es) {
+        es.close();
+        es = null;
+        document.getElementById('status').textContent = '已断开';
+      }
+    }
+  </script>
+</body>
+</html>
