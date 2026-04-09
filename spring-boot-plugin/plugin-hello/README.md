@@ -211,7 +211,7 @@ public class DemoController {
 - @Configuration：标识该类为配置类，并把该类注入 ioc 容器
 - @Bean：一般在方法上使用，声明一个 Bean，Bean 名称默认是方法名称，类型为返回值。
 
-####条件注解
+#### 条件注解
 - @Conditional：是根据条件类创建特定的 Bean ，条件类需要实现 Condition 接口，并重写 matches 接口来构造判断条件。该注解是 Spring 4 新提供的注解，按照一定的条件进行判断，满足条件给容器注册 Bean。
 - @ConditionalOnBean：容器中存在指定 Bean，才会实例化一个 Bean
 - @ConditionalOnMissingBean：容器中不存在指定 Bean，才会实例化一个 Bean
