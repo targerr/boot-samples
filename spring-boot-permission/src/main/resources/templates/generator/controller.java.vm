@@ -1,0 +1,61 @@
+package ${package.Controller};
+
+import ${package.Service}.${entity}Service;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.mamba.common.result.R;
+import com.mamba.common.result.PageResult;
+import ${package.Entity}.${entity};
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+
+/**
+ * ${table.comment!}Controller
+ */
+@Slf4j
+@Tag(name = "${table.comment!}")
+@RestController
+@RequestMapping("/api/${table.entityPath}")
+public class ${entity}Controller {
+
+    @Resource
+    private ${entity}Service ${entity?uncap_first}Service;
+
+    @GetMapping("/page")
+    @Operation(summary = "分页查询")
+    public R<PageResult<${entity}>> page(
+            @RequestParam(defaultValue = "1") Integer pageNum,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+        Page<${entity}> page = ${entity?uncap_first}Service.page(new Page<>(pageNum, pageSize));
+        return R.ok(PageResult.of(page));
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "根据ID查询")
+    public R<${entity}> getById(@PathVariable Integer id) {
+        return R.ok(${entity?uncap_first}Service.getById(id));
+    }
+
+    @PostMapping
+    @Operation(summary = "新增")
+    public R<Void> save(@RequestBody ${entity} ${entity?uncap_first}) {
+        ${entity?uncap_first}Service.save(${entity?uncap_first});
+        return R.ok();
+    }
+
+    @PutMapping
+    @Operation(summary = "更新")
+    public R<Void> update(@RequestBody ${entity} ${entity?uncap_first}) {
+        ${entity?uncap_first}Service.updateById(${entity?uncap_first});
+        return R.ok();
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "删除")
+    public R<Void> delete(@PathVariable Integer id) {
+        ${entity?uncap_first}Service.removeById(id);
+        return R.ok();
+    }
+}

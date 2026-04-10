@@ -1,0 +1,31 @@
+package ${package.Entity};
+
+#foreach ($pkg in $table.importPackages)
+import ${pkg};
+#end
+import com.baomidou.mybatisplus.annotation.*;
+import com.mamba.common.base.BaseEntity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import java.time.LocalDateTime;
+
+/**
+ * ${table.comment!}实体类
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@TableName("${table.name}")
+public class ${entity} extends BaseEntity {
+
+#foreach ($field in $table.fields)
+#if(${field.keyFlag})
+    @TableId(type = IdType.AUTO)
+#end
+#if(${field.name} != ${field.propertyName})
+    @TableField("${field.name}")
+#end
+    /** ${field.comment} */
+    private ${field.propertyType} ${field.propertyName};
+
+#end
+}
