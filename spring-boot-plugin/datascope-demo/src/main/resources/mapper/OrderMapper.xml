@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.datascope.mapper.OrderMapper">
+
+	<!-- 结果映射 -->
+	<resultMap id="BaseResultMap" type="com.example.datascope.entity.Order">
+		<id column="id" property="id"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="customer_name" property="customerName"/>
+		<result column="amount" property="amount"/>
+		<result column="dept_id" property="deptId"/>
+		<result column="created_by" property="createdBy"/>
+		<result column="created_date" property="createdDate"/>
+		<result column="del_flag" property="delFlag"/>
+	</resultMap>
+
+	<!-- 查询订单列表（带数据权限） -->
+	<select id="selectListWithDataScope" resultMap="BaseResultMap">
+		SELECT *
+		FROM biz_order
+		WHERE del_flag = 0
+		<!-- DataScope 拦截器会自动添加数据权限条件 -->
+		ORDER BY created_date DESC
+	</select>
+
+</mapper>

@@ -1,0 +1,3 @@
+com.albedo.java.plugins.datascope.config.DataScopeAutoConfiguration
+com.albedo.java.plugins.datascope.config.DataScopeAspectAutoConfiguration
+com.albedo.java.plugins.datascope.config.DataScopeProviderAutoConfiguration
